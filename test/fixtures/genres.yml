@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  is_deleted: 2019-05-15 03:25:01
+
+two:
+  name: MyString
+  is_deleted: 2019-05-15 03:25:01
