@@ -1,10 +1,11 @@
 class Admins::GenresController < ApplicationController
   def index
-    @genre = Genre.new
+    @genre = Admins::Genre.new
+    @genres = Admins::Genre.all
   end
 
   def create
-    genre = Genre.new(genre_params)
+    genre = Admins::Genre.new(genre_params)
     genre.save
     redirect_to admins_genres_path
   end

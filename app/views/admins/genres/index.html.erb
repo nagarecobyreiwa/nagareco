@@ -7,3 +7,23 @@
     <%= f.submit '登録' %>
 
 <% end %>
+
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th></th>
+			<th>ジャンル名</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+    <% @genres.each do |genre| %>
+		  <tr>
+			  <th>数</th>
+			  <td><%= genre.name %></td>
+			  <td>編集  | 削除</td>
+		  </tr>
+    <% end %>
+	</tbody>
+</table>
