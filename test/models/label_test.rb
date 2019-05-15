@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admins::GenreTest < ActiveSupport::TestCase
+class LabelTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

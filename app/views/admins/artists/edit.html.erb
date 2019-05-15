@@ -1,0 +1,7 @@
+<h1>アーティスト編集</h1>
+
+<%= form_for(@artist, url: admins_artist_path) do |f| %>
+  <h4>アーティスト名</h4>
+  <%= f.text_field :name, placeholder: @artist.name %>
+  <%= f.submit 'Edit' %>
+<% end %>

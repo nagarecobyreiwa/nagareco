@@ -1,6 +1,6 @@
-class CreateAdminsGenres < ActiveRecord::Migration[5.2]
+class CreateLabels < ActiveRecord::Migration[5.2]
   def change
-    create_table :admins_genres do |t|
+    create_table :labels do |t|
       t.string :name
       t.datetime :deleted_at
 
