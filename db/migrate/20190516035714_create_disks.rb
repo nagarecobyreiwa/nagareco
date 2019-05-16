@@ -3,7 +3,7 @@ class CreateDisks < ActiveRecord::Migration[5.2]
     create_table :disks do |t|
       t.string :name
       t.integer :order
-      t.references :product_id, foreign_key: true
+      t.references :product, foreign_key: true
 
       t.timestamps
     end

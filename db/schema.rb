@@ -22,10 +22,10 @@ ActiveRecord::Schema.define(version: 2019_05_16_035939) do
   create_table "disks", force: :cascade do |t|
     t.string "name"
     t.integer "order"
-    t.integer "product_id_id"
+    t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id_id"], name: "index_disks_on_product_id_id"
+    t.index ["product_id"], name: "index_disks_on_product_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -49,24 +49,24 @@ ActiveRecord::Schema.define(version: 2019_05_16_035939) do
     t.integer "stock"
     t.boolean "on_sale"
     t.datetime "deleted_at"
-    t.integer "artist_id_id"
-    t.integer "genre_id_id"
-    t.integer "label_id_id"
+    t.integer "artist_id"
+    t.integer "genre_id"
+    t.integer "label_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["artist_id_id"], name: "index_products_on_artist_id_id"
-    t.index ["genre_id_id"], name: "index_products_on_genre_id_id"
-    t.index ["label_id_id"], name: "index_products_on_label_id_id"
+    t.index ["artist_id"], name: "index_products_on_artist_id"
+    t.index ["genre_id"], name: "index_products_on_genre_id"
+    t.index ["label_id"], name: "index_products_on_label_id"
   end
 
   create_table "songs", force: :cascade do |t|
     t.string "name"
     t.time "time"
     t.integer "order"
-    t.integer "disk_id_id"
+    t.integer "disk_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["disk_id_id"], name: "index_songs_on_disk_id_id"
+    t.index ["disk_id"], name: "index_songs_on_disk_id"
   end
 
 end

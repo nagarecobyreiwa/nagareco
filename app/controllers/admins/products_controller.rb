@@ -4,8 +4,8 @@ class Admins::ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @product.disks.build
-    @product.disk.songs.build
+    # @product.disks.build
+    # @product.disks.first.songs.build
   end
 
   def create
