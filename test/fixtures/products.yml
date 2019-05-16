@@ -6,10 +6,10 @@ one:
   price: 1
   stock: 1
   on_sale: false
-  deleted_at: 2019-05-16 03:54:17
-  artist_id: one
-  genre_id: one
-  label_id: 
+  deleted_at: 2019-05-16 09:03:11
+  artist: one
+  genre: one
+  label: one
 
 two:
   name: MyString
@@ -17,7 +17,7 @@ two:
   price: 1
   stock: 1
   on_sale: false
-  deleted_at: 2019-05-16 03:54:17
-  artist_id: two
-  genre_id: two
-  label_id: 
+  deleted_at: 2019-05-16 09:03:11
+  artist: two
+  genre: two
+  label: two

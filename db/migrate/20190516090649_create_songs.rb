@@ -4,7 +4,7 @@ class CreateSongs < ActiveRecord::Migration[5.2]
       t.string :name
       t.time :time
       t.integer :order
-      t.references :disk_id, foreign_key: true
+      t.references :disk, foreign_key: true
 
       t.timestamps
     end
