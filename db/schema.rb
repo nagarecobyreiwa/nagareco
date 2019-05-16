@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_15_075230) do
+ActiveRecord::Schema.define(version: 2019_05_16_035939) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "disks", force: :cascade do |t|
+    t.string "name"
+    t.integer "order"
+    t.integer "product_id_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id_id"], name: "index_disks_on_product_id_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -31,6 +40,33 @@ ActiveRecord::Schema.define(version: 2019_05_15_075230) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.string "image_id"
+    t.integer "price"
+    t.integer "stock"
+    t.boolean "on_sale"
+    t.datetime "deleted_at"
+    t.integer "artist_id_id"
+    t.integer "genre_id_id"
+    t.integer "label_id_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id_id"], name: "index_products_on_artist_id_id"
+    t.index ["genre_id_id"], name: "index_products_on_genre_id_id"
+    t.index ["label_id_id"], name: "index_products_on_label_id_id"
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.string "name"
+    t.time "time"
+    t.integer "order"
+    t.integer "disk_id_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["disk_id_id"], name: "index_songs_on_disk_id_id"
   end
 
 end

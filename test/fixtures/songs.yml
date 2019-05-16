@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  time: 2019-05-16 03:59:39
+  order: 1
+  disk_id: one
+
+two:
+  name: MyString
+  time: 2019-05-16 03:59:39
+  order: 1
+  disk_id: two
