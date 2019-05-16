@@ -1,2 +1,23 @@
-<h1>Admins::Products#new</h1>
-<p>Find me in app/views/admins/products/new.html.erb</p>
+<%= form_for @product, url: admins_products_path do |f| %>
+  <div class="form-user">
+    <%= f.label :name, "商品名" %>
+    <%= f.text_field :name %>
+  </div>
+  <%= f.fields_for :disks do |fd| %>
+    <div class="form-group">
+      <%= fd.label :name, "ディスク名" %>
+      <%= fd.text_field :name %>
+      <br>
+      <%= fd.fields_for :songs do |fs| %>
+        <div class="form-group">
+          <%= fs.label :name, "曲名" %>
+          <%= fs.text_field :name %>
+          <br>
+          <%= fs.label :time, "曲時間" %>
+          <%= fs.time_select :time %>
+          <br>
+        </div>
+    </div>
+  <% end %>
+  <%= f.submit "送信" %>
+<% end %>
