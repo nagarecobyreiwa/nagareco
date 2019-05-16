@@ -4,11 +4,15 @@ class Admins::ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    # @product.disks.build
-    # @product.disks.first.songs.build
+    # I wanto to associate @product with instatnce disk and song.
+    @disks = @product.disks.build
+    @disks.songs.build
   end
 
   def create
+    product = Product.new(product_params)
+    product.save
+    redirect_to admins_products_path
   end
 
   def edit
@@ -18,5 +22,11 @@ class Admins::ProductsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def product_params
+    params.require(:product).permit(:name, :disks, :songs, :time)
   end
 end

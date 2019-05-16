@@ -2,12 +2,12 @@
 
 one:
   name: MyString
-  time: 2019-05-16 03:59:39
+  time: 2019-05-16 09:06:49
   order: 1
-  disk_id: one
+  disk: one
 
 two:
   name: MyString
-  time: 2019-05-16 03:59:39
+  time: 2019-05-16 09:06:49
   order: 1
-  disk_id: two
+  disk: two
