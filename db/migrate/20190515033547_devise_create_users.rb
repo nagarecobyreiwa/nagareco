@@ -43,7 +43,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.timestamps null: false
       t.datetime :deleted_at
       t.datetime :updated_at
-      t.boolean :is_admin
+
 
     end
 
