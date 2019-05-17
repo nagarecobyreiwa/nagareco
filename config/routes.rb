@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+
   root "users#top"
 
   get "/edit_finish/", to: "users#update"
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:top, :show, :edit, :update] do
     member do
+    resources :addresses, only:[:index, :new, :create, :edit, :update, :destroy]
     get :edit_login
     get :edit_address
    end
