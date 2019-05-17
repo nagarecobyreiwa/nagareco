@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  root "users#show"
+  root "users#top"
+
+  get "/edit_finish/", to: "users#update"
 
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
@@ -15,6 +17,11 @@ Rails.application.routes.draw do
 }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :users, only: [:show]
+  resources :users, only: [:top, :show, :edit, :update] do
+    member do
+    get :edit_login
+    get :edit_address
+   end
+  end
 
 end

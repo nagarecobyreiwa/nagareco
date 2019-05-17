@@ -1,3 +1,6 @@
 <h1>ようこそ、マイページへ！</h1>
 
-<%= link_to "logout", destroy_user_session_path, method: :delete, class:"logout glyphicon glyphicon-log-out" %>
+<!-- 購入履歴一覧 -->
+ <%= link_to "会員情報編集", edit_user_path(@user.id) %>
+<!-- 宛先一覧 -->
+<!-- 退会する -->

@@ -1,0 +1,16 @@
+<h1>ログイン情報の編集ページです。</h1>
+
+<%= form_for(@user) do |f| %>
+
+<h4>登録メールアドレス</h4>
+ <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<h4>パスワード</h4>
+ <%= f.password_field :password %>
+<h4>パスワード再確認</h4>
+ <%= f.password_field :password_confirmation %>
+
+<br><%= f.submit 'update book', class: "btn btn-primary" %></br>
+
+<% end %>
+
+<%= link_to "編集を取り消す" , user_path(@user.id) %>
