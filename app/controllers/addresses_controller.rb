@@ -1,10 +1,12 @@
 class AddressesController < ApplicationController
   def index
     @address = Address.all
+    @user = User.find(params[:id])
   end
 
   def new
     @address = Address.new
+    @user = User.find(params[:id])
   end
 
   def create

@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
 
-
-
   root "users#top"
-
-  get "/edit_finish/", to: "users#update"
 
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
@@ -24,7 +20,14 @@ Rails.application.routes.draw do
     resources :addresses, only:[:index, :new, :create, :edit, :update, :destroy]
     get :edit_login
     get :edit_address
+    get :edit_finish
    end
+  end
+
+  resources :admins, only: [:index] do
+    member do
+      get :top
+    end
   end
 
 end

@@ -15,6 +15,7 @@
 </table>
 
 <div>
+ <%= link_to "戻る" , user_path(@user.id) %>
  <%= link_to "アドレス情報編集", edit_address_user_path(@user.id) %>
 </div>
 
@@ -28,5 +29,6 @@
 </table>
 
  <div>
+  <%= link_to "戻る" , user_path(@user.id) %>
   <%= link_to "ログイン情報編集", edit_login_user_path(@user.id) %>
  </div>
