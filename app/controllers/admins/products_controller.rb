@@ -7,6 +7,10 @@ class Admins::ProductsController < ApplicationController
     # I wanto to associate @product with instatnce disk and song.
     @disks = @product.disks.build
     @songs = @disks.songs.build
+
+    @artists = Artist.all
+    @genres = Genre.all
+    @labels = Label.all
   end
 
   def create
@@ -27,6 +31,24 @@ class Admins::ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :disks, :songs, :time)
+  params.require(:product).permit(
+    :name,
+    :image,
+    :stock,
+    :price,
+    :on_sale,
+    :artist_id,
+    :genre_id,
+    :label_id,
+    disks_attributes: [
+      :id,
+      :name,
+      songs_attributes: [
+        :id,
+        :name,
+        :time,
+      ]
+    ]
+  )
   end
 end

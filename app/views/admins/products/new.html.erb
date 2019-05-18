@@ -23,5 +23,26 @@
   <% end %>
   <%= f.add_nested_fields_link :disks, 'Add new', class: 'btn btn-primary', role: 'button' %>
   <br>
+  <h4>画像</h4>
+  <%= f.attachment_field :image %>
+  <br>
+  <%= f.label :artist_id, "アーティスト一覧" %>
+  <%= f.collection_select :artist_id, @artists, :id, :name %>
+  <br>
+  <%= f.label :genne_id, "ジャンル一覧" %>
+  <%= f.collection_select :genre_id, @genres, :id, :name %>
+  <br>
+  <%= f.label :label_id, "レーベル一覧" %>
+  <%= f.collection_select :label_id, @labels, :id, :name %>
+  <br>
+  <%= f.label :price, "価格" %>
+  <%= f.text_field :price %>
+  <br>
+  <%= f.label :stock, "在庫数" %>
+  <%= f.text_field :stock %>
+  <br>
+  <%= f.label :on_sale, "販売ステータス" %>
+  <%= f.select :on_sale, [['販売', true], ['未販売', false]] %>
+  <br>
   <%= f.submit "送信" %>
 <% end %>
