@@ -3,22 +3,25 @@
     <%= f.label :name, "商品名" %>
     <%= f.text_field :name %>
   </div>
-  <%= f.fields_for :disks do |fd| %>
-    <div class="form-group">
-      <%= fd.label :name, "ディスク名" %>
-      <%= fd.text_field :name %>
+   <%= f.nested_fields_for :disks, wrapper_tag: :div do |disk| %>
+      <%= disk.label :name, "ディスク名" %>
+      <%= disk.text_field :name, class:'form-control', id:'disks', placeholder: 'disks'%>
       <br>
-      <%= fd.fields_for :songs do |fs| %>
+      <%= disk.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
+      <%= disk.nested_fields_for :songs, wrapper_tag: :div do |song| %>
         <div class="form-group">
-          <%= fs.label :name, "曲名" %>
-          <%= fs.text_field :name %>
+          <%= song.label :name, "曲名" %>
+          <%= song.text_field :name, class:'form-control', id:'songs', placeholder: 'songs'%>
           <br>
-          <%= fs.label :time, "曲時間" %>
-          <%= fs.time_select :time %>
+          <%= song.label :time, "曲時間" %>
+          <%= song.time_select :time, class:'form-control', id:'times', placeholder: 'times'%>
           <br>
+          <%= song.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
         </div>
       <% end %>
-    </div>
+      <%= disk.add_nested_fields_link :songs, 'Add new', class: 'btn btn-primary', role: 'button' %>
   <% end %>
+  <%= f.add_nested_fields_link :disks, 'Add new', class: 'btn btn-primary', role: 'button' %>
+  <br>
   <%= f.submit "送信" %>
 <% end %>

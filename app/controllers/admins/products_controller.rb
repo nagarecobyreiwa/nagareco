@@ -6,7 +6,7 @@ class Admins::ProductsController < ApplicationController
     @product = Product.new
     # I wanto to associate @product with instatnce disk and song.
     @disks = @product.disks.build
-    @disks.songs.build
+    @songs = @disks.songs.build
   end
 
   def create
