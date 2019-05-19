@@ -17,7 +17,7 @@
 			</table>
 
 			<div>
-				<%= link_to "戻る" , users_path(@user.id), class: "btn btn-warning" %>
+				<%= link_to "戻る" , users_path, class: "btn btn-warning" %>
 				<%= link_to "アドレス情報編集", edit_user_path(@user.id), class: "btn btn-primary" %>
 			</div>
 		</div>
@@ -36,7 +36,7 @@
 			</table>
 
 			 <div>
-			  <%= link_to "戻る" , users_path(@user.id), class: "btn btn-warning" %>
+			  <%= link_to "戻る" , users_path, class: "btn btn-warning" %>
 			  <%= link_to "ログイン情報編集", edit_login_user_path(@user.id), class: "btn btn-primary" %>
 			</div>
 		</div>

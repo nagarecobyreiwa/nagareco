@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'delete_user/show'
   root "users#top"
 
   devise_for :admins, controllers: {
@@ -29,5 +30,7 @@ Rails.application.routes.draw do
       get :top
     end
   end
+
+  resources :delete_user, only: [:show]
 
 end
