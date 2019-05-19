@@ -15,11 +15,11 @@ Rails.application.routes.draw do
 }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :users, only: [:top, :show, :edit, :update] do
-    member do
+
+  resources :users, only: [:top, :index, :show, :edit, :update] do
+   member do
     resources :addresses, only:[:index, :new, :create, :edit, :update, :destroy]
     get :edit_login
-    get :edit_address
     get :edit_finish
    end
   end
