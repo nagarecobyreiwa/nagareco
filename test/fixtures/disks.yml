@@ -3,9 +3,11 @@
 one:
   name: MyString
   order: 1
+  deleted_at: 2019-05-19 04:40:02
   product: one
 
 two:
   name: MyString
   order: 1
+  deleted_at: 2019-05-19 04:40:02
   product: two

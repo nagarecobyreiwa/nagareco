@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_16_090649) do
+ActiveRecord::Schema.define(version: 2019_05_19_044002) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2019_05_16_090649) do
   create_table "disks", force: :cascade do |t|
     t.string "name"
     t.integer "order"
+    t.datetime "deleted_at"
     t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 2019_05_16_090649) do
     t.time "time"
     t.integer "order"
     t.integer "disk_id"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["disk_id"], name: "index_songs_on_disk_id"
