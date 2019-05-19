@@ -17,7 +17,6 @@ class Admins::ProductsController < ApplicationController
   def create
     product = Product.new(product_params)
     product.save
-    binding.pry
     redirect_to admins_products_path
   end
 
