@@ -13,8 +13,9 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets";
-@import "bootstrap";
+
+ @import "bootstrap-sprockets";  /*ここを追加*/
+ @import "bootstrap";            /*ここを追加*/
  
 .wrapper {
 	margin-top: 80px;
@@ -46,4 +47,4 @@
   margin: 0 auto;
   background-color: #efab93;
   border: 3px dotted rgba(0,0,0,0.1);  
-  }
+ }

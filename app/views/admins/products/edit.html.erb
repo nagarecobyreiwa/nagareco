@@ -1,0 +1,52 @@
+<%= render 'admins/layouts/index' %>
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+<%= form_for @product, url: admins_product_path do |f| %>
+  <div class="form-user">
+    <%= f.label :name, "商品名" %>
+    <%= f.text_field :name %>
+  </div>
+   <%= f.nested_fields_for :disks, wrapper_tag: :div do |disk| %>
+      <%= disk.label :name, "ディスク名" %>
+      <%= disk.text_field :name, class:'form-control', id:'disks', placeholder: 'disks'%>
+      <br>
+      <%= disk.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
+      <%= disk.nested_fields_for :songs, wrapper_tag: :div do |song| %>
+        <div class="form-group">
+          <%= song.label :name, "曲名" %>
+          <%= song.text_field :name, class:'form-control', id:'songs', placeholder: 'songs'%>
+          <br>
+          <%= song.label :time, "曲時間" %>
+          <%= song.time_select :time, class:'form-control', id:'times', placeholder: 'times'%>
+          <br>
+          <%= song.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
+        </div>
+      <% end %>
+      <%= disk.add_nested_fields_link :songs, 'Add new', class: 'btn btn-primary', role: 'button' %>
+  <% end %>
+  <%= f.add_nested_fields_link :disks, 'Add new', class: 'btn btn-primary', role: 'button' %>
+  <br>
+  <h4>画像</h4>
+  <%= f.attachment_field :image %>
+  <br>
+  <%= f.label :artist_id, "アーティスト一覧" %>
+  <%= f.collection_select :artist_id, @artists, :id, :name %>
+  <br>
+  <%= f.label :genne_id, "ジャンル一覧" %>
+  <%= f.collection_select :genre_id, @genres, :id, :name %>
+  <br>
+  <%= f.label :label_id, "レーベル一覧" %>
+  <%= f.collection_select :label_id, @labels, :id, :name %>
+  <br>
+  <%= f.label :price, "価格" %>
+  <%= f.text_field :price %>
+  <br>
+  <%= f.label :stock, "在庫数" %>
+  <%= f.text_field :stock %>
+  <br>
+  <%= f.label :on_sale, "販売ステータス" %>
+  <%= f.select :on_sale, [['販売', true], ['未販売', false]] %>
+  <br>
+  <%= f.submit "Edit" %>
+<% end %>
+</main>

@@ -1,0 +1,7 @@
+<h1>レーベル編集</h1>
+
+<%= form_for(@label, url: admins_label_path) do |f| %>
+  <h4>レーベル名</h4>
+  <%= f.text_field :name, placeholder: @label.name %>
+  <%= f.submit 'Edit' %>
+<% end %>
