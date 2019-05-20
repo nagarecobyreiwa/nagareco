@@ -13,7 +13,7 @@ class AddressesController < ApplicationController
     @address = Address.new(address_params)
     @address.user_id = current_user.id
     @address.save
-    redirect_to addreses_path
+    redirect_to addresses_path
   end
 
   def edit
