@@ -40,10 +40,14 @@
             <% end %>
             <p><%= @product.stock %>枚</p>
             <p>￥ <%= @product.price %></p>
+
             <form class="d-flex justify-content-left">
               <!-- Default input -->
-              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-              <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
+              <input type="number" value="2" aria-label="Search" class="form-control" style="width: 100px">
+              <%= link_to users_cart_items_path(product: (product.id: @product.id)),method: :post do %>
+                <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
+              <% end %>
+
                 <i class="fas fa-shopping-cart ml-1"></i>
               </button>
             </form>
