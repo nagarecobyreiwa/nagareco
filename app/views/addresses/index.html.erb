@@ -1,0 +1,49 @@
+<h1>宛先一覧</h1>
+
+<table class="table table-striped">
+
+  <tr>
+    <th></th>
+    <th>姓</th>
+    <th>名</th>
+    <th>セイ</th>
+    <th>メイ</th>
+    <th>郵便番号</th>
+    <th>送付先</th>
+    <th>電話番号</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <th></th>
+    <td><%= @user.first_name %></td>
+    <td><%= @user.last_name %></td>
+    <td><%= @user.first_name_kana %></td>
+    <td><%= @user.last_name_kana %></td>
+    <td><%= @user.postcode %></td>
+    <td><%= @user.address %></td>
+    <td><%= @user.phone_number %></td>
+    <td><%= link_to "会員情報を編集する", edit_user_path, class: "btn btn-primary" %></td>
+  </tr>
+    <% @addresses.each do |address| %>
+    <th></th>
+    <td><%= address.first_name %></td>
+    <td><%= address.last_name %></td>
+    <td><%= address.first_name_kana %></td>
+    <td><%= address.last_name_kana %></td>
+    <td><%= address.postcode %></td>
+    <td><%= address.address %></td>
+    <td><%= address.phone_number %></td>
+
+    <td><%= link_to "宛先編集", edit_address_path, class: "btn btn-danger" %></td>
+  </tr>
+    <% end %>
+
+</table>
+
+<%= link_to "マイページに戻る", users_path, class: "btn btn-warning" %>
+
+<%= link_to "宛先追加", new_address_path, class: "btn btn-danger" %>
+
