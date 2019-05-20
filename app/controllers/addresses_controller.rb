@@ -1,25 +1,30 @@
 class AddressesController < ApplicationController
   def index
-    @address = Address.all
+    @addresses = Address.all
     @user = User.find(params[:id])
   end
 
   def new
     @address = Address.new
-    @user = User.find(params[:id])
+    @address.user_id = current_user.id
   end
 
   def create
-    @user = User.find(params[:id])
     @address = Address.new(address_params)
+    @address.user_id = current_user.id
     @address.save
-    redirect_to root_path(@user.id)
+    redirect_to addreses_path
   end
 
   def edit
+    @address = Address.find(params[:id])
+    #@address.user_id = current_user.id
   end
 
   def update
+       @address = Address.find(params[:id])
+       @address.update(address_params)
+       redirect_to addresses_path
   end
 
   def destroy

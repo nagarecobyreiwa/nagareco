@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'delete_user/show'
   root "users#top"
 
   devise_for :admins, controllers: {
@@ -15,11 +16,11 @@ Rails.application.routes.draw do
 }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :users, only: [:top, :show, :edit, :update] do
-    member do
+
+  resources :users, only: [:top, :index, :show, :edit, :update] do
+   member do
     resources :addresses, only:[:index, :new, :create, :edit, :update, :destroy]
     get :edit_login
-    get :edit_address
     get :edit_finish
    end
   end
@@ -29,5 +30,7 @@ Rails.application.routes.draw do
       get :top
     end
   end
+
+  resources :delete_user, only: [:show]
 
 end

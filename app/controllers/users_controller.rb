@@ -5,11 +5,11 @@ class UsersController < ApplicationController
 
   end
 
-  def show
-   @user = User.find(params[:id])
+  def index
+   @user = current_user
   end
 
-  def edit
+  def show
    @user = User.find(params[:id])
   end
 
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
    @user = User.find(params[:id])
   end
 
-  def edit_address
+  def edit
    @user = User.find(params[:id])
   end
 
