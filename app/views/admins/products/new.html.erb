@@ -6,37 +6,43 @@
     <%= f.label :name, "商品名" %>
     <%= f.text_field :name %>
   </div>
+　<%= f.nested_fields_for :disks, wrapper_tag: :div do |disk| %> 　
   <table class="table table-striped">
-  	<thead>
+    <thead>
   		<tr>
   			<th>No.</th>
   			<th>ディスク名</th>
-        <th></th>
-  			<th>曲名</th>
-        <th>曲時間</th>
-        <th></th>
   		</tr>
   	</thead>
   	<tbody>
-       <%= f.nested_fields_for :disks, wrapper_tag: :div do |disk| %>
        <tr>
-         <th></th>
+         <td></td>
          <td><%= disk.text_field :name, class:'form-control', id:'disks', placeholder: 'disks'%></td>
-         <td><%= disk.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
-          | <%= f.add_nested_fields_link :disks, 'Add new', class: 'btn btn-primary', role: 'button' %></td>
-            <%= disk.nested_fields_for :songs, wrapper_tag: :div do |song| %>
-              <div class="form-group">
-                <td><%= song.text_field :name, class:'form-control', id:'songs', placeholder: 'songs'%></td>
-                <td><%= song.time_select :time, class:'form-control', id:'times', placeholder: 'times'%></td>
-                <td><%= song.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
-                    <%= disk.add_nested_fields_link :songs, 'Add new', class: 'btn btn-primary', role: 'button' %>
-                </td>
-              </div>
-            <% end %>
+         <td><%= disk.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %></td>
        </tr>
-       <% end %>
     </tbody>
   </table>
+  <%= disk.nested_fields_for :songs, wrapper_tag: :div do |song| %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>曲名</th>
+        <th>演奏時間</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= song.text_field :name, class:'form-control', id:'songs', placeholder: 'songs'%></td>
+        <td><%= song.time_select :time, class:'form-control', id:'times', placeholder: 'times'%></td>
+        <td><%= song.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %></td>
+      </tr>
+    </tbody>
+  </table>
+  <% end %>
+  <%= disk.add_nested_fields_link :songs, 'Add new', class: 'btn btn-primary', role: 'button' %>
+
+<% end %>
+<%= f.add_nested_fields_link :disks, 'Add new', class: 'btn btn-primary', role: 'button' %>
 
 
       <h4>画像</h4>
