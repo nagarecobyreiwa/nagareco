@@ -25,8 +25,10 @@
     <td><%= @user.postcode %></td>
     <td><%= @user.address %></td>
     <td><%= @user.phone_number %></td>
-    <td><%= link_to "会員情報を編集する", edit_user_path, class: "btn btn-primary" %></td>
+    <td><%= link_to "会員情報を編集する", edit_users_user_path, class: "btn btn-primary" %></td>
   </tr>
+
+  <tr>
     <% @addresses.each do |address| %>
     <th></th>
     <td><%= address.first_name %></td>
@@ -36,14 +38,13 @@
     <td><%= address.postcode %></td>
     <td><%= address.address %></td>
     <td><%= address.phone_number %></td>
-
-    <td><%= link_to "宛先編集", edit_address_path, class: "btn btn-danger" %></td>
+    <!-- ログインはデバイスの方へ飛ばすので、一旦ユーザーへ。 -->
+    <td><%= link_to "宛先編集", edit_users_user_path, class: "btn btn-danger" %></td>
   </tr>
     <% end %>
 
 </table>
 
-<%= link_to "マイページに戻る", users_path, class: "btn btn-warning" %>
+<%= link_to "マイページに戻る", users_user_path, class: "btn btn-warning" %>
 
-<%= link_to "宛先追加", new_address_path, class: "btn btn-danger" %>
-
+<%= link_to "宛先追加", new_users_address_path, class: "btn btn-danger" %>

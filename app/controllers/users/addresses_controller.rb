@@ -1,6 +1,6 @@
-class AddressesController < ApplicationController
+class Users::AddressesController < ApplicationController
   def index
-    @addresses = Address.all
+    @addresses = Address.where(current_user.id)
     @user = User.find(params[:id])
   end
 

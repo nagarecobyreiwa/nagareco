@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Users::UsersController < ApplicationController
 
 # 仮トップページ
   def top
@@ -28,7 +28,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-       redirect_to edit_finish_user_path(@user.id)
+      #一旦リダイレクト先マイページへ変更
+       redirect_to root_path(@user.id)
     else
        render :edit
     end
