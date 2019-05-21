@@ -10,6 +10,9 @@ class Users::CartItemsController < ApplicationController
   end
 
   def update
+    cart_item.find(params[:quantity])
+    cart_item.save
+    redirect_to users_cart_items_path
   end
 
   def destroy
