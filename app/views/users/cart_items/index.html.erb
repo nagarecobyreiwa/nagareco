@@ -1,5 +1,6 @@
 <div class="container">
 <div class="row mb-2">
+<<<<<<< HEAD
   <% @cart_item.each do |cart_item| %>
   <div class="col-md-12">
     <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -21,6 +22,23 @@
 　　　　　　　　　<%= submit_tag '数量変更' %>
             <% end %>
           </div>
+=======
+  <% @cart_items.each do |cart_item| %>
+  <div class="col-md-12">
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col-auto d-none d-lg-block">
+      </div>
+      <div class="col p-4 d-flex flex-column position-static">
+        <div class="row">
+        <div class="col-md-8">
+          <h3 class="mb-0"><%= cart_item.product.name %></h3>
+          <h3 class="mb-0"><%= cart_item.product.name %></h3>
+        </div>
+        <div class="col-md-4">
+          <h3 class="mb-0">価格（税込）</h3>
+          <h3 class="mb-0">￥ <%= cart_item.product.price %></h3>
+        </div>
+>>>>>>> 4c33d3f50407f6d6281789fed259113e271b82a1
         </div>
         <div class="row">
           <div class="offset-md-8 col-md-4">
