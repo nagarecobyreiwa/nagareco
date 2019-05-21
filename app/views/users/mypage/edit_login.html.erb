@@ -1,5 +1,5 @@
 <h1>ログイン情報編集</h1>
-
+<!-- form_forの先を描いてあげる必要あり -->
 <%= form_for(@user) do |f| %>
 <div class="container">
 	<div class="panel panel-default">
@@ -17,4 +17,4 @@
 	</div>
 </div>
 
-<%= link_to "編集を取り消す" , user_path, class: "btn btn-warning" %>
+<%= link_to "編集を取り消す" , users_mypage_path, class: "btn btn-warning" %>
