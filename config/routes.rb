@@ -27,8 +27,8 @@ Rails.application.routes.draw do
     resources :artists, except:[:show, :new]
     resources :labels, except:[:show, :new]
     resources :products, except: [:show]
-    resources :users, only: [:index]
-    get :top
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
+    resources :top, only: [:index]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
