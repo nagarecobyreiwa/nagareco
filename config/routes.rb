@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-  get 'delete_user/show'
   root "users/mypage#top"
 
   devise_for :admins, controllers: {
@@ -14,6 +13,9 @@ Rails.application.routes.draw do
   sessions:      'users/sessions',
   passwords:     'users/passwords',
   registrations: 'users/registrations'
+  #------------------------下記追加
+  #omniauth_callbacks: 'users/omniauth_callbacks'
+  #-------------------------
 }
 
   namespace :users do
