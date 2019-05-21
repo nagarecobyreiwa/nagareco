@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-  get 'delete_user/show'
   root "users/mypage#top"
 
   devise_for :admins, controllers: {
@@ -20,6 +18,7 @@ Rails.application.routes.draw do
     resources :products, only:[:index, :show]
     resources :mypage, contolloer: :users, only: [:top, :index, :show, :edit, :update, :edit_login, :edit_finish]
     resources :addresses, only:[:index, :new, :create, :edit, :update, :destroy]
+    resources :delete_user, only: [:show]
   end
 
   namespace :admins do
@@ -32,7 +31,5 @@ Rails.application.routes.draw do
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-  resources :delete_user, only: [:show]
 
 end

@@ -15,6 +15,6 @@
 		 <%= link_to "会員情報編集", users_mypage_path(current_user.id), class: "btn btn-warning" %>
 		 <%= link_to "宛先一覧", users_addresses_path(current_user.id), class: "btn btn-danger" %>
 		<!-- 退会する -->
-		<%= link_to "退会する", delete_user_show_path(current_user.id), class: "btn btn-success" %>
+		<%= link_to "退会する", users_delete_user_path(current_user.id), class: "btn btn-success" %>
 	</div>
 </section>

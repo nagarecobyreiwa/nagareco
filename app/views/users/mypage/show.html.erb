@@ -17,7 +17,7 @@
 			</table>
 
 			<div>
-				<%= link_to "戻る" , users_mypage_path(current_user.id), class: "btn btn-warning" %>
+				<%= link_to "戻る" , users_mypage_index_path, class: "btn btn-warning" %>
 				<%= link_to "アドレス情報編集", edit_users_mypage_path(@user.id), class: "btn btn-primary" %>
 			</div>
 		</div>
@@ -36,9 +36,10 @@
 			</table>
 
 			 <div>
-			  <%= link_to "戻る" , users_mypage_path(current_user.id), class: "btn btn-warning" %>
+
+			  <%= link_to "戻る" , users_mypage_index_path, class: "btn btn-warning" %>
 				<!-- ログインはデバイスの方へ飛ばすので、一旦ユーザーへ。 -->
-			  <%= link_to "ログイン情報編集", users_mypage_path(@user.id), class: "btn btn-primary" %>
+			  <%= link_to "ログイン情報編集", edit_user_registration_path, class: "btn btn-primary" %>
 			</div>
 		</div>
 	</div>
