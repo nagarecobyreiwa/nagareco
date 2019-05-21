@@ -1,0 +1,5 @@
+<h1>登録された情報が全て削除されます。<br>
+退会しますか？</h1>
+<%= link_to "退会を取り消す" , users_mypage_index_path, class: "btn btn-primary" %>
+
+<%= link_to "退会する" ,user_registration_path(id: current_user.id), method: :delete, "data-confirm" => "退会を完了しました", class: "btn btn-danger" %>
