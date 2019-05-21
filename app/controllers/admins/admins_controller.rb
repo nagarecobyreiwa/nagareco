@@ -3,7 +3,4 @@ class Admins::AdminsController < ApplicationController
   def top
    @Admin = Admin.find(params[:id])
   end
-
-  def index
-  end
 end
