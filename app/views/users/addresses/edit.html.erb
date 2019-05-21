@@ -2,7 +2,7 @@
 <div class="container">
 	<div class="panel panel-default">
 		<div class="panel-body">
-		 <%= form_for(@address) do |f| %>
+		 <%= form_for(@address, url:users_address_path) do |f| %>
 			<div class="form-inline">
 				<h3>氏名</h3>
 				<div class="form-group">
@@ -39,7 +39,7 @@
 
 			<% end %>
 
-			<%= link_to "編集を取り消す" , users_path, class: "btn btn-warning" %>
+			<%= link_to "編集を取り消す" , users_addresses_path(current_user.id), class: "btn btn-warning" %>
 		</div>
 	</div>
 </div>

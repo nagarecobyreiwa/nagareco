@@ -39,7 +39,7 @@
 
 			<% end %>
       <!-- ルーティングエラーが起きているので、マイページへ。 -->
-			<%= link_to "編集を取り消す" , users_mypage_path, class: "btn btn-warning" %>
+			<%= link_to "編集を取り消す" , users_mypage_path(current_user.id), class: "btn btn-warning" %>
 		</div>
 	</div>
 </div>
