@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :products, only:[:index, :show]
-    resources :mypage, contolloer: :users, only: [:top, :index, :show, :edit, :update, :edit_login, :edit_finish]
+    resources :mypage, contolloer: :users, only: [:index, :show, :edit, :update, :edit_login, :edit_finish]
     resources :addresses, only:[:index, :new, :create, :edit, :update, :destroy]
     resources :delete_user, only: [:show]
   end
@@ -26,8 +26,8 @@ Rails.application.routes.draw do
     resources :artists, except:[:show, :new]
     resources :labels, except:[:show, :new]
     resources :products, except: [:show]
-    resources :admins, only: [:index]
-    get :top
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
+    resources :top, only: [:index]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
