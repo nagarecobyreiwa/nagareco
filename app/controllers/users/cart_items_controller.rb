@@ -10,17 +10,12 @@ class Users::CartItemsController < ApplicationController
   end
 
   def update
-    cart_item.find(params[:quantity])
-    cart_item.save
+    cart_item = Cart.find(params[:id])
+    cart_item.update(quantity: params[:product_num].to_i )
     redirect_to users_cart_items_path
   end
 
   def destroy
   end
 
-  private
-
-  def cart_item_params
-    params.require(:product).permit(:id)
-  end
 end
