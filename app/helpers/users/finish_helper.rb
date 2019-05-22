@@ -1,0 +1,2 @@
+module Users::FinishHelper
+end

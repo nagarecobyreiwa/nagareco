@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :mypage, contolloer: :users, only: [:index, :show, :edit, :update, :edit_login, :edit_finish]
     resources :addresses, only:[:index, :new, :create, :edit, :update, :destroy]
     resources :delete_user, only: [:show]
+    resources :finish, only: [:show]
   end
 
   namespace :admins do
@@ -31,5 +32,4 @@ Rails.application.routes.draw do
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
 end
