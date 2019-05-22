@@ -1,2 +1,39 @@
-<h1>Admins::OrderHistories#show</h1>
-<p>Find me in app/views/admins/order_histories/show.html.erb</p>
+<!-- <h1>購入履歴</h1>
+
+<h2>購入日  <= order.number %></h2>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>画像</th>
+			<th>商品名</th>
+			<th>価格</th>
+			<th>数量</th>
+      <th>小計</th>
+		</tr>
+	</thead>
+	<tbody>
+    < @order_histories.each do |order_histories| %>
+  		<tr>
+  			<th><= order_histories.order.image.id %></th>
+  			<td><= order_histories.order.name %></td>
+  			<td><= order_histories.order.price %></td>
+  			<td><= order_histories.order.quantity %></td>
+        <td><= order_histories.order.price.to_i  * order_histories.order.quantity.to_i %></td>
+  		</tr>
+    < end %>
+  </tbody>
+</table>
+
+<div class="col-md-12">
+  <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+    <div class="col-auto d-none d-lg-block">
+        <p><= @order_histories.order.postcode %></p>
+        <p><= @order_histories.order.address  %></p>
+        <p><= @order_histories.order.shipname_first %></p>
+        <p><= @order_histories.order.shipname_name %>　様</p>
+    </div>
+  </div>
+</div>
+
+ <h2>合計金額　<= @total_price %>　</h2> -->
