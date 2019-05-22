@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   get 'delete_user/show'
   root "users#top"
 
@@ -18,7 +17,9 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :products, only:[:index, :show]
+    resources :cart_items, except:[:new, :show, :edit]
   end
+
   namespace :admins do
     resources :genres, except:[:show, :new]
     resources :artists, except:[:show, :new]
