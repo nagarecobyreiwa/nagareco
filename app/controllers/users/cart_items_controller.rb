@@ -4,7 +4,7 @@ class Users::CartItemsController < ApplicationController
   end
 
   def create
-    cart_item = Cart.where(product_id: params[:product][:id], user_id: current_user.id, deleted_at: nil).first_or_create do |cart|
+    cart_item = Cart.where(product_id: params[:product][:id], user_id: current_user.id).first_or_create do |cart|
     # want to write 1 sentence
       cart.product_id = params[:product][:id]
       cart.user_id = current_user.id
@@ -18,14 +18,14 @@ class Users::CartItemsController < ApplicationController
 
   def update
     cart_item = Cart.find(params[:id])
-    cart_item.update(quantity: params[:product_num].to_i )
+    cart_item.update(quantity: params[:quantity].to_i )
     redirect_to users_cart_items_path
   end
 
   def destroy
     cart_item = Cart.find(params[:id])
-    cart_item.destroy
-    redirect_to users_cart_items_path
+    cart_item.really_destroy!
+    redirect_to action: 'index'
   end
 
 end
