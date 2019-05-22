@@ -16,7 +16,7 @@
 
  @import "bootstrap-sprockets";  /*ここを追加*/
  @import "bootstrap";            /*ここを追加*/
- 
+
 .wrapper {
 	margin-top: 80px;
 	margin-bottom: 20px;
@@ -27,7 +27,7 @@
   padding: 30px 38px 66px;
   margin: 0 auto;
   background-color: #ffe033;
-  border: 3px dotted rgba(0,0,0,0.1);  
+  border: 3px dotted rgba(0,0,0,0.1);
   }
 
 .form-signin-heading {
@@ -46,5 +46,5 @@
   padding: 30px 38px 66px;
   margin: 0 auto;
   background-color: #efab93;
-  border: 3px dotted rgba(0,0,0,0.1);  
+  border: 3px dotted rgba(0,0,0,0.1);
  }

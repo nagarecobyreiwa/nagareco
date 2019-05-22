@@ -1,35 +1,45 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Nagareco</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-
-    <ul>
-      <!-- ロゴが入る予定 -->
-      <!-- 検索フォームが入る予定 -->
-      <li>
-       <%= link_to "login", new_user_session_path, class:"sign_in glyphicon glyphicon-log-in" %>
-      </li>
-      <li>
-       <%= link_to "logout", destroy_user_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？", class:"logout glyphicon glyphicon-log-out" %>
-      </li>
-      <li>
-       <%= link_to "Sign up", new_user_registration_path, class:"sign_up glyphicon glyphicon-edit" %>
-      </li>
-      <li>
-       <%= link_to "Top", root_path, class:"home glyphicon glyphicon-home" %>
-      </li>
-    </ul>
-
-    <%= yield %>
+   <nav class="navbar navbar-default">
+     <div class="container-fluid">
+      <div class="navbar-header">
+       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample1">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+       </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarEexample1">
+        <ul class="nav navbar-nav"><!-- ロゴが入る予定 -->
+        <li><%= link_to "ナガレコ", root_path %></li>
+        <li><!-- 検索フォームが入る予定 --></li>
+       <% if user_signed_in? %>
+        <li><!-- 商品一覧が入る予定 --></li>
+        <li><!-- マイページが入る予定 --></li>
+        <li><!-- カートが入る予定 --></li>
+        <li><%= link_to "logout", destroy_user_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？" %></li>
+       <% else %>
+        <li></li>
+        <li><!-- 商品一覧が入る予定 --></li>
+        <li><%= link_to "login", new_user_session_path %></li>
+        <li><%= link_to "Sign up", new_user_registration_path %></li>
+       <% end %>
+        </ul>
+       </div>
+      </div>
+   </nav>
+   <%= yield %>
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
