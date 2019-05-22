@@ -27,8 +27,7 @@ class Users::MypageController < ApplicationController
     def update
       @user = User.find(params[:id])
       if @user.update(user_params)
-        #一旦リダイレクト先マイページへ変更
-         redirect_to root_path(@user.id)
+         redirect_to users_finish_path(current_user.id)
       else
          render :edit
       end

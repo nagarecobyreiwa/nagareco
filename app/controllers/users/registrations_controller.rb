@@ -61,6 +61,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
   protected
   def after_update_path_for(resource)
-    users_mypage_index_path
+    users_finish_path(current_user.id)
   end
 end
