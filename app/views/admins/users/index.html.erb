@@ -1,0 +1,36 @@
+<h1>ナガレコのユーザー登録一覧です。</h1>
+
+<table class="table table-striped">
+
+  <tr>
+    <th></th>
+    <th>姓</th>
+    <th>名</th>
+    <th>セイ</th>
+    <th>メイ</th>
+    <th>郵便番号</th>
+    <th>送付先</th>
+    <th>電話番号</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <% @users.each do |user| %>
+    <th></th>
+    <td><%= user.first_name %></td>
+    <td><%= user.last_name %></td>
+    <td><%= user.first_name_kana %></td>
+    <td><%= user.last_name_kana %></td>
+    <td><%= user.postcode %></td>
+    <td><%= user.address %></td>
+    <td><%= user.phone_number %></td>
+    <!-- アドミンユーザーページに行くように設定 -->
+    <td><%= link_to "会員情報を見る", admins_user_path(user.id), class: "btn btn-primary" %></td>
+    <th></th>
+  </tr>
+  <% end %>
+
+</table>
