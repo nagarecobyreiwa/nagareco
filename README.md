@@ -5,5 +5,6 @@
 今日から、order_functionを作成していきます。
 
 ブランチ    作者名    
-order_show  かべちゃん
-fix_address いーちゃん
+order_show  いーちゃん
+fix_address いーちゃん 終了
+api かべちゃん
