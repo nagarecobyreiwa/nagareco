@@ -4,7 +4,13 @@ class Users::CartItemsController < ApplicationController
   end
 
   def create
-    cart_item = Cart.find_or_create_by(product_id: params[:product][:id], user_id: current_user.id, quantity: 1)
+    cart_item = Cart.where(product_id: params[:product][:id], user_id: current_user.id, deleted_at: nil).first_or_create do |cart|
+    # want to write 1 sentence
+      cart.product_id = params[:product][:id]
+      cart.user_id = current_user.id
+      # edit this quanttity from getting data
+      cart.quantity = 1
+    end
     cart_item.save
     redirect_to users_cart_items_path
   end
