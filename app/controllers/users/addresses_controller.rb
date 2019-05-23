@@ -11,7 +11,7 @@ class Users::AddressesController < ApplicationController
 
   def create
     @address = Address.new(address_params)
-    @address.user_id = current_user.id  
+    @address.user_id = current_user.id
     @address.save
     redirect_to users_addresses_path(current_user.id)
   end

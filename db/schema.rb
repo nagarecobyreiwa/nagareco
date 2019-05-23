@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2019_05_22_094838) do
     t.string "shipname_last_kana"
     t.integer "user_id"
     t.integer "order_product_id"
-    t.datetime "delete_at"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_product_id"], name: "index_orders_on_order_product_id"
