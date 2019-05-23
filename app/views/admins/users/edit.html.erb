@@ -1,8 +1,8 @@
-<h1>宛先情報編集</h1>
+<h1>登録情報編集</h1>
 <div class="container">
 	<div class="panel panel-default">
 		<div class="panel-body">
-		 <%= form_for(@address) do |f| %>
+		 <%= form_for(@user, url: admins_user_path) do |f| %>
 			<div class="form-inline">
 				<h3>氏名</h3>
 				<div class="form-group">
@@ -38,8 +38,7 @@
 			<br><%= f.submit '登録情報を編集する', class: "btn btn-primary" %></br>
 
 			<% end %>
-
-			<%= link_to "編集を取り消す" , users_path, class: "btn btn-warning" %>
+      <%= link_to "編集を取り消す" , admins_user_path(@user.id), class: "btn btn-warning" %>
 		</div>
 	</div>
 </div>

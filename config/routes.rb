@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   
   get 'delete_user/show'
-  root "users#top"
+  root "users/mypage#top"
+
 
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
@@ -17,6 +18,10 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :products, only:[:index, :show]
+    resources :mypage, contolloer: :users, only: [:index, :show, :edit, :update, :edit_login, :edit_finish]
+    resources :addresses, only:[:index, :new, :create, :edit, :update, :destroy]
+    resources :delete_user, only: [:show]
+    resources :finish, only: [:show]
     resources :cart_items, except:[:new, :show, :edit]
     resources :order_histories, only: [:index, :show]
   end
@@ -27,25 +32,9 @@ Rails.application.routes.draw do
     resources :labels, except:[:show, :new]
     resources :products, except: [:show]
     resources :order_histories, only: [:index, :show]
+    resources :users, except: [:new, :create]
+    resources :top, only: [:index]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-
-  resources :users, only: [:top, :index, :show, :edit, :update] do
-   member do
-    resources :addresses, only:[:index, :new, :create, :edit, :update, :destroy]
-    get :edit_login
-    get :edit_finish
-   end
-  end
-
-  resources :admins, only: [:index] do
-    member do
-      get :top
-    end
-  end
-
-  resources :delete_user, only: [:show]
-
 end
