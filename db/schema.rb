@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_20_064717) do
+ActiveRecord::Schema.define(version: 2019_05_20_072609) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "first_name"
@@ -45,6 +45,17 @@ ActiveRecord::Schema.define(version: 2019_05_20_064717) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "user_id"
+    t.integer "quantity", default: 1
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_carts_on_product_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "disks", force: :cascade do |t|
