@@ -1,36 +1,77 @@
 <div class="container">
-  <div class="row mb-2">
-    <% @cart_items.each do |cart_item| %>
-    <div class="col-md-12">
-      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col-auto d-none d-lg-block">
-          <%= attachment_image_tag cart_item.product, :image, :fill, 250, 250, format: 'jpeg'%>
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Product Name</th>
+                        <th>Artist</th>
+                        <th>Quantity</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Total</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <% @cart_items.each do |cart_item| %>
+                  <tr>
+                      <td class="col-sm-4 col-md-2">
+                        <div class="media">
+                            <%= attachment_image_tag cart_item.product, :image, :fill, 100, 100, format: 'jpeg'%>
+                        </div>
+                      </td>
+                      <td><%= cart_item.product.name %></td>
+                      <td><%= cart_item.product.artist.name %></td>
+                      <td class="col-sm-1 col-md-1" style="text-align: center">
+                        <%= form_tag users_cart_item_path(cart_item.id), method: :patch do %>
+                          <input type="number" value="<%= cart_item.quantity %>" aria-label="Search" name="quantity">
+                          <input id="quantity" name="page[set]" type="hidden" />
+              　　　　　　　<%= submit_tag '数量変更' %>
+                        <% end %>
+                      </td>
+                      <td class="col-sm-1 col-md-1 text-center">
+                        <strong>
+                          ￥<%= cart_item.product.price %>
+                        </strong>
+                      </td>
+                      <td class="col-sm-1 col-md-1 text-center">
+                        <strong>
+                          ￥<%= cart_item.product.price.to_i  * cart_item.quantity.to_i %>
+                        </strong>
+                      </td>
+                      <td class="col-sm-1 col-md-1">
+                      <button type="button" class="btn btn-danger">
+                          <%= link_to 'Delete',users_cart_item_path(cart_item.id) , method: :delete %>
+                      </button></td>
+                  </tr>
+                  <% end %>
+                  <tr>
+                      <td>   </td>
+                      <td>   </td>
+                      <td>   </td>
+                      <td>   </td>
+                      <td>   </td>
+                      <td><h3>Total</h3></td>
+                      <td class="text-right"><h3><strong>￥<%= @total_price %></strong></h3></td>
+                  </tr>
+                  <tr>
+                      <td>   </td>
+                      <td>   </td>
+                      <td>   </td>
+                      <td>   </td>
+                      <td>   </td>
+                      <td>
+                      <button type="button" class="btn btn-default">
+                          <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                      </button></td>
+                      <td>
+                      <button type="button" class="btn btn-success">
+                          Checkout <span class="glyphicon glyphicon-play"></span>
+                      </button></td>
+                  </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="col p-4 d-flex flex-column position-static">
-          <div class="row">
-            <div class="col-md-8">
-              <h3 class="mb-0"><%= cart_item.product.name %></h3>
-              <h3 class="mb-0"><%= cart_item.product.artist.name %></h3>
-            </div>
-            <div class="col-md-4">
-              <h3 class="mb-0">価格（税込）　　￥ <%= cart_item.product.price %></h3>
-              <%= form_tag users_cart_item_path(cart_item.id), method: :patch do %>
-                <input type="number" value="<%= cart_item.quantity %>" aria-label="Search" name="quantity">
-                <input id="quantity" name="page[set]" type="hidden" />
-  　　　　　　　　　<%= submit_tag '数量変更' %>
-              <% end %>
-              <h3>小計（税込）　　￥  <%= cart_item.product.price.to_i  * cart_item.quantity.to_i %></h3>
-            </div>
-          </div>
-          <div class="row">
-            <div class="offset-md-8 col-md-4">
-              <%= link_to 'Delete',users_cart_item_path(cart_item.id) , method: :delete %>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-    <% end %>
-    <h3>合計（税込）　　￥<%= @total_price %></h3>
-  </div>
 </div>
