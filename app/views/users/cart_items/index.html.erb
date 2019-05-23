@@ -1,3 +1,12 @@
+<% if @cart_items.blank? %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 col-md-offset-1">
+      <h1>Chart have no Item!!</h1>
+    </div>
+  </div>
+</div>
+<% else %>
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
@@ -63,7 +72,8 @@
                       <td>   </td>
                       <td>
                       <button type="button" class="btn btn-default">
-                          <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                          <span class="glyphicon glyphicon-shopping-cart"></span>
+                          <%= link_to 'Continue Shopping', users_products_path %>
                       </button></td>
                       <td>
                       <button type="button" class="btn btn-success">
@@ -75,3 +85,4 @@
         </div>
     </div>
 </div>
+<% end %>
