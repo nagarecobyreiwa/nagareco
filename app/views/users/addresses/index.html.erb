@@ -25,7 +25,9 @@
     <td><%= @user.phone_number %></td>
     <td><%= link_to "会員情報を編集する", edit_users_mypage_path(current_user.id), class: "btn btn-primary" %></td>
   </tr>
+  
     <% @addresses.each do |address| %>
+  <tr>
     <th></th>
     <td><%= address.first_name %></td>
     <td><%= address.last_name %></td>

@@ -6,12 +6,9 @@ class ApplicationController < ActionController::Base
     case resource
     when Admin
       admins_top_index_path
-    end
-    case resource
     when User
       root_path
     end
-
   end
 
   def after_sign_out_path_for(resource)
@@ -29,5 +26,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up,keys:[:phone_number])
     devise_parameter_sanitizer.permit(:sign_up,keys:[:deleted_at])
   end
+
+
 
 end

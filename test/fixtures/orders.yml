@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order_number: MyString
+  total_price: 
+  card_status: false
+  payment_status: 
+  derively_status: 
+  buyer_first_name: MyString
+  buyer_last_name: MyString
+  postcode: MyString
+  address: MyString
+  shipname_first: MyString
+  shipname_last: MyString
+  shipname_first_kana: MyString
+  shipname_last_kana: MyString
+  user: one
+  order_product: one
+  delete_at: 2019-05-22 09:48:38
+
+two:
+  order_number: MyString
+  total_price: 
+  card_status: false
+  payment_status: 
+  derively_status: 
+  buyer_first_name: MyString
+  buyer_last_name: MyString
+  postcode: MyString
+  address: MyString
+  shipname_first: MyString
+  shipname_last: MyString
+  shipname_first_kana: MyString
+  shipname_last_kana: MyString
+  user: two
+  order_product: two
+  delete_at: 2019-05-22 09:48:38

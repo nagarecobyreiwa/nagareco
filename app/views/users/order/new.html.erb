@@ -1,0 +1,91 @@
+<h1>お支払い方法・お届け先の確認</h1>
+<div class="container">
+  <div class="row md-2">
+    <div class="col-md-12">
+      <table class="table table-striped">
+
+
+        <tr>
+          <td></td>
+          <td>姓</td>
+          <td>名</td>
+          <td>セイ</td>
+          <td>メイ</td>
+          <td>郵便番号</td>
+          <td>送付先</td>
+          <td>電話番号</td>
+          <td></td>
+        </tr>
+      <%= form_with url: users_order_index_path do |f|%>
+
+        <tr>
+          <th></th>
+          <td><%= @user.first_name %></td>
+          <td><%= @user.last_name %></td>
+          <td><%= @user.first_name_kana %></td>
+          <td><%= @user.last_name_kana %></td>
+          <td><%= @user.postcode %></td>
+          <td><%= @user.address %></td>
+          <td><%= @user.phone_number %></td>
+          <td><%= f.radio_button(:select_address, -1) %></td>
+        </tr>
+
+        <% @addresses.each do |address| %>
+        <tr>
+          <th></th>
+          <td><%= address.first_name %></td>
+          <td><%= address.last_name %></td>
+          <td><%= address.first_name_kana %></td>
+          <td><%= address.last_name_kana %></td>
+          <td><%= address.postcode %></td>
+          <td><%= address.address %></td>
+          <td><%= address.phone_number %></td>
+          <td><%= f.radio_button(:select_address, address.id) %></td>
+        </tr>
+        <% end %>
+
+      </table>
+
+     <table class="table table-striped">
+      <h1>新しく住所を追加する</h1>
+      <tr>
+       <td><%= form_for(@address, url: users_addresses_path) do |f| %></td>
+       <td><%= f.text_field :first_name, autofocus: true, autocomplete: "名前"  %></td>
+       <td><%= f.text_field :last_name, autofocus: true, autocomplete: "名前" %></td>
+       <td><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "名前" %></td>
+       <td><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "名前" %></td>
+       <td><%= f.text_field :postcode, autofocus: true, autocomplete: "郵便番号" %></td>
+       <td><%= f.text_field :address, class: "form-control", autofocus: true, autocomplete: "住所" %></td>
+       <td><%= f.text_field :phone_number, autofocus: true, autocomplete: "電話番号" %></td>
+       <td><%= f.submit '宛先を追加する', class: "btn btn-primary" %></td>
+      </tr>
+       <% end %>
+     </table>
+
+    </div>
+  </div>
+</div>
+
+ <%= f.submit '注文内容を確認する' %>
+<% end %>
+
+<!-- APIが入る予定 -->
+<!--<%= form_with local: true, url: new_users_order_index_path do |form| %>
+
+  <h4>クレジットでお支払い</h4>
+  <script
+  type="text/javascript"
+  src="https://checkout.pay.jp/"
+  class="payjp-button"
+  data-key="pk_test_e0c04b8f2a9d7625073d06b3"
+  data-on-created="onCreated"
+  data-text="支払う"
+  data-submit-text="支払う"
+  data-partial="true">
+</script>
+<% end %>-->
+<!--FireShot Capture 126 - SamplePayjp - http___localhost_3000_.png-->
+<%= form_tag(action: :new, method: :post) do %>
+<script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="<%= ENV["pk_test_e0c04b8f2a9d7625073d06b3"] %>"></script>
+<% end %>
+<% end %>

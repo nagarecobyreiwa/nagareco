@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   belongs_to :genre
   belongs_to :label
   has_many :disks
+  has_many :carts
   accepts_nested_attributes_for :disks
 
   attachment :image
