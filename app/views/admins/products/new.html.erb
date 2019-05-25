@@ -1,7 +1,7 @@
 <%= render 'admins/layouts/sidebar' %>
 
 
-<main role="main" class="col-md-12 pt-3 px-4">
+<main role="main" class="col-lg-10 pt-3 px-4">
   <div class="container">
     <%= form_for @product, url: admins_products_path do |f| %>
       <div class="row">
@@ -9,34 +9,33 @@
           <%= f.label :name, "商品名" %>
           <%= f.text_field :name %>
         </div>
-        <div class="col-md-10">
-      		<div class="col-md-2">ディスク名</div>
-          <div class="col-md-2"></div>
-      		<div class="col-md-2">曲名</div>
-          <div class="col-md-2">曲時間</div>
-          <div class="col-md-2"></div>
+        <div class="table col-lg-10">
+      		<div class="col-lg-2">ディスク名</div>
+          <div class="col-lg-2"></div>
+      		<div class="col-lg-2">曲名</div>
+          <div class="col-lg-2">曲時間</div>
+          <div class="col-lg-2"></div>
         </div>
-        <div class="form col-md-10 ">
+        <div class="form">
           <%= f.nested_fields_for :disks, wrapper_tag: :div do |disk| %>
-            <div class="form_produc_new">
-               <div class="col-md-2"><%= disk.text_field :name, class:'form-control', id:'disks', placeholder: 'disks'%></div>
-               <div class="col-md-2"><%= disk.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
+            <div class="form_produc_new col-lg-10">
+               <div class="col-lg-2"><%= disk.text_field :name, class:'form-control', id:'disks', placeholder: 'disks'%></div>
+               <div class="col-lg-2"><%= disk.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
                 | <%= f.add_nested_fields_link :disks, 'Add new', class: 'btn btn-primary', role: 'button' %>
                </div>
                   <%= disk.nested_fields_for :songs, wrapper_tag: :div do |song| %>
-                    <div class="form-song">
-                      <div class="col-md-2 "><%= song.text_field :name, class:'form-control', id:'songs', placeholder: 'songs'%></div>
-                      <div class="col-md-2 "><%= song.time_select :time, class:'form-control', id:'times', placeholder: 'times'%></div>
-                      <div class="col-md-2 "><%= song.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
-                          <%= disk.add_nested_fields_link :songs, 'Add new', class: 'btn btn-primary', role: 'button' %>
-                      </div>
+                    <div class="col-lg-2 "><%= song.text_field :name, class:'form-control', id:'songs', placeholder: 'songs'%></div>
+                    <div class="col-lg-2 "><%= song.time_select :time, class:'form-control', id:'times', placeholder: 'times'%></div>
+                    <div class="col-lgs-2 "><%= song.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
+                        <%= disk.add_nested_fields_link :songs, 'Add new', class: 'btn btn-primary', role: 'button' %>
                     </div>
+                  <% end %>
             </div>
           <% end %>
         </div>
       </div>
-    <% end %>
-  </div>
+
+
 
 
       <h4>画像</h4>
@@ -62,4 +61,5 @@
       <br>
       <%= f.submit "送信" %>
     <% end %>
+  </div>
 </main>
