@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root "users/mypage#top"
 
   devise_for :admins, controllers: {
@@ -22,7 +21,7 @@ Rails.application.routes.draw do
     resources :delete_user, only: [:show]
     resources :finish, only: [:show]
     resources :cart_items, except:[:new, :show, :edit]
-    resources :order, only:[:new, :show, :create]
+    resources :orders, only:[:new, :create, :index]
   end
 
   namespace :admins do
