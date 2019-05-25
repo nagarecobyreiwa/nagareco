@@ -8,6 +8,14 @@ class Users::OrdersController < ApplicationController
     else
       @address = Address.find_by(id: params[:order][:select_address].to_i)
     end
+    @cart_items = current_user.carts
+    @total_price = 0
+    @cart_items.each do |cart_item|
+      @total_price += cart_item.quantity * cart_item.product.price
+    end
+    @user = current_user
+    @order = Order.new
+    @cart_item = @order.order_products.build
   end
 
   def new
@@ -17,5 +25,37 @@ class Users::OrdersController < ApplicationController
   end
 
   def create
+    order = Order.new(order_params)
+    order.user_id = current_user.id
+    order.save
+    # current_user.carts do |cart_item|
+    #   item = order.order_products.build
+    #   item.order_id = order.id
+    #   item.product_id = cart_item.product.id
+    #   item.quantity = cart_item.quantity
+    #   item.price = cart_item.product.price
+    #   item.save
+    # end
   end
 end
+
+private
+  def order_params
+    params.require(:order).permit(
+      :buyer_first_name,
+      :buyer_last_name,
+      :shipname_first,
+      :shipname_last,
+      :shipname_first_kana,
+      :shipname_last_kana,
+      :postcode,
+      :address,
+      :total_price,
+      order_products_attributes: [
+        :id,
+        :quantity,
+        :price,
+        :product_id,
+      ]
+    )
+  end

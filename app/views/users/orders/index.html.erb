@@ -1,40 +1,109 @@
 <div class="container">
-  <div class="row md-2">
-    <div class="col-md-12">
-      <table class="table table-striped">
-        <h1>お支払い方法・お届け先の確認</h1>
-        <tr>
-          <td></td>
-          <td>姓</td>
-          <td>名</td>
-          <td>セイ</td>
-          <td>メイ</td>
-          <td>郵便番号</td>
-          <td>送付先</td>
-          <td>電話番号</td>
-          <td></td>
-        </tr>
-        <tr>
-          <th></th>
-          <% if @new_address.blank? %>
-            <td><%= @address.first_name %></td>
-            <td><%= @address.last_name %></td>
-            <td><%= @address.first_name_kana %></td>
-            <td><%= @address.last_name_kana %></td>
-            <td><%= @address.postcode %></td>
-            <td><%= @address.address %></td>
-            <td><%= @address.phone_number %></td>
-          <% else %>
-            <td><%= @new_address[:first_name] %></td>
-            <td><%= @new_address[:last_name] %></td>
-            <td><%= @new_address[:first_name_kana] %></td>
-            <td><%= @new_address[:last_name_kana] %></td>
-            <td><%= @new_address[:postcode] %></td>
-            <td><%= @new_address[:address] %></td>
-            <td><%= @new_address[:phone_number] %></td>
-          <% end %>
-        </tr>
-      </table>
-    <div>
-  </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+          <%= form_with model: @order, url: users_orders_path, local: true do |f|%>
+            <table class="table table-striped">
+              <%= f.hidden_field :buyer_first_name, :value => @user.first_name %>
+              <%= f.hidden_field :buyer_last_name, :value => @address.last_name %>
+              <h1>お届け先の確認</h1>
+              <tr>
+                <td></td>
+                <td>姓</td>
+                <td>名</td>
+                <td>セイ</td>
+                <td>メイ</td>
+                <td>郵便番号</td>
+                <td>送付先</td>
+                <td>電話番号</td>
+                <td></td>
+              </tr>
+              <tr>
+                <th></th>
+                <% if @new_address.blank? %>
+                  <td><%= @address.first_name %></td>
+                  <%= f.hidden_field :shipname_first, :value => @address.first_name %>
+                  <td><%= @address.last_name %></td>
+                  <%= f.hidden_field :shipname_last, :value =>  @address.last_name %>
+                  <td><%= @address.first_name_kana %></td>
+                  <%= f.hidden_field :shipname_first_kana, :value =>  @address.first_name_kana %>
+                  <td><%= @address.last_name_kana %></td>
+                  <%= f.hidden_field :shipname_last_kana, :value =>  @address.last_name_kana %>
+                  <td><%= @address.postcode %></td>
+                  <%= f.hidden_field :postcode, :value =>  @address.postcode %>
+                  <td><%= @address.address %></td>
+                  <%= f.hidden_field :address, :value => @address.address %>
+                  <td><%= @address.phone_number %></td>
+                <% else %>
+                  <td><%= @new_address[:first_name] %></td>
+                  <%= f.hidden_field :shipname_first, :value => @new_address[:first_name] %>
+                  <td><%= @new_address[:last_name] %></td>
+                  <%= f.hidden_field :shipname_last, :value => @new_address[:last_name] %>
+                  <td><%= @new_address[:first_name_kana] %></td>
+                  <%= f.hidden_field :shipname_first_kana, :value => @new_address[:first_name_kana] %>
+                  <td><%= @new_address[:last_name_kana] %></td>
+                  <%= f.hidden_field :shipname_last_kana, :value => @new_address[:last_name_kana] %>
+                  <td><%= @new_address[:postcode] %></td>
+                  <%= f.hidden_field :postcode, :value => @new_address[:postcode] %>
+                  <td><%= @new_address[:address] %></td>
+                  <%= f.hidden_field :address, :value => @new_address[:address] %>
+                  <td><%= @new_address[:phone_number] %></td>
+                <% end %>
+              </tr>
+            </table>
+            <h1>お支払い方法</h1>
+            <table class="table table-hover">
+              <h1>購入品</h1>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Product Name</th>
+                        <th>Artist</th>
+                        <th>Quantity</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <% @cart_items.each do |cart_item| %>
+                    <%= f.nested_fields_for :order_products, wrapper_tag: :div do |item| %>
+                      <tr>
+                          <td class="col-sm-4 col-md-2">
+                            <div class="media">
+                                <%= attachment_image_tag cart_item.product, :image, :fill, 100, 100, format: 'jpeg'%>
+                            </div>
+                          </td>
+                          <td><%= cart_item.product.name %></td>
+                          <td><%= cart_item.product.artist.name %></td>
+                          <td><%= cart_item.quantity %></td>
+                          <%= item.hidden_field :quantity, :value => cart_item.quantity %>
+                          <td class="col-sm-1 col-md-1 text-center">
+                            <strong>
+                              ￥<%= cart_item.product.price %>
+                              <%= item.hidden_field :price, :value => cart_item.product.price %>
+                            </strong>
+                          </td>
+                          <td class="col-sm-1 col-md-1 text-center">
+                            <strong>
+                              ￥<%= cart_item.product.price.to_i  * cart_item.quantity.to_i %>
+                            </strong>
+                          </td>
+                          <%= item.hidden_field :product_id, :value => cart_item.product.id %>
+                      </tr>
+                    <% end %>
+                  <% end %>
+                  <tr>
+                      <td>   </td>
+                      <td>   </td>
+                      <td>   </td>
+                      <td>   </td>
+                      <td><h3>Total</h3></td>
+                      <td class="text-right"><h3><strong>￥<%= @total_price %></strong></h3></td>
+                      <%= f.hidden_field :total_price, :value => @total_price %>
+                  </tr>
+                </tbody>
+            </table>
+          <%= f.submit "次へ" %>
+        <% end %>
+      </div>
+    </div>
 </div>
