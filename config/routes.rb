@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   get 'delete_user/show'
   root "users/mypage#top"
 
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :delete_user, only: [:show]
     resources :finish, only: [:show]
     resources :cart_items, except:[:new, :show, :edit]
+    resources :orders, only:[:show, :new, :create]
     resources :order_histories, only: [:index, :show]
   end
 
