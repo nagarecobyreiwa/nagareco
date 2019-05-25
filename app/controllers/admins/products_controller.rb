@@ -15,9 +15,13 @@ class Admins::ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new(product_params)
-    product.save
-    redirect_to admins_products_path
+    @product = Product.new(product_params)
+    if @product.save
+       redirect_to admins_products_path
+    else
+       flash =  @product
+       redirect_to new_admins_product_path
+    end
   end
 
   def edit
@@ -32,9 +36,12 @@ class Admins::ProductsController < ApplicationController
   end
 
   def update
-    product = Product.find(params[:id])
-    product.update(product_params)
-    redirect_to admins_products_path
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+       redirect_to admins_products_path
+    else
+       render 'edit'
+    end
   end
 
   def destroy

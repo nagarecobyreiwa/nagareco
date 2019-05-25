@@ -4,6 +4,7 @@
       <h1>新しいレーベル追加</h1>
       <br>
       <%= form_for(@label, url: admins_labels_path) do |f| %>
+        <%= flash[:notice] %>
          <h4>レーベル名</h4>
          <%= f.text_field :name %>
          <%= f.submit '登録' %>

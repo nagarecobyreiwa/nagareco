@@ -1,6 +1,14 @@
 <%= render 'admins/layouts/sidebar' %>
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 <%= form_for @product, url: admins_products_path do |f| %>
+
+  <%# <% if flash[:notice].any? %>
+      <%# <%= flash[:notice].count %>件のエラーが発生しました %>
+      <%# <% flash[:notice].each do |message| %> %>
+          <%# <%= message %> %>
+      <%# <% end %> %>
+  <%# <% end %> %> %>
+
   <div class="form-user">
     <%= f.label :name, "商品名" %>
     <%= f.text_field :name %>

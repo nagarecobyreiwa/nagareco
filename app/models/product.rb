@@ -8,4 +8,8 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :disks
 
   attachment :image
+
+  validates :name, presence: true
+  validates :price, numericality: true
+  validates :stock, numericality: true
 end

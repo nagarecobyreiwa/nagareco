@@ -4,6 +4,7 @@
       <h1>新しいジャンル追加</h1>
       <br>
       <%= form_for(@genre, url: admins_genres_path) do |f| %>
+         <%= flash[:notice] %>
          <h4>ジャンル名</h4>
          <%= f.text_field :name %>
          <%= f.submit '登録' %>

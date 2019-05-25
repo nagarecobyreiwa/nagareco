@@ -5,9 +5,13 @@ class Admins::ArtistsController < ApplicationController
   end
 
   def create
-    artist = Artist.new(artist_params)
-    artist.save
-    redirect_to admins_artists_path
+    @artist = Artist.new(artist_params)
+    if @artist.save
+       redirect_to admins_artists_path
+    else
+      flash[:notice] = "エラーが発生しました"
+      redirect_to admins_artists_path
+    end
   end
 
   def edit
@@ -15,9 +19,12 @@ class Admins::ArtistsController < ApplicationController
   end
 
   def update
-    artist =  Artist.find(params[:id])
-    artist.update(artist_params)
-    redirect_to admins_artists_path
+    @artist =  Artist.find(params[:id])
+    if @artist.update(artist_params)
+      redirect_to admins_artists_path
+    else
+      render :edit
+    end
   end
 
   def destroy
