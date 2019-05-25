@@ -6,4 +6,15 @@ class User < ApplicationRecord
   has_many :carts
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  with_options presence: true do
+  validates :first_name
+  validates :last_name
+  validates :first_name_kana
+  validates :last_name_kana
+  validates :postcode
+  validates :address
+  validates :phone_number
+  end
+  validates :email, uniqueness: true
 end

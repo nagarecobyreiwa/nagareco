@@ -1,4 +1,4 @@
-class Users::OrderController < ApplicationController
+class Users::OrdersController < ApplicationController
 
   def index
     @cart_items = current_user.carts
@@ -13,9 +13,9 @@ class Users::OrderController < ApplicationController
     @address = Address.new
   end
 
-  def show
+  def create
+
   end
 
-  def create
-  end
+
 end

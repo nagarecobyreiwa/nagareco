@@ -20,7 +20,8 @@ Rails.application.routes.draw do
     resources :addresses, only:[:index, :new, :create, :edit, :update, :destroy]
     resources :delete_user, only: [:show]
     resources :finish, only: [:show]
-    resources :order, only: [:show, :new, :create]
+    resources :cart_items, except:[:new, :show, :edit]
+    resources :orders, only:[:new, :create, :index]
   end
 
   namespace :admins do

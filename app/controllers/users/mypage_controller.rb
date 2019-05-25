@@ -1,4 +1,5 @@
 class Users::MypageController < ApplicationController
+
   # 仮トップページ
     def top
 

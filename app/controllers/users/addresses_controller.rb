@@ -1,4 +1,5 @@
 class Users::AddressesController < ApplicationController
+
   def index
     @addresses = Address.where(user_id: current_user)
     @user = current_user
