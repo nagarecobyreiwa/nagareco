@@ -5,13 +5,13 @@
       <!--Grid row-->
       <div class="row wow fadeIn">
         <!--Grid column-->
-        <div class="col-md-6 mb-4">
-          <%= attachment_image_tag @product, :image, :fill, 250, 250, format: 'jpeg'%>
+        <div class="col-md-6 ">
+          <%= attachment_image_tag @product, :image, :fill, 500, 500, format: 'jpeg'%>
         </div>
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-md-6 mb-4">
+        <div class="col-md-6 ">
 
           <!--Content-->
           <div class="p-4">
@@ -29,29 +29,68 @@
               <h3 class="mb-0"><%= @product.name %></h3>
               <h1 class="mb-0"><%= @product.artist.name %></h1>
             </p>
-            <% @product.disks.each do |disk| %>
-            <p class="lead font-weight-bold"><%= disk.name %></p>
-              <% disk.songs.each do |song| %>
-                <p>
-                  <%= song.name %>
-                  <%= song.time.strftime("%H:%M") %>
-                </p>
+            <br>
+            <div class="container col-md-12">
+              <% @product.disks.each do |disk| %>
+                  <p class="lead font-weight-bold"><%= disk.name %></p>
+                <% disk.songs.each do |song| %>
+                <div class="row">
+                  <table class=" col-md-12 col-md-offset-1 ">
+                    <thead>
+                      <tr>
+                        <th class="col-md-6 "></th>
+                        <th class="col-md-6 "></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                       <td class="col-md-6 font-weight-bold">
+                        <%= song.name %>
+                       </td>
+                       <td class="col-md-6 font-weight-bold">
+                        <%= song.time.strftime("%H:%M") %>
+                       </td>
+                      </tr>
+                    </tbody>
+                  </div>
+                <% end %>
               <% end %>
-            <% end %>
-            <p><%= @product.stock %>枚</p>
-            <p>￥ <%= @product.price %></p>
+            </div>
+            <br>
+            <br>
+            <br>
 
-            <form class="d-flex justify-content-left">
-              <!-- Default input -->
-              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-              <%= link_to users_cart_items_path(product: {id: @product.id}),method: :post do %>
-                <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
-              <% end %>
+            <div class="other col-md-12" >
+              <div class="other-item">
+                <table class="table-hover col-md-6">
+                  <thead>
+                    <tr>
+                      <th class ="col-md-3">在庫数</th>
+                      <th class ="col-md-3">価格（税込）</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class ="col-md-3"><%= @product.stock %>枚</td>
+                      <td class ="col-md-3">￥ <%= @product.price %></td>
+                    </tr>
+                  </tbody>
+                <table>
+              </div>
 
-                <i class="fas fa-shopping-cart ml-1"></i>
-              </button>
-            </form>
-          </div>
+              <div class="other-form">
+                  <form class="d-flex justify-content-left col-md-6">
+                    <!-- Default input -->
+                    <input type="number" value="1" aria-label="Search" class="form-control col-md-3" style="width: 70px">
+                    <%= link_to users_cart_items_path(product: {id: @product.id}),method: :post do %>
+                      <button class="btn btn-primary btn-md-3" type="submit"> To cart
+                    <% end %>
+
+                      <i class="fas fa-shopping-cart ml-1"></i>
+                    </button>
+                  </form>
+               </div>
+             </div>
           <!--Content-->
 
         </div>
