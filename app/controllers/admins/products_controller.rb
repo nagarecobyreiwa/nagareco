@@ -42,6 +42,9 @@ class Admins::ProductsController < ApplicationController
     if @product.update(product_params)
        redirect_to admins_products_path
     else
+      @artists = Artist.all
+      @genres = Genre.all
+      @labels = Label.all
        render 'edit'
     end
   end
