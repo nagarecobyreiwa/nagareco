@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row md-2">
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <h1>お支払い方法・お届け先の確認</h1>
+        <tr>
+          <td></td>
+          <td>姓</td>
+          <td>名</td>
+          <td>セイ</td>
+          <td>メイ</td>
+          <td>郵便番号</td>
+          <td>送付先</td>
+          <td>電話番号</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th></th>
+          <% if @new_address.blank? %>
+            <td><%= @address.first_name %></td>
+            <td><%= @address.last_name %></td>
+            <td><%= @address.first_name_kana %></td>
+            <td><%= @address.last_name_kana %></td>
+            <td><%= @address.postcode %></td>
+            <td><%= @address.address %></td>
+            <td><%= @address.phone_number %></td>
+          <% else %>
+            <td><%= @new_address[:first_name] %></td>
+            <td><%= @new_address[:last_name] %></td>
+            <td><%= @new_address[:first_name_kana] %></td>
+            <td><%= @new_address[:last_name_kana] %></td>
+            <td><%= @new_address[:postcode] %></td>
+            <td><%= @new_address[:address] %></td>
+            <td><%= @new_address[:phone_number] %></td>
+          <% end %>
+        </tr>
+      </table>
+    <div>
+  </div>
+</div>
