@@ -19,8 +19,10 @@ class Admins::ProductsController < ApplicationController
     if @product.save
        redirect_to admins_products_path
     else
-       flash =  @product
-       redirect_to new_admins_product_path
+       @artists = Artist.all
+       @genres = Genre.all
+       @labels = Label.all
+       render 'new'
     end
   end
 

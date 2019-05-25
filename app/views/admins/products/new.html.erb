@@ -1,13 +1,16 @@
 <%= render 'admins/layouts/sidebar' %>
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-<%= form_for @product, url: admins_products_path do |f| %>
 
-  <%# <% if flash[:notice].any? %>
-      <%# <%= flash[:notice].count %>件のエラーが発生しました %>
-      <%# <% flash[:notice].each do |message| %> %>
-          <%# <%= message %> %>
-      <%# <% end %> %>
-  <%# <% end %> %> %>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+  <h2>商品登録</h2>
+  <%= form_for @product, url: admins_products_path do |f| %>
+    <% if @product.errors.any? %>
+      <%= @product.errors.count %>件のエラーが発生しました
+      <br>
+      <% @product.errors.full_messages.each do |message| %>
+        <%= message %>
+      <% end %>
+  <% end %>
 
   <div class="form-user">
     <%= f.label :name, "商品名" %>
