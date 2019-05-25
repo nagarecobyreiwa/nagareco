@@ -20,22 +20,22 @@
             <h4>￥ <%= product.price %></h4>
           </div> <!-- info-price-detail // -->
     		</article>
-    		<aside class="col-md-2 border-left">
-    			<div class="action-wrap">
+    		<aside class="action-wrap">
 
-            <!-- <form class="d-flex justify-content-left">
-              <!- Default input -->
-              <!-- <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-              <%# <%= link_to users_cart_items_path(@product.id}),method: :post do %> %>
-                <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
-              <%# <% end %> %>
+						<form class="d-flex justify-content-left col-md-2">
+ 						 <!-- Default input -->
+ 						 <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px"></input>
+　　　　　　　　<br>
+ 						 <%= link_to users_cart_items_path(product: {id: product.id}),method: :post do %>
+ 							 <button class="btn btn-dafault btn-md-3" type="submit"> To cart
+ 						 <% end %>
 
-                <i class="fas fa-shopping-cart ml-1"></i>
-              </button> -->
-            <!-- </form> -->
-            <br>
-            <%= link_to '商品詳細', users_product_path(product.id),class: 'btn btn-info' %>
-          </div>
+ 							 <i class="fas fa-shopping-cart ml-1"></i>
+ 						 </button>
+ 					  </form>
+						<div class="col-md-1 ">
+							<%= link_to '詳細はこちら', users_product_path(product.id),class: 'btn btn-info' %>
+						</div>
     		</aside>
       </div>
     <% end %>
