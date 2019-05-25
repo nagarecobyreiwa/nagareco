@@ -7,4 +7,10 @@
 ブランチ    作者名    
 order_show  いーちゃん
 fix_address いーちゃん 終了
-api かべちゃん
+
+order_payjp かべちゃん()
+・orders/newにpayjpのview追加
+・user、addressのValidations追加
+・headerにロゴとカラー追加
+・log in、sign－upのview修正
+・address/indexのview修正
