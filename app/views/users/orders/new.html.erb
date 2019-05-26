@@ -43,7 +43,6 @@
             <td><%= address.phone_number %></td>
           </tr>
           <% end %>
-
         </table>
 
          <table class="table table-striped">
@@ -77,7 +76,6 @@
          <p><%= f.radio_button(:payment, 0) %>銀行振込</p>
          <p><%= f.radio_button(:payment, 1) %>クレジットカード</p>
          <p><%= f.radio_button(:payment, 2) %>代引き</p>
-
 
          <%= f.submit "次へ" %>
       <% end %>
