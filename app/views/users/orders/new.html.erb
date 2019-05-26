@@ -73,6 +73,12 @@
            <td><%= f.text_field :phone_number, autofocus: true, autocomplete: "電話番号" %></td>
           </tr>
          </table>
+
+         <p><%= f.radio_button(:payment, 0) %>銀行振込</p>
+         <p><%= f.radio_button(:payment, 1) %>クレジットカード</p>
+         <p><%= f.radio_button(:payment, 2) %>代引き</p>
+
+
          <%= f.submit "次へ" %>
       <% end %>
       </div>

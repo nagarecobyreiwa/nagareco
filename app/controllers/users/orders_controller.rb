@@ -8,12 +8,14 @@ class Users::OrdersController < ApplicationController
     else
       @address = Address.find_by(id: params[:order][:select_address].to_i)
     end
+    # please clean this code
     @cart_items = current_user.carts
     @total_price = 0
     @cart_items.each do |cart_item|
       @total_price += cart_item.quantity * cart_item.product.price
     end
     @user = current_user
+    @payment = params[:order][:payment]
     @order = Order.new
     @cart_item = @order.order_products.build
   end
@@ -28,14 +30,7 @@ class Users::OrdersController < ApplicationController
     order = Order.new(order_params)
     order.user_id = current_user.id
     order.save
-    # current_user.carts do |cart_item|
-    #   item = order.order_products.build
-    #   item.order_id = order.id
-    #   item.product_id = cart_item.product.id
-    #   item.quantity = cart_item.quantity
-    #   item.price = cart_item.product.price
-    #   item.save
-    # end
+    current_user.carts.really
   end
 end
 
@@ -51,11 +46,12 @@ private
       :postcode,
       :address,
       :total_price,
+      :payment,
       order_products_attributes: [
         :id,
         :quantity,
         :price,
-        :product_id,
+        :product_id
       ]
     )
   end
