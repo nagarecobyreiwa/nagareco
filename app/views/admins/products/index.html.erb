@@ -1,7 +1,7 @@
 <%= render 'admins/layouts/sidebar' %>
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
-<h2>商品一覧</h2>
+<h3>商品一覧</h3>
 
 <table class="table table-striped">
 	<thead>
@@ -19,7 +19,7 @@
     <% @products.each do |product| %>
 		  <tr>
 			  <th><%= product.id %></th>
-        <td><%= attachment_image_tag  product, :image, :fill, 70,70, format: 'jpeg' %></td>
+        <td><%= attachment_image_tag  product, :image, :fill, 70,70, format: 'jpeg',fallback: "no-image.jpg" %></td>
         <td><%= product.name %></td>
         <td><%= product.stock %></td>
 			  <td><%= product.price %></td>
