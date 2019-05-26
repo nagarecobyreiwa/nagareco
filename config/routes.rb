@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :products, only:[:index, :show]
-    resources :mypage, contolloer: :users, only: [:index, :show, :edit, :update, :edit_login, :edit_finish]
+    resources :mypage, only: [:index, :show, :edit, :update]
     resources :addresses, only:[:index, :new, :create, :edit, :update, :destroy]
     resources :delete_user, only: [:show]
     resources :finish, only: [:show]
