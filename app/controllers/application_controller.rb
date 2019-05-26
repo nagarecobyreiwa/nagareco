@@ -9,11 +9,6 @@ class ApplicationController < ActionController::Base
     when User
       root_path
     end
-    case resource
-    when User
-      root_path
-    end
-
   end
 
   def after_sign_out_path_for(resource)

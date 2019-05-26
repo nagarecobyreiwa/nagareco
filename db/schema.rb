@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_05_25_094659) do
 
+
   create_table "addresses", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 2019_05_25_094659) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
 
   create_table "order_products", force: :cascade do |t|
     t.integer "product_id"
