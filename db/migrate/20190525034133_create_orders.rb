@@ -15,7 +15,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :shipname_first_kana
       t.string :shipname_last_kana
       t.references :user, foreign_key: true
-
+      t.datetime :deleted_at
       t.timestamps
     end
   end
