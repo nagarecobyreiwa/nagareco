@@ -101,12 +101,28 @@
                     <% end %>
                   <% end %>
                   <tr>
+                      <td>   </td>
+                      <td>   </td>
+                      <td>   </td>
+                      <td>   </td>
+                      <td><h4>小計</h4></td>
+                      <td class="text-center"><h4><strong> ¥ <%= @total_price %></strong></h4></td>
+                  </tr>
+                  <tr>
+                      <td>   </td>
+                      <td>   </td>
+                      <td>   </td>
+                      <td>   </td>
+                      <td><h4>送料</h4></td>
+                      <td class="text-center"><h4><strong>￥ 500</strong></h4></td>
+                  </tr>
+                  <tr>
                       <td>   </td>
                       <td>   </td>
                       <td>   </td>
                       <td>   </td>
                       <td><h3>Total</h3></td>
-                      <td class="text-right"><h3><strong>￥<%= @total_price %></strong></h3></td>
+                      <td class="text-right"><h3><strong>￥<%= @total_price + 500.to_i%></strong></h3></td>
                       <%= f.hidden_field :total_price, :value => @total_price %>
                   </tr>
                 </tbody>
