@@ -8,6 +8,7 @@
         <th scope="col">E-mail</th>
         <th scope="col">総額</th>
         <th scope="col">ステータス</th>
+        <th>   </th>
       </tr>
     </thead>
     <tbody>
@@ -20,9 +21,25 @@
         <!-- insert link_to user_show -->
         <td><%= order.user.email%></td>
         <td><%= order.total_price %></td>
-        <td><%= order.derively %></td>
+        <td class ="text-left">
+          <% if order.delivery == 0 %>
+          発送準備中
+            <% elsif order.delivery == 1 %>
+              発送中  |
+              <%= link_to admins_delivery_path(order),method: :patch do %>
+                <button class="btn btn-default btn-md-2" type="submit">受取完了
+              <% end %>
+            <% elsif order.delivery == 2 %>
+              発送完了
+          <% end %>
+        </td>
       </tr>
       <% end %>
     </tbody>
   </table>
+
+   <h4> ※※　商品が届いたら、受取完了を押してね🎧　※※ </h4>
+
+
+
 </main>

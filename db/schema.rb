@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 2019_05_25_094659) do
     t.integer "total_price"
     t.boolean "card_status"
     t.integer "payment"
-    t.integer "derively"
+    t.integer "delivery"
     t.string "buyer_first_name"
     t.string "buyer_last_name"
     t.string "postcode"
@@ -109,9 +109,9 @@ ActiveRecord::Schema.define(version: 2019_05_25_094659) do
     t.string "shipname_first_kana"
     t.string "shipname_last_kana"
     t.integer "user_id"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 

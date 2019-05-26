@@ -36,7 +36,13 @@
           </div>
       </div>
     </div>
-    <%= link_to admins_delivery_path(@order),method: :patch do %>
-      <button class="btn btn-primary btn-md-3" type="submit"> 発送する
+    <% if @order.delivery == 0 %>
+      <%= link_to admins_delivery_path(@order),method: :patch do %>
+        <button class="btn btn-default btn-md-3" type="submit">発送する
+      <% end %>
+    <% elsif @order_delivery == 1 %>
+       発送中
+    <% elsif @order_delivery == 2 %>
+        発送完了      
     <% end %>
 </main>
