@@ -73,6 +73,16 @@
           </tr>
          </table>
 
+         <% if @address.errors.any? %>
+           <div id=“error_explanation” class=“alert alert-danger”>
+             <ul>
+               <% @address.errors.full_messages.each do |message| %>
+                 <li><%= message %></li>
+               <% end %>
+             </ul>
+           </div>
+         <% end %>
+
          <p><%= f.radio_button(:payment, 0) %>銀行振込</p>
          <p><%= f.radio_button(:payment, 1) %>クレジットカード</p>
          <p><%= f.radio_button(:payment, 2) %>代引き</p>
