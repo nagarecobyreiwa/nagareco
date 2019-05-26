@@ -8,6 +8,7 @@ class Users::AddressesController < ApplicationController
 
   def new
     @address = Address.new
+    @user = current_user
   end
 
   def create

@@ -2,10 +2,10 @@
 
 one:
   order_number: MyString
-  total_price: 
+  total_price: 1
   card_status: false
-  payment_status: 
-  derively_status: 
+  payment: 1
+  derively: 1
   buyer_first_name: MyString
   buyer_last_name: MyString
   postcode: MyString
@@ -15,15 +15,13 @@ one:
   shipname_first_kana: MyString
   shipname_last_kana: MyString
   user: one
-  order_product: one
-  delete_at: 2019-05-22 09:48:38
 
 two:
   order_number: MyString
-  total_price: 
+  total_price: 1
   card_status: false
-  payment_status: 
-  derively_status: 
+  payment: 1
+  derively: 1
   buyer_first_name: MyString
   buyer_last_name: MyString
   postcode: MyString
@@ -33,5 +31,3 @@ two:
   shipname_first_kana: MyString
   shipname_last_kana: MyString
   user: two
-  order_product: two
-  delete_at: 2019-05-22 09:48:38
