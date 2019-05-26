@@ -1,0 +1,86 @@
+  <div class="container">
+    <div class="row md-2">
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <h1>お支払い方法・お届け先の確認</h1>
+          <tr>
+            <td></td>
+            <td>選択</td>
+            <td>姓</td>
+            <td>名</td>
+            <td>セイ</td>
+            <td>メイ</td>
+            <td>郵便番号</td>
+            <td>送付先</td>
+            <td>電話番号</td>
+            <td></td>
+          </tr>
+
+          # how to go index page
+        <%= form_with scope: :order, url: users_orders_path, method: :get, local: true do |f|%>
+          <tr>
+            <th></th>
+            <td><%= f.radio_button(:select_address, -1) %></td>
+            <td><%= @user.first_name %></td>
+            <td><%= @user.last_name %></td>
+            <td><%= @user.first_name_kana %></td>
+            <td><%= @user.last_name_kana %></td>
+            <td><%= @user.postcode %></td>
+            <td><%= @user.address %></td>
+            <td><%= @user.phone_number %></td>
+          </tr>
+
+          <% @addresses.each do |address| %>
+          <tr>
+            <th></th>
+            <td><%= f.radio_button(:select_address, address.id) %></td>
+            <td><%= address.first_name %></td>
+            <td><%= address.last_name %></td>
+            <td><%= address.first_name_kana %></td>
+            <td><%= address.last_name_kana %></td>
+            <td><%= address.postcode %></td>
+            <td><%= address.address %></td>
+            <td><%= address.phone_number %></td>
+          </tr>
+          <% end %>
+        </table>
+
+         <table class="table table-striped">
+          please edit width and height about this table
+          <h1>新しく住所を追加する</h1>
+          <tr>
+            <td></td>
+            <td>選択</td>
+            <td>姓</td>
+            <td>名</td>
+            <td>セイ</td>
+            <td>メイ</td>
+            <td>郵便番号</td>
+            <td>送付先</td>
+            <td>電話番号</td>
+            <td></td>
+          </tr>
+          <tr>
+           <td></td>
+           <td><%= f.radio_button(:select_address, 0) %></td>
+           <td><%= f.text_field :first_name, autofocus: true, autocomplete: "名前"  %></td>
+           <td><%= f.text_field :last_name, autofocus: true, autocomplete: "名前" %></td>
+           <td><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "名前" %></td>
+           <td><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "名前" %></td>
+           <td><%= f.text_field :postcode, autofocus: true, autocomplete: "郵便番号" %></td>
+           <td><%= f.text_field :address, class: "form-control", autofocus: true, autocomplete: "住所" %></td>
+           <td><%= f.text_field :phone_number, autofocus: true, autocomplete: "電話番号" %></td>
+          </tr>
+         </table>
+
+         <p><%= f.radio_button(:payment, 0) %>銀行振込</p>
+         <p><%= f.radio_button(:payment, 1) %>クレジットカード</p>
+         <p><%= f.radio_button(:payment, 2) %>代引き</p>
+
+         <%= f.submit "次へ" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+
+<!-- APIが入る予定 -->
