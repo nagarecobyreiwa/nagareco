@@ -5,16 +5,16 @@ Rails.application.routes.draw do
 
 
   devise_for :admins, controllers: {
-  sessions:      'admins/sessions',
-  passwords:     'admins/passwords',
-  registrations: 'admins/registrations'
-}
+    sessions:      'admins/sessions',
+    passwords:     'admins/passwords',
+    registrations: 'admins/registrations'
+  }
 
   devise_for :users, controllers: {
-  sessions:      'users/sessions',
-  passwords:     'users/passwords',
-  registrations: 'users/registrations'
-}
+    sessions:      'users/sessions',
+    passwords:     'users/passwords',
+    registrations: 'users/registrations'
+  }
 
   namespace :users do
     resources :products, only:[:index, :show]
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :cart_items, except:[:new, :show, :edit]
     resources :orders, only:[:index, :new, :create]
     resources :order_histories, only: [:index, :show]
-
+    resources :deliveries, only: [:update]
   end
 
   namespace :admins do
@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resources :order_histories, only: [:index, :show]
     resources :users, except: [:new, :create]
     resources :top, only: [:index]
+    resources :deliveries, only: [:update]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
