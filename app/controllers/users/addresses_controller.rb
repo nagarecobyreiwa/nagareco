@@ -1,7 +1,7 @@
 class Users::AddressesController < ApplicationController
 
   def index
-    @addresses = Address.where(user_id: current_user)
+    @addresses = Address.where(user_id: current_user).page(params[:page]).reverse_order
     @user = current_user
     # @address = Address.find(params[:id])
   end

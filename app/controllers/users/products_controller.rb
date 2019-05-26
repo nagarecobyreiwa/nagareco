@@ -1,6 +1,6 @@
 class Users::ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @products = Product.page(params[:page]).reverse_order
     @product = Product.find_by(id: params[:id])
   end
 
