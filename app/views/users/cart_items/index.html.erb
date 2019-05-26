@@ -76,10 +76,13 @@
                           <%= link_to 'Continue Shopping', users_products_path %>
                       </button></td>
                       <td>
-                      <button type="button" class="btn btn-success">
-                        <span class="glyphicon glyphicon-play"></span>
-                        <%= link_to 'Checkout', new_users_order_path %>
-                      </button></td>
+                        <div data-turbolinks="false">
+                          <button type="button" class="btn btn-success">
+                            <span class="glyphicon glyphicon-play"></span>
+                              <%= link_to 'Checkout', new_users_order_path %>
+                          </button>
+                        </div>
+                      </td>
                   </tr>
                 </tbody>
             </table>
