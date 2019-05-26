@@ -122,8 +122,8 @@
                       <td>   </td>
                       <td>   </td>
                       <td><h3>Total</h3></td>
-                      <td class="text-right"><h3><strong>￥<%= @total_price + 500.to_i%></strong></h3></td>
-                      <%= f.hidden_field :total_price, :value => @total_price %>
+                      <td class="text-right"><h3><strong>￥<%= @total_price + 500 %></strong></h3></td>
+                      <%= f.hidden_field :total_price, :value => @total_price + 500 %>
                   </tr>
                 </tbody>
             </table>
