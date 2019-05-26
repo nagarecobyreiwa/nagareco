@@ -1,5 +1,5 @@
 class Users::OrdersController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     # please use when
     if params[:order][:select_address].to_i == 0

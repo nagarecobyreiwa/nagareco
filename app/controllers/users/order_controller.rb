@@ -1,5 +1,5 @@
 class Users::OrderController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     @cart_items = current_user.carts
     @order = Order.new

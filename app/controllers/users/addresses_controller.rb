@@ -1,5 +1,5 @@
 class Users::AddressesController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     @addresses = Address.where(user_id: current_user).page(params[:page]).reverse_order
     @user = current_user
@@ -40,7 +40,7 @@ class Users::AddressesController < ApplicationController
 
   def destroy
     address = Address.find(params[:id])
-    address.destroy
+    address.really_destroy!
     redirect_to users_addresses_path(current_user.id)
   end
 
