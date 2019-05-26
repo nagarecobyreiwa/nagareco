@@ -10,7 +10,6 @@ fix_address いーちゃん 終了
 
 order_payjp かべちゃん
 5/25
-・orders/newにpayjpのview追加
 ・user、addressのValidations追加
 ・headerにロゴとカラー追加
 ・log in、sign－upのview修正
