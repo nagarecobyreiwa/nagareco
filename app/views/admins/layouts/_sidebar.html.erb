@@ -1,0 +1,46 @@
+
+<!-- header -->
+<!-- <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
+  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+</nav> -->
+
+<!-- sidebar -->
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <h6>ユーザー管理</h6>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ユーザー一覧", admins_users_path %>
+          </li>
+          <li class="nav-item">
+            <h6>商品管理</h6>
+          </li>
+          <li class="nav-item">
+            <%= link_to "商品一覧", admins_products_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "商品追加", new_admins_product_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "アーティスト登録・一覧", admins_artists_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ジャンル登録・一覧", admins_genres_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "レーベル登録・一覧", admins_labels_path %>
+          </li>
+          <li class="nav-item">
+            <h6>購入履歴</h6>
+          </li>
+          <li class="nav-item">
+            <%= link_to "購入履歴一覧", admins_order_histories_path %>
+          </li>
+        </ul>
+      </div>
+    </nav>

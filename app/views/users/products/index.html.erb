@@ -1,0 +1,43 @@
+
+<article class="container">
+	<div class="row">
+    <h2>商品一覧</h2>
+    <% @products.each do |product| %>
+    <div class=" product_item col-md-12  ">
+
+    		<aside class="col-md-3 ">
+    			<%= attachment_image_tag product, :image, :fill, 180, 180, format: 'jpeg'%>
+    		</aside> <!-- col.// -->
+    		<article class=" name col-md-3">
+    				<h3><%= product.name %></h3>
+            <h4><%= product.artist.name %></h4>
+
+        </article>
+        <article class="col-md-2">
+          <div class="price-wrap">
+            <h4>価格（税込）</h4>
+            <h4></h4>
+            <h4>￥ <%= product.price %></h4>
+          </div> <!-- info-price-detail // -->
+    		</article>
+    		<aside class="action-wrap">
+
+						<form class="d-flex justify-content-left col-md-2">
+ 						 <!-- Default input -->
+ 						 <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px"></input>
+　　　　　　　　<br>
+ 						 <%= link_to users_cart_items_path(product: {id: product.id}),method: :post do %>
+ 							 <button class="btn btn-dafault btn-md-3" type="submit"> To cart
+ 						 <% end %>
+
+ 							 <i class="fas fa-shopping-cart ml-1"></i>
+ 						 </button>
+ 					  </form>
+						<div class="col-md-1 ">
+							<%= link_to '詳細はこちら', users_product_path(product.id),class: 'btn btn-info' %>
+						</div>
+    		</aside>
+      </div>
+    <% end %>
+  </div> <!-- row.// -->
+</article> <!-- card product .// -->

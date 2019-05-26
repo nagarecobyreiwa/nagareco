@@ -1,0 +1,45 @@
+<h1>登録情報編集</h1>
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-body">
+		 <%= form_for(@user, url: users_mypage_path) do |f| %>
+				<h3>氏名</h3>
+			<div class="form-inline">
+				<div class="form-group">
+				<h5>姓</h5>
+				 <%= f.text_field :first_name, autofocus: true, autocomplete: "名前"  %>&nbsp;
+				</div>
+				<div class="form-group">
+				<h5>名</h5>
+				 <%= f.text_field :last_name, autofocus: true, autocomplete: "名前" %>
+				</div>
+			</div>&nbsp;&nbsp;
+			  <h3>フリガナ</h3>
+			<div class="form-inline">
+			  <div class="form-group">
+				<h5>セイ</h5>
+				 <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "名前" %>&nbsp;
+			  </div>
+			  <div class="form-group">
+				 <h5>メイ</h5>
+				 <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "名前" %>
+			  </div>
+			</div>&nbsp;&nbsp;
+			<h3>郵便番号</h3>
+			 <%= f.text_field :postcode, autofocus: true, autocomplete: "郵便番号" %>
+			 &nbsp;&nbsp;
+			<h3>送付先</h3>
+			 <%= f.text_field :address, class: "form-control", autofocus: true, autocomplete: "住所" %>&nbsp;&nbsp;
+
+			<h3>電話番号</h3>
+			 <%= f.text_field :phone_number, autofocus: true, autocomplete: "電話番号" %>&nbsp;&nbsp;
+
+
+			<br><%= f.submit '登録情報を編集する', class: "btn btn-primary" %></br>
+
+			<% end %>
+      <!-- ルーティングエラーが起きているので、マイページへ。 -->
+			<%= link_to "編集を取り消す" , users_mypage_path(current_user.id), class: "btn btn-warning" %>
+		</div>
+	</div>
+</div>

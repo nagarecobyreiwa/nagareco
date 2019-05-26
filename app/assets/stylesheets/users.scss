@@ -1,0 +1,43 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.clearfix::after {
+  content:"";
+  display:block;
+  clear:both;
+}
+
+.mypage-box {
+	width: 1024px;
+	margin: 0 auto;
+}
+
+.title {
+	border-bottom: solid 2px #1e90ff;
+}
+
+.profile {
+	padding: 40px;
+	text-align: left;
+	display: inline-block;
+	font-size: 32px;
+	position: relative;
+}
+
+.mypage-box h3 {
+	display: inline-block;
+	padding: 15px;
+	margin: 30px 50px;
+	border: medium solid #ff8f1f;
+
+}
+
+.announce {
+	width: 1024px;
+	padding-top: 30px;
+}
+
+.announce h4 {
+	border-bottom: solid 2px #ff1fff;
+}

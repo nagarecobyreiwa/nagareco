@@ -1,0 +1,30 @@
+<%= render 'admins/layouts/sidebar' %>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading">会員情報</div>
+		<div class="panel-body">
+			<table class="table">
+				 <tr>
+				   <th>名前&nbsp;<%= @user.first_name %><%= @user.last_name %>&nbsp;
+				    (<%= @user.first_name_kana %><%= @user.last_name_kana %>)</th>
+				 </tr>
+				 <tr>
+				   <th>郵便番号&nbsp;<%= @user.postcode %></th>
+				</tr>
+				   <tr><th>送付先&nbsp;<%= @user.address %></th></tr>
+				 <tr>
+				   <th>電話番号&nbsp;<%= @user.phone_number %></th>
+				 </tr>
+         <tr>
+           <th>メールアドレス&nbsp;<%= @user.email %></th>
+         </tr>
+			</table>
+
+			<div>
+				<%= link_to "編集する" , edit_admins_user_path(@user.id), class: "btn btn-warning" %>
+				<%= link_to "ユーザー消去", admins_user_path(@user.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-primary" %>
+			</div>
+		</div>
+	</div>
+</div>

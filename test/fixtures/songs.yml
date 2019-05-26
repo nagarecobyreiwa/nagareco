@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  time: 2019-05-19 04:36:51
+  order: 1
+  disk: one
+  deleted_at: 2019-05-19 04:36:51
+
+two:
+  name: MyString
+  time: 2019-05-19 04:36:51
+  order: 1
+  disk: two
+  deleted_at: 2019-05-19 04:36:51
