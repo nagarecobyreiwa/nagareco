@@ -1,0 +1,174 @@
+<h1>お支払い方法・お届け先の確認</h1>
+<div class="container">
+  <div class="row md-2">
+    <div class="col-md-12">
+      <table class="table table-striped">
+
+
+        <tr>
+          <td></td>
+          <td>姓</td>
+          <td>名</td>
+          <td>セイ</td>
+          <td>メイ</td>
+          <td>郵便番号</td>
+          <td>送付先</td>
+          <td>電話番号</td>
+          <td></td>
+        </tr>
+      <%= form_with url: users_order_index_path do |f|%>
+
+        <tr>
+          <th></th>
+          <td><%= @user.first_name %></td>
+          <td><%= @user.last_name %></td>
+          <td><%= @user.first_name_kana %></td>
+          <td><%= @user.last_name_kana %></td>
+          <td><%= @user.postcode %></td>
+          <td><%= @user.address %></td>
+          <td><%= @user.phone_number %></td>
+          <td><%= f.radio_button(:select_address, -1) %></td>
+        </tr>
+
+        <% @addresses.each do |address| %>
+        <tr>
+          <th></th>
+          <td><%= address.first_name %></td>
+          <td><%= address.last_name %></td>
+          <td><%= address.first_name_kana %></td>
+          <td><%= address.last_name_kana %></td>
+          <td><%= address.postcode %></td>
+          <td><%= address.address %></td>
+          <td><%= address.phone_number %></td>
+          <td><%= f.radio_button(:select_address, address.id) %></td>
+        </tr>
+        <% end %>
+
+      </table>
+
+     <table class="table table-striped">
+      <h1>新しく住所を追加する</h1>
+      <tr>
+       <td><%= form_for(@address, url: users_addresses_path) do |f| %></td>
+       <td><%= f.text_field :first_name, autofocus: true, autocomplete: "名前"  %></td>
+       <td><%= f.text_field :last_name, autofocus: true, autocomplete: "名前" %></td>
+       <td><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "名前" %></td>
+       <td><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "名前" %></td>
+       <td><%= f.text_field :postcode, autofocus: true, autocomplete: "郵便番号" %></td>
+       <td><%= f.text_field :address, class: "form-control", autofocus: true, autocomplete: "住所" %></td>
+       <td><%= f.text_field :phone_number, autofocus: true, autocomplete: "電話番号" %></td>
+       <td><%= f.submit '宛先を追加する', class: "btn btn-primary" %></td>
+      </tr>
+       <% end %>
+     </table>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- APIが入る予定 -->
+<script type="text/javascript" src="https://js.pay.jp/"></script>
+  <link rel="stylesheet" href="//oss.maxcdn.com/semantic-ui/2.0.7/semantic.min.css" type="text/css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.min.css" media="screen" title="no title" charset="utf-8">
+  <style media="screen">
+    section {
+      margin: 15px;
+      max-width: 960px;
+    }
+  </style>
+  <section>
+    <form class="ui form">
+      <h4 class="ui dividing header">クレジット支払い</h4>
+
+      <div class="field">
+        <label>カード番号</label>
+        <input type="text" name="number" maxlength="16" placeholder="Card #">
+      </div>
+
+      <div class="fields">
+        <div class="six wide field">
+          <label>CVC</label>
+          <input type="text" name="cvc" maxlength="4" placeholder="CVC">
+        </div>
+        <div class="ten wide field">
+          <label>有効期限</label>
+          <div class="two fields">
+            <div class="field">
+              <select class="ui fluid search dropdown" name="exp_month">
+                <option value="">月</option>
+                <option value="1">01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+                <option value="7">07</option>
+                <option value="8">08</option>
+                <option value="9">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+            <div class="field">
+              <input type="text" name="exp_year" maxlength="4" placeholder="年">
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="ui button fill" tabindex="0">
+        サンプルのカード番号を使う
+      </button>
+      <button class="ui primary button submit">
+        送信
+      </button>
+      <p id="result"></p>
+    </form>
+  </section>
+
+  <script type="text/javascript">
+    (function() {
+      var number = document.querySelector('input[name="number"]'),
+          cvc = document.querySelector('input[name="cvc"]'),
+          exp_month = document.querySelector('select[name="exp_month"]'),
+          exp_year = document.querySelector('input[name="exp_year"]')
+      ;
+      document.querySelector('.fill').addEventListener('click', function(e) {
+        e.preventDefault();
+        number.value = '4242424242424242';
+        cvc.value = '123';
+        exp_month.value = '12';
+        exp_year.value = '2020';
+      });
+      document.querySelector('.submit').addEventListener('click', function(e) {
+        e.preventDefault();
+        Payjp.setPublicKey('pk_test_e0c04b8f2a9d7625073d06b3');
+        var card = {
+          number: number.value,
+          cvc: cvc.value,
+          exp_month: exp_month.value,
+          exp_year: exp_year.value
+        }
+        Payjp.createToken(card, function(s, response) {
+          document.getElementById('result').innerText = 'Token = ' + response.id;
+        });
+      });
+    })();
+  </script>
+
+<%= f.submit '注文内容を確認する' %>
+<% end %>
+<!--<%= form_tag(users_order_index_path, method: "post",datakey:"pk_test_e0c04b8f2a9d7625073d06b3") do %>
+
+  <input type="text" name="number" maxlength="16" placeholder="カード番号"><br>
+
+  <input type="text"  name="cvc" maxlength="3" placeholder="CVC"><br>
+
+  <input type="text" name="exp_month" maxlength="2" placeholder="月">
+  <input type="text" name="exp_year" maxlength="4" placeholder="西暦（４桁）"><br>
+
+  <input type="submit">
+<% end %>-->
+
