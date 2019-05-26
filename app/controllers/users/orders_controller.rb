@@ -30,11 +30,17 @@ class Users::OrdersController < ApplicationController
     order = Order.new(order_params)
     order.user_id = current_user.id
     order.save
-    current_user.carts.really
+    destroy_cart
   end
 end
 
 private
+  def destroy_cart
+      current_user.carts.each do |cart|
+        cart.really_destroy!
+      end
+  end
+
   def order_params
     params.require(:order).permit(
       :buyer_first_name,
