@@ -2,6 +2,9 @@
   <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
     <h1>ジャンル編集</h1>
     <%= form_for(@genre, url: admins_genre_path) do |f| %>
+    <% if @genre.errors.any? %>
+      エラーが発生しました
+    <% end %>
       <h4>ジャンル名</h4>
       <%= f.text_field :name, placeholder: @genre.name %>
       <%= f.submit 'Edit' %>

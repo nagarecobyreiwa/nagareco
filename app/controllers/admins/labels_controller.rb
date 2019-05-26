@@ -6,8 +6,12 @@ class Admins::LabelsController < ApplicationController
 
   def create
     label = Label.new(label_params)
-    label.save
-    redirect_to admins_labels_path
+    if label.save
+       redirect_to admins_labels_path
+    else
+       flash[:notice] = "エラーが発生しました"
+       redirect_to admins_labels_path
+    end
   end
 
   def edit
@@ -15,9 +19,12 @@ class Admins::LabelsController < ApplicationController
   end
 
   def update
-    label =  Label.find(params[:id])
-    label.update(label_params)
-    redirect_to admins_labels_path
+    @label =  Label.find(params[:id])
+    if @label.update(label_params)
+       redirect_to admins_labels_path
+    else
+       render 'edit'
+    end
   end
 
   def destroy

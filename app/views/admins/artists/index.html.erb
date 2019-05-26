@@ -4,6 +4,7 @@
       <h1>新しいアーティスト追加</h1>
       <br>
       <%= form_for(@artist, url: admins_artists_path) do |f| %>
+         <%= flash[:notice] %>
          <h4>アーティスト名</h4>
          <%= f.text_field :name %>
          <%= f.submit '登録' %>
