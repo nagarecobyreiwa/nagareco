@@ -2,7 +2,6 @@ class Admins::OrderHistoriesController < ApplicationController
   def index
     # create paginate function by kaminari
     @orders = Order.all
-    binding.pry
   end
 
   def show
