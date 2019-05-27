@@ -43,7 +43,7 @@
             <% end %>
           </table>
           <table class="table table-striped">
-          <h1>新しく住所を追加する</h1>
+            <h1>新しく住所を追加する</h1>
             <tr>
               <td></td>
               <td>選択</td>
@@ -67,10 +67,21 @@
              <td><%= f.text_field :address, class: "form-control", autofocus: true, autocomplete: "住所" %></td>
              <td><%= f.text_field :phone_number, autofocus: true, autocomplete: "電話番号" %></td>
             </tr>
-          </table>
-          <p><%= f.radio_button(:payment, 0) %>銀行振込</p>
-          <p><%= f.radio_button(:payment, 1) %>クレジットカード</p>
-          <p><%= f.radio_button(:payment, 2) %>代引き</p>
+           </table>
+
+           <% if @address.errors.any? %>
+             <div id=“error_explanation” class=“alert alert-danger”>
+               <ul>
+                 <% @address.errors.full_messages.each do |message| %>
+                   <li><%= message %></li>
+                 <% end %>
+               </ul>
+             </div>
+           <% end %>
+
+           <p><%= f.radio_button(:payment, 0) %>銀行振込</p>
+           <p><%= f.radio_button(:payment, 1) %>クレジットカード</p>
+           <p><%= f.radio_button(:payment, 2) %>代引き</p>
 
           <div data-turbolinks="false">
             <%= f.submit "次へ" %>

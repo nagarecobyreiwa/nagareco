@@ -1,9 +1,16 @@
 class Users::OrdersController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     # please use when
     if params[:order][:select_address].to_i == 0
-      @new_address = params[:order]
+      if is_validated_address(params[:order]) == true
+         @new_address = params[:order]
+      else
+         @user = current_user
+         @addresses = current_user.addresses
+         @address = Address.new
+         render :new
+      end
     elsif params[:order][:select_address].to_i == -1
       @address = current_user
     else
@@ -75,4 +82,16 @@ private
         :product_id
       ]
     )
+  end
+
+  def is_validated_address(new_address)
+
+      new_address[:first_name].present? &&
+      new_address[:last_name].present? &&
+      new_address[:first_name_kana].present? &&
+      new_address[:last_name_kana].present? &&
+      new_address[:postcode].present? &&
+      new_address[:address].present? &&
+      new_address[:phone_number].present?
+
   end

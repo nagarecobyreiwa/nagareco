@@ -1,4 +1,5 @@
 class Users::CartItemsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @cart_items = current_user.carts
     @total_price = 0

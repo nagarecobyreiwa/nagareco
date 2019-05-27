@@ -13,9 +13,9 @@ class User < ApplicationRecord
   validates :last_name
   validates :first_name_kana
   validates :last_name_kana
-  validates :postcode
+  validates :postcode,numericality: true
   validates :address
-  validates :phone_number
+  validates :phone_number,numericality: true
   end
   validates :email, uniqueness: true
 end

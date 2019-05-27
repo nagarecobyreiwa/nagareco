@@ -41,3 +41,16 @@ User.create(
   email:"c@c",
   password:"cccccc"
 )
+
+
+User.create(
+  first_name:"居附",
+  last_name:"舜",
+  first_name_kana:"イツキ",
+  last_name_kana:"シュン",
+  postcode:"3501212",
+  address:"埼玉県和光市",
+  phone_number:"08020553939",
+  email:"a@a",
+  password:"aaaaaa"
+)
