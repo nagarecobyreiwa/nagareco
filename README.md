@@ -1,6 +1,7 @@
 # README
-私たちは今回CDのECサイトを作成しています。
-ここではチーム開発の練習中です。ようこそナガレコヘ
+  私たちは今回CDのECサイトを作成しています。
+  ここではチーム開発の練習中です。ようこそナガレコヘ
+
 
 今日から、order_functionを作成していきます。
 
@@ -14,3 +15,5 @@ order_payjp かべちゃん
 ・headerにロゴとカラー追加
 ・log in、sign－upのview修正
 ・address/indexのview修正
+
+  create delivery_function

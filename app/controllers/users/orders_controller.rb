@@ -38,6 +38,7 @@ class Users::OrdersController < ApplicationController
     order = Order.new(order_params)
     order.user_id = current_user.id
     order.save
+    stock_managed
     destroy_cart
   end
 end
@@ -46,6 +47,18 @@ private
   def destroy_cart
       current_user.carts.each do |cart|
         cart.really_destroy!
+      end
+  end
+
+  def stock_managed
+      current_user.carts.each do |cart|
+        product = cart.product
+        quantity = product.stock - cart.quantity
+        if quantity <= 0
+          # where do you go ?
+        else
+          product.update(stock: quantity)
+        end
       end
   end
 
@@ -61,6 +74,7 @@ private
       :address,
       :total_price,
       :payment,
+      :derively,
       order_products_attributes: [
         :id,
         :quantity,
