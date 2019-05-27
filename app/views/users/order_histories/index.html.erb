@@ -26,7 +26,7 @@
           発送準備中
             <% elsif order.delivery == 1 %>
               発送中  |
-              <%= link_to admins_delivery_path(order),method: :patch do %>
+              <%= link_to users_delivery_path(order),method: :patch do %>
                 <button class="btn btn-default btn-md-2" type="submit">受取完了
               <% end %>
             <% elsif order.delivery == 2 %>

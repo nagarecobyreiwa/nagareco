@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 2019_05_25_094659) do
     t.integer "total_price"
     t.boolean "card_status"
     t.integer "payment"
-    t.integer "delivery"
+    t.integer "delivery", default: 0
     t.string "buyer_first_name"
     t.string "buyer_last_name"
     t.string "postcode"
