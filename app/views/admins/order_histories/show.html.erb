@@ -32,8 +32,17 @@
             <p><%= @order.address  %></p>
             <p><%= @order.shipname_first %></p>
             <p><%= @order.shipname_last %>　様</p>
-            <p>合計金額　¥ <%= @order.total_price %>　</h2>
+            <p>合計金額　¥ <%= @order.total_price %>　</p>
           </div>
       </div>
     </div>
+    <% if @order.delivery == 0 %>
+      <%= link_to admins_delivery_path(@order),method: :patch do %>
+        <button class="btn btn-default btn-md-3" type="submit">発送する
+      <% end %>
+    <% elsif @order_delivery == 1 %>
+       発送中
+    <% elsif @order_delivery == 2 %>
+        発送完了      
+    <% end %>
 </main>

@@ -67,7 +67,7 @@ private
       :address,
       :total_price,
       :payment,
-      :derively,
+      :delivery,
       order_products_attributes: [
         :id,
         :quantity,

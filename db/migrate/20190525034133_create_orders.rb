@@ -5,7 +5,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.integer :total_price
       t.boolean :card_status
       t.integer :payment
-      t.integer :derively
+      t.integer :delivery, default: 0
       t.string :buyer_first_name
       t.string :buyer_last_name
       t.string :postcode
