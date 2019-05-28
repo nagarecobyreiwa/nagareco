@@ -1,4 +1,5 @@
 class Users::CartItemsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @cart_items = current_user.carts
     @total_price = 0
@@ -14,7 +15,7 @@ class Users::CartItemsController < ApplicationController
       cart.product_id = params[:product][:id]
       cart.user_id = current_user.id
       # edit this quanttity from getting data
-      cart.quantity = 1
+      cart.quantity = params[:product][:quantity]
     end
     cart_item.save
     redirect_to users_cart_items_path

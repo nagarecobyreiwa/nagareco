@@ -1,4 +1,5 @@
 class Users::MypageController < ApplicationController
+    before_action :authenticate_user!
   # 仮トップページ
     def top
 

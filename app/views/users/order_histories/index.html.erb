@@ -8,21 +8,38 @@
         <th scope="col">E-mail</th>
         <th scope="col">総額</th>
         <th scope="col">ステータス</th>
+        <th>   </th>
       </tr>
     </thead>
     <tbody>
-      <%# <% @orders.each do |order| %>  %>
+      <% @orders.each do |order| %>
       <tr>
         <td>No.</td>
-        <td>order.created_at</td>
+        <td><%= order.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
         <!-- insert link_to show_page -->
-        <td>order.order_number</td>
+        <td><%= order.order_number %></td>
         <!-- insert link_to user_show -->
-        <td>order.user.email</td>
-        <td>order.total_price</td>
-        <td>order.derively</td>
+        <td><%= order.user.email%></td>
+        <td><%= order.total_price %></td>
+        <td class ="text-left">
+          <% if order.delivery == 0 %>
+          発送準備中
+            <% elsif order.delivery == 1 %>
+              発送中  |
+              <%= link_to users_delivery_path(order),method: :patch do %>
+                <button class="btn btn-default btn-md-2" type="submit">受取完了
+              <% end %>
+            <% elsif order.delivery == 2 %>
+              発送完了
+          <% end %>
+        </td>
       </tr>
-      <%# <% end %> %>
+      <% end %>
     </tbody>
   </table>
+
+   <h4> ※※　商品が届いたら、受取完了を押してね🎧　※※ </h4>
+
+
+
 </main>

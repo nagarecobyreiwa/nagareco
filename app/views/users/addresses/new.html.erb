@@ -42,6 +42,16 @@
 
 			<% end %>
 
+			<% if @address.errors.any? %>
+				<div id=“error_explanation” class=“alert alert-danger”>
+					<ul>
+						<% @address.errors.full_messages.each do |message| %>
+							<li><%= message %></li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+
 			<%= link_to "入力を取り消す", users_addresses_path(current_user.id), class: "btn btn-warning" %>
 		</div>
 	</div>

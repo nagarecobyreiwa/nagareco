@@ -12,20 +12,26 @@
       </tr>
     </thead>
     <tbody>
-      <%# <% @orders.each do |order| %>  %>
+      <% @orders.each do |order| %>
       <tr>
-        <td>No.</td>
-        <td>order.created_at</td>
+        <td><%= order.id %></td>
+        <td><%= order.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
         <!-- insert link_to show_page -->
-        <td>order.order_number</td>
+        <td><%= order.order_number %></td>
         <!-- insert link_to user_show -->
-        <td>order.user.email</td>
-        <td>order.total_price</td>
-        <td>order.derively</td>
+        <td><%= order.user.email%></td>
+        <td><%= order.total_price %></td>
+        <td>
+          <% if order.delivery == 0 %>
+            発送する
+            <% elsif order.delivery == 1 %>
+              発送中
+            <% elsif order.delivery == 2 %>
+              発送完了
+          <% end %>
+        </td>
       </tr>
-      <%# <% end %> %>
+      <% end %>
     </tbody>
   </table>
 </main>
-</div>
-</div>

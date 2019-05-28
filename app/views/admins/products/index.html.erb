@@ -1,7 +1,7 @@
 <%= render 'admins/layouts/sidebar' %>
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
-<h2>商品一覧</h2>
+<h3>商品一覧</h3>
 
 <table class="table table-striped">
 	<thead>
@@ -16,14 +16,20 @@
 		</tr>
 	</thead>
 	<tbody>
-    <% @products.each do |product| %>
+    <% @products.each_with_index do |product, i| %>
 		  <tr>
-			  <th><%= product.id %></th>
-        <td><%= attachment_image_tag  product, :image, :fill, 70,70, format: 'jpeg' %></td>
+			  <th><%= i + 1 %></th>
+        <td><%= attachment_image_tag  product, :image, :fill, 70,70, format: 'jpeg',fallback: "no-image.jpg" %></td>
         <td><%= product.name %></td>
         <td><%= product.stock %></td>
 			  <td><%= product.price %></td>
-        <td><%= product.on_sale %></td>
+        <td>
+				<% if product.on_sale == true %>
+				  販売
+					<% else product.on_sale == false %>
+					未販売
+				<% end %>
+				</td>
 			  <td><%= link_to 'Edit', edit_admins_product_path(product) %>
           | <%= link_to 'Delete', admins_product_path(product), method: :delete %>
         </td>

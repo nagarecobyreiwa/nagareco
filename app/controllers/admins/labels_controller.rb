@@ -1,4 +1,5 @@
 class Admins::LabelsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @label = Label.new
     @labels = Label.all

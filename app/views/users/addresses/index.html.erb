@@ -12,6 +12,7 @@
     <th>送付先</th>
     <th>電話番号</th>
     <th></th>
+    <th></th>
   </tr>
 
   <tr>
@@ -24,8 +25,11 @@
     <td><%= @user.address %></td>
     <td><%= @user.phone_number %></td>
     <td><%= link_to "会員情報を編集する", edit_users_mypage_path(current_user.id), class: "btn btn-primary" %></td>
+    <td></td>
   </tr>
+
     <% @addresses.each do |address| %>
+  <tr>
     <th></th>
     <td><%= address.first_name %></td>
     <td><%= address.last_name %></td>
@@ -40,6 +44,8 @@
     <% end %>
 
 </table>
+
+<p><%= paginate @addresses, class: "paginate" %></p>
 
 <%= link_to "マイページに戻る", users_mypage_index_path(current_user.id), class: "btn btn-warning" %>
 <%= link_to "宛先追加", new_users_address_path(current_user.id), class: "btn btn-danger" %>

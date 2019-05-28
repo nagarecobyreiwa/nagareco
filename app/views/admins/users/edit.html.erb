@@ -40,6 +40,17 @@
 			<br><%= f.submit '登録情報を編集する', class: "btn btn-primary" %></br>
 
 			<% end %>
+
+			<% if @user.errors.any? %>
+				<div id=“error_explanation” class=“alert alert-danger”>
+					<ul>
+						<% @user.errors.full_messages.each do |message| %>
+							<li><%= message %></li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+
       <%= link_to "編集を取り消す" , admins_user_path(@user.id), class: "btn btn-warning" %>
 		</div>
 	</div>

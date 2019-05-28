@@ -79,16 +79,13 @@
               </div>
 
               <div class="other-form">
-                  <form class="d-flex justify-content-left col-md-6">
-                    <!-- Default input -->
-                    <input type="number" value="1" aria-label="Search" class="form-control col-md-3" style="width: 70px">
-                    <%= link_to users_cart_items_path(product: {id: @product.id}),method: :post do %>
-                      <button class="btn btn-primary btn-md-3" type="submit"> To cart
-                    <% end %>
-
-                      <i class="fas fa-shopping-cart ml-1"></i>
-                    </button>
-                  </form>
+                  <%= form_with scope: :product, url: users_cart_items_path, local: true, method: :post do |f|%>
+    								<%= f.hidden_field :id, :value => @product.id %>
+    								<%= f.number_field :quantity, min:1, max: @product.stock, value: 1 %>
+    								<div data-turbolinks="false">
+    								　　<%= f.submit "Go Cart" %>
+    								</div>
+    							<% end %>
                </div>
              </div>
           <!--Content-->

@@ -20,9 +20,9 @@
             </tr>
           </thead>
           <tbody>
-            <% @labels.each do |label| %>
+            <% @labels.each_with_index do |label , i| %>
               <tr>
-                <th><%= label.id %></th>
+                <th><%= i + 1 %></th>
                 <td><%= label.name %></td>
                 <td><%= link_to 'Edit', edit_admins_label_path(label) %>
                   | <%= link_to 'Delete', admins_label_path(label), method: :delete %>

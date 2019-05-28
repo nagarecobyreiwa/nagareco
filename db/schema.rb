@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_20_072609) do
+ActiveRecord::Schema.define(version: 2019_05_25_094659) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "first_name"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2019_05_20_072609) do
   create_table "carts", force: :cascade do |t|
     t.integer "product_id"
     t.integer "user_id"
-    t.integer "quantity"
+    t.integer "quantity", default: 1
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -80,6 +80,39 @@ ActiveRecord::Schema.define(version: 2019_05_20_072609) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "order_products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "order_id"
+    t.integer "quantity"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["order_id"], name: "index_order_products_on_order_id"
+    t.index ["product_id"], name: "index_order_products_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "order_number"
+    t.integer "total_price"
+    t.boolean "card_status"
+    t.integer "payment"
+    t.integer "delivery", default: 0
+    t.string "buyer_first_name"
+    t.string "buyer_last_name"
+    t.string "postcode"
+    t.string "address"
+    t.string "shipname_first"
+    t.string "shipname_last"
+    t.string "shipname_first_kana"
+    t.string "shipname_last_kana"
+    t.integer "user_id"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
