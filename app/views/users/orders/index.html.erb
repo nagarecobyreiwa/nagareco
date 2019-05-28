@@ -4,7 +4,6 @@
           <%= form_with model: @order, url: users_orders_path, local: true do |f|%>
             <table class="table table-striped">
               <%= f.hidden_field :buyer_first_name, :value => @user.first_name %>
-
               <h1>お届け先の確認</h1>
               <tr>
                 <td></td>

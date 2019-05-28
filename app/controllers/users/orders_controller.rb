@@ -29,6 +29,7 @@ class Users::OrdersController < ApplicationController
   end
 
   def new
+    check_stock
     @user = current_user
     @addresses = current_user.addresses
     @address = Address.new
@@ -37,9 +38,11 @@ class Users::OrdersController < ApplicationController
   def create
     order = Order.new(order_params)
     order.user_id = current_user.id
-    stock_managed
-    order.save
-    destroy_cart
+    if check_stock
+      stock_update
+      order.save
+      destroy_cart
+    end
   end
 end
 
@@ -50,16 +53,23 @@ private
       end
   end
 
-  def stock_managed
+  def check_stock
       current_user.carts.each do |cart|
         product = cart.product
         quantity = product.stock - cart.quantity
         if quantity <= 0
-          # where do you go ?
-        else
-          product.update(stock: quantity)
+          flash[:message] = "※在庫の上限を超えておりますので、個数の変更をしてください"
+          redirect_to  users_cart_items_path and return false
         end
       end
+  end
+
+  def stock_update
+    current_user.carts.each do |cart|
+      product = cart.product
+      quantity = product.stock - cart.quantity
+      product.update(stock: quantity)
+    end
   end
 
   def order_params
