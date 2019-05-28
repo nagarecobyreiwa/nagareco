@@ -53,11 +53,11 @@
             <h1>お支払い方法</h1>
             <% case @payment %>
               <% when "0" then%>
-              <p>銀行振込</p>
+                <p>銀行振込</p>
               <% when "1" then%>
-              <p>クレジットカード</p>
+                <p>クレジットカード</p>
               <% when "2" then%>
-              <p>代引き</p>
+                <p>代引き</p>
             <% end %>
             <%= f.hidden_field :payment, :value => @payment.to_i %>
             <table class="table table-hover">
@@ -127,7 +127,11 @@
                   </tr>
                 </tbody>
             </table>
-          <%= f.submit "次へ" %>
+          <% if @payment == "1" %>
+            <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_3dc0642835144701ac3731e5"></script>
+          <%else%>
+            <%= f.submit "次へ" %>
+          <% end %>
         <% end %>
       </div>
     </div>

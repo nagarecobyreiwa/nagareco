@@ -36,6 +36,15 @@ class Users::OrdersController < ApplicationController
   end
 
   def create
+    if params[:order][:payment] == "1"
+      binding.pry
+      Payjp.api_key = 'sk_test_bb801925d84ca86022e9a4cc'
+      charge = Payjp::Charge.create(
+        :amount => params[:order][:total_price].to_i,
+        :card => params['payjp-token'],
+        :currency => 'jpy',
+      )
+    end
     order = Order.new(order_params)
     order.user_id = current_user.id
     if check_stock
