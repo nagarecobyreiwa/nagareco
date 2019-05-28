@@ -71,10 +71,12 @@ class Admins::ProductsController < ApplicationController
     disks_attributes: [
       :id,
       :name,
+      :_destroy,
       songs_attributes: [
         :id,
         :name,
         :time,
+        :_destroy
       ]
     ]
   )

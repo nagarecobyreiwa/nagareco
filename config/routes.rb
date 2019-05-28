@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :artists, except:[:show, :new]
     resources :labels, except:[:show, :new]
     resources :products, except: [:show]
+    resources :disks, only: :destroy
     resources :order_histories, only: [:index, :show]
     resources :users, except: [:new, :create]
     resources :top, only: [:index]
