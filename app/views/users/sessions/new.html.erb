@@ -1,3 +1,5 @@
+<% if admin_signed_in? %>
+<% else %>
 <div class = "container">
   <div class="wrapper">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -28,3 +30,4 @@
    </div>
   </div>
 </div>
+<% end %>
