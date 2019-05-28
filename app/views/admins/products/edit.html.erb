@@ -33,17 +33,24 @@
       <%= f.nested_fields_for :disks, wrapper_tag: :div do |disk| %>
       <div class="row" style="padding-bottom: 15px;">
         <div class="col-md-6">
-        <div class="col-md-6"><%= disk.text_field :name, class:'form-control', id:'disks'%></div>
-          <div class="col-md-6"><%= disk.remove_nested_fields_link 'Delete', class: 'btn btn-danger btn-sm', role: 'button' %>
-            | <%= f.add_nested_fields_link :disks, 'Disk new', class: 'btn btn-primary btn-sm', role: 'button' %>
-            | <%= disk.add_nested_fields_link :songs, 'Song new', class: 'btn btn-primary btn-sm', role: 'button' %>
+          <div class="col-md-6">
+            <%= disk.text_field :name, class:'form-control', id:'disks'%>
           </div>
+            <div class="col-md-6">
+              <%= disk.remove_nested_fields_link 'Delete', class: 'btn btn-danger btn-sm', role: 'button' %>
+              | <%= f.add_nested_fields_link :disks, 'Disk new', class: 'btn btn-primary btn-sm', role: 'button' %>
+              | <%= disk.add_nested_fields_link :songs, 'Song new', class: 'btn btn-primary btn-sm', role: 'button' %>
+            </div>
         </div>
         <div class="col-md-6">
           <%= disk.nested_fields_for :songs, wrapper_tag: :div do |song| %>
           <div class="row" style="padding-bottom: 15px;">
-            <div class="col-md-5 "><%= song.text_field :name, class:'form-control', id:'songs', placeholder: 'songs'%></div>
-            <div class="col-md-4 "><%= song.time_select :time, class:'form-control', id:'times', placeholder: 'times'%></div>
+            <div class="col-md-5 ">
+              <%= song.text_field :name, class:'form-control', id:'songs', placeholder: 'songs'%>
+            </div>
+            <div class="col-md-4 ">
+              <%= song.time_select :time, class:'form-control', id:'times', placeholder: 'times'%>
+            </div>
             <div class="col-md-3 ">
               <%= song.remove_nested_fields_link 'Delete', class: 'btn btn-danger btn-sm', role: 'button' %>
            </div>
