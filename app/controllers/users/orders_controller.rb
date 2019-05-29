@@ -43,16 +43,24 @@ class Users::OrdersController < ApplicationController
         :card => params['payjp-token'],
         :currency => 'jpy',
       )
+      # create error message about credit
+      charge["failure_code"].nil?
     end
     order = Order.new(order_params)
     order.user_id = current_user.id
-    if check_stock && charge["failure_code"].nil?
+    order.order_number = SecureRandom.hex(5)
+    if check_stock
       stock_update
       order.save
       destroy_cart
     end
-  end
-end
+
+   rescue Payjp::CardError
+     flash[:message] = "※決済がうまくいきませんでした。"
+     redirect_to  users_cart_items_path
+   end
+ end
+
 
 private
   def destroy_cart
