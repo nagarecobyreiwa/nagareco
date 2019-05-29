@@ -16,26 +16,22 @@
           <div class="collapse navbar-collapse" id="navbarEexample1">
              <ul class="nav navbar-nav">
                 <li><%= link_to image_tag("logo.png",:size =>'150x60'), root_path %></li>
-                  <li><!-- 検索フォームが入る予定 --></li>
-                    <li></li>
+                    <li class="nav-item"><%= link_to image_tag("cart.png"), users_cart_items_path %></li>
                     <li class="nav-item"><%= link_to "マイページ", users_mypage_index_path %></li>
-                    <li class="nav-item"><%= link_to "カート", users_cart_items_path %></li>
-                    <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？" %></li>
+                    <li class="nav-item float-right"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？" %></li>
                 <% else %>
                 <nav class="navbar navbar-expand-lg"style="background-color:#ffcc00;">
                   <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarEexample1">
                       <ul class="nav navbar-nav">
                         <li><%= link_to image_tag("logo.png",:size =>'150x60'), root_path %></li>
-                        <li><!-- 商品一覧が入る予定 --></li>
                         <li class="nav-item"><%= link_to "ログイン", new_user_session_path %></li>
-                        <li><%= link_to "Sign up", new_user_registration_path %></li>
+                        <li class="nav-item"><%= link_to "新規会員登録", new_user_registration_path %></li>
                       </ul>
                     </div>
                   </div>
                 </nav>
                 <% end %>
-                
               </ul>
           </div>
       </div>
