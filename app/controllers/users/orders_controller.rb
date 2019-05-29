@@ -37,8 +37,7 @@ class Users::OrdersController < ApplicationController
 
   def create
     if params[:order][:payment] == "1"
-      binding.pry
-      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+      Payjp.api_key = ""
       charge = Payjp::Charge.create(
         :amount => params[:order][:total_price].to_i,
         :card => params['payjp-token'],
@@ -47,12 +46,11 @@ class Users::OrdersController < ApplicationController
     end
     order = Order.new(order_params)
     order.user_id = current_user.id
-    if check_stock
+    if check_stock && charge["failure_code"].nil?
       stock_update
       order.save
       destroy_cart
     end
-    
   end
 end
 
@@ -68,7 +66,7 @@ private
         product = cart.product
         quantity = product.stock - cart.quantity
         if quantity <= 0
-          flash[:message] = "※在庫の上限を超えておりますので、個数の変更をしてください"
+          flash[:message] = "※在庫の上限を超えておりますので、個数の変更をしてください."
           redirect_to  users_cart_items_path and return false
         end
       end

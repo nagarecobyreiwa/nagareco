@@ -1,2 +1,2 @@
-PAYJP_PUBLIC_KEY = 'pk_test_xxxxxxxxxx'
-PAYJP_SECRET_KEY = 'sk_test_xxxxxxxxxx'
+PAYJP_PUBLIC_KEY = 'pk_test_3dc0642835144701ac3731e5'
+PAYJP_SECRET_KEY = 'sk_test_bb801925d84ca86022e9a4cc'
