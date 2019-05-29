@@ -38,7 +38,7 @@ class Users::OrdersController < ApplicationController
   def create
     if params[:order][:payment] == "1"
       binding.pry
-      Payjp.api_key = 'sk_test_bb801925d84ca86022e9a4cc'
+      Payjp.api_key = ''
       charge = Payjp::Charge.create(
         :amount => params[:order][:total_price].to_i,
         :card => params['payjp-token'],

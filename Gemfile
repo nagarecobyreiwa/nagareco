@@ -48,7 +48,7 @@ gem 'refile', require: "refile/rails", github: 'manfe/refile'
 
 gem 'refile-mini_magick'
 
-gem 'bootstrap-sass', '~> 3.4.1'
+gem 'bootstrap', '~> 4.3.1'
 
 gem 'jquery-rails'
 
@@ -57,6 +57,8 @@ gem 'payjp'
 gem 'pry-rails'
 
 gem 'nested_form_fields'
+
+gem 'rails-i18n', '~> 5.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

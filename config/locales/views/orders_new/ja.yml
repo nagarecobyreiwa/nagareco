@@ -1,0 +1,11 @@
+ja:
+  orders:
+        new:
+        select_address:
+          first_name: '姓'
+          last_name: 名
+          first_name_kana: セイ
+          last_name_kana: メイ
+          postcode: 郵便番号
+          address: 送付先
+          phone_number: 電話番号

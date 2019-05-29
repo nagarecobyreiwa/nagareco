@@ -14,7 +14,6 @@
  *= require_self
  */
 
- @import "bootstrap-sprockets";  /*ここを追加*/
  @import "bootstrap";            /*ここを追加*/
 
 .wrapper {
@@ -47,4 +46,8 @@
   margin: 0 auto;
   background-color: #efab93;
   border: 3px dotted rgba(0,0,0,0.1);
+ }
+
+ .nav-item {
+  padding-top: 30px;
  }
