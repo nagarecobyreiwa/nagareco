@@ -25,7 +25,6 @@ Rails.application.routes.draw do
     resources :orders, only:[:index, :new, :create]
     resources :order_histories, only: [:index, :show]
     resources :deliveries, only: [:update]
-    resources :thanks_order, only: [:create]
   end
 
   namespace :admins do
