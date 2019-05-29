@@ -1,11 +1,12 @@
   <!--Main layout-->
-  <main class="mt-5 pt-4">
-    <div class="container dark-grey-text mt-5">
+
+  <main class="mt-5 pt-4 ">
+    <div class="container dark-grey-text mt-5 shadow-lg" style="padding: 100px 30px;">
 
       <!--Grid row-->
       <div class="row wow fadeIn">
         <!--Grid column-->
-        <div class="col-md-6 ">
+        <div class="col-md-6 text-center" style="padding-top: 60px;">
           <%= attachment_image_tag @product, :image, :fill, 500, 500, format: 'jpeg'%>
         </div>
         <!--Grid column-->
@@ -16,79 +17,78 @@
           <!--Content-->
           <div class="p-4">
 
-            <div class="mb-3">
+            <div class="mb-3" style="padding-left: 10px;">
               <a href="">
-                <span class="badge purple mr-1"><%= @product.genre.name %></span>
+                <span class="badge purple mr-1" ><%= @product.genre.name %></span>
               </a>
               <a href="">
                 <span class="badge blue mr-1"><%= @product.label.name %></span>
               </a>
             </div>
 
-            <p class="lead">
-              <h3 class="mb-0"><%= @product.name %></h3>
+            <div class="lead" style="padding-left: 10px;">
+              <h1 class="mb-0"><%= @product.name %></h1>
+              <br>
               <h1 class="mb-0"><%= @product.artist.name %></h1>
-            </p>
+            </div>
             <br>
-            <div class="container col-md-12">
-              <% @product.disks.each do |disk| %>
-                  <p class="lead font-weight-bold"><%= disk.name %></p>
-                <% disk.songs.each do |song| %>
-                <div class="row">
-                  <table class=" col-md-12 col-md-offset-1 ">
-                    <thead>
-                      <tr>
-                        <th class="col-md-6 "></th>
-                        <th class="col-md-6 "></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                       <td class="col-md-6 font-weight-bold">
-                        <%= song.name %>
-                       </td>
-                       <td class="col-md-6 font-weight-bold">
-                        <%= song.time.strftime("%H:%M") %>
-                       </td>
-                      </tr>
-                    </tbody>
-                  </div>
+
+            <div class="container" style="padding-left: 70px;">
+              <div class="row">
+                <% @product.disks.each do |disk| %>
+                    <p class="lead col-md-12 font-weight-bold"><%= disk.name %></p>
+                  <% disk.songs.each do |song| %>
+                    <table class=" col-md-8 " style="margin-left: 100px;">
+                      <thead>
+                        <tr>
+                          <th class="col-md-3 "></th>
+                          <th class="col-md-5 "></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                         <th class="col-md-3 font-weight-bold" style="padding-bottom: 7px;">
+                          <%= song.name %>
+                         </th>
+
+                         <td class="col-md-5 font-weight-bold">
+                          <%= song.time.strftime("%H:%M") %>
+                         </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  <% end %>
                 <% end %>
-              <% end %>
+              </div>
+            </div>
+            <br>
+
+
+            <div class="container" style="padding-left: 100px;" >
+              <div class="row">
+
+                <div class ="col-md-4">在庫数</div>
+                <div class ="col-md-8"><%= @product.stock %>枚</div>
+                <br>
+                <div class ="col-md-4"> 価格（税込）</div>
+                <div class ="col-md-8">￥ <%= @product.price %></div>
+
+              </div>
             </div>
             <br>
             <br>
-            <br>
-
-            <div class="other col-md-12" >
-              <div class="other-item">
-                <table class="table-hover col-md-6">
-                  <thead>
-                    <tr>
-                      <th class ="col-md-3">在庫数</th>
-                      <th class ="col-md-3">価格（税込）</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class ="col-md-3"><%= @product.stock %>枚</td>
-                      <td class ="col-md-3">￥ <%= @product.price %></td>
-                    </tr>
-                  </tbody>
-                <table>
+            <div class="container" style="padding-left: 100px;" >
+              <div class="row" style="padding-left: 250px;">
+                <%= form_with scope: :product, url: users_cart_items_path, local: true, method: :post, class: 'form-inline' do |f|%>
+  								<%= f.hidden_field :id, :value => @product.id %>
+  								<%= f.number_field :quantity, min:1, max: @product.stock, value: 1 %>
+  								<div data-turbolinks="false">
+  								  <%= f.submit "Go Cart" , class: "btn btn-success" %>
+  								</div>
+  							<% end %>
               </div>
-
-              <div class="other-form">
-                  <%= form_with scope: :product, url: users_cart_items_path, local: true, method: :post do |f|%>
-    								<%= f.hidden_field :id, :value => @product.id %>
-    								<%= f.number_field :quantity, min:1, max: @product.stock, value: 1 %>
-    								<div data-turbolinks="false">
-    								　　<%= f.submit "Go Cart" %>
-    								</div>
-    							<% end %>
-               </div>
-             </div>
-          <!--Content-->
+            </div>
+        <!--Content-->
 
         </div>
         <!--Grid column-->
@@ -97,5 +97,3 @@
     </div>
   </main>
   <!--Main layout-->
-</body>
-</html>
