@@ -16,6 +16,12 @@
 
  @import "bootstrap";            /*ここを追加*/
 
+ #payjp_checkout_box input[type=button]{
+ padding: 0.7rem 30rem !important;
+ font-size: 1rem !important;
+ text-align: center !important;
+ }
+
 .wrapper {
 	margin-top: 80px;
 	margin-bottom: 20px;

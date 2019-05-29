@@ -8,87 +8,83 @@
   </div>
 <% else %>
   <div class="container">
-      <div class="row">
-        <%= flash[:message] %>
-          <div class="col-sm-12 col-md-10 col-md-offset-1">
-              <table class="table table-hover">
-                  <thead>
-                      <tr>
-                          <th>Product</th>
-                          <th>Product Name</th>
-                          <th>Artist</th>
-                          <th>Quantity</th>
-                          <th class="text-center">Price</th>
-                          <th class="text-center">Total</th>
-                          <th> </th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                    <% @cart_items.each do |cart_item| %>
-                    <tr>
-                        <td class="col-sm-4 col-md-2">
-                          <div class="media">
-                              <%= attachment_image_tag cart_item.product, :image, :fill, 100, 100, format: 'jpeg'%>
-                          </div>
-                        </td>
-                        <td><%= cart_item.product.name %></td>
-                        <td><%= cart_item.product.artist.name %></td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center">
-                          <%= form_with url: users_cart_item_path(cart_item.id), local: true, method: :patch do |f|%>
-            								<%= f.number_field :quantity, min:1, max: cart_item.product.stock, value: cart_item.quantity %>
-            								<div data-turbolinks="false">
-            								  <%= f.submit "数量変更" %>
-            								</div>
-                          <% end %>
-                        </td>
-                        <td class="col-sm-1 col-md-1 text-center">
-                          <strong>
-                            ￥<%= cart_item.product.price %>
-                          </strong>
-                        </td>
-                        <td class="col-sm-1 col-md-1 text-center">
-                          <strong>
-                            ￥<%= cart_item.product.price.to_i  * cart_item.quantity.to_i %>
-                          </strong>
-                        </td>
-                        <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-danger">
-                            <%= link_to 'Delete',users_cart_item_path(cart_item.id) , method: :delete %>
-                        </button></td>
-                    </tr>
-                    <% end %>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h3>Total</h3></td>
-                        <td class="text-right"><h3><strong>￥<%= @total_price %></strong></h3></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart"></span>
-                            <%= link_to 'Continue Shopping', users_products_path %>
-                        </button></td>
-                        <td>
-                          <div data-turbolinks="false">
-                            <button type="button" class="btn btn-success">
-                              <span class="glyphicon glyphicon-play"></span>
-                                <%= link_to 'Checkout', new_users_order_path %>
-                            </button>
-                          </div>
-                        </td>
-                    </tr>
-                  </tbody>
-              </table>
-          </div>
-      </div>
+    <div class="row">
+      <%= flash[:message] %>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>ProductName</th>
+              <th>Artist</th>
+              <th>Quantity</th>
+              <th>Action</th>
+              <th class="text-center">Price</th>
+              <th class="text-center">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @cart_items.each do |cart_item| %>
+            <tr>
+                <td>
+                  <div class="media">
+                      <%= attachment_image_tag cart_item.product, :image, :fill, 100, 100, format: 'jpeg'%>
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <%= cart_item.product.name %>
+                </td>
+                <td class="align-middle">
+                  <%= cart_item.product.artist.name %>
+                </td>
+                <td class="align-middle">
+                  <%= form_with url: users_cart_item_path(cart_item.id), local: true, method: :patch, class:"form-inline" do |f|%>
+    								<%= f.number_field :quantity, min:1, max: cart_item.product.stock, value: cart_item.quantity %>
+    								<div data-turbolinks="false">
+    								  <%= f.submit "update" %>
+    								</div>
+                  <% end %>
+                </td>
+                <td class="align-middle">
+                  <%= link_to 'Delete',users_cart_item_path(cart_item.id) , method: :delete, class:"btn btn-danger" %>
+                </td>
+                <td class="text-center align-middle">
+                  <strong>
+                    ￥<%= cart_item.product.price %>
+                  </strong>
+                </td>
+                <td class="text-center align-middle">
+                  <strong>
+                    ￥<%= cart_item.product.price.to_i  * cart_item.quantity.to_i %>
+                  </strong>
+                </td>
+            </tr>
+            <% end %>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td>   </td>
+                <td>   </td>
+                <td>   </td>
+                <td class="text-center"><h3>Total</h3></td>
+                <td class="text-center"><h3><strong>￥<%= @total_price %></strong></h3></td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td>   </td>
+                <td>   </td>
+                <td>   </td>
+                <td>
+                  <%= link_to 'Continue Shopping', users_products_path, class:"btn btn-primary" %>
+                </td>
+                <td>
+                  <div data-turbolinks="false">
+                    <%= link_to 'Checkout', new_users_order_path, class:"btn btn-success" %>
+                  </div>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
   </div>
 <% end %>
