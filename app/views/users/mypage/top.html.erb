@@ -1,6 +1,0 @@
-<h1>ようこそ、ナガレコへ</h1>
-
-<% if user_signed_in? %>
-<%= link_to "マイページ", users_mypage_index_path(current_user.id) %>
-<%= link_to "詳細ページ", users_mypage_path(current_user.id) %>
-<% end %>

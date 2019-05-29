@@ -54,13 +54,11 @@ class Users::OrdersController < ApplicationController
       order.save
       destroy_cart
     end
-
    rescue Payjp::CardError
      flash[:message] = "※決済がうまくいきませんでした。"
      redirect_to  users_cart_items_path
    end
  end
-
 
 private
   def destroy_cart

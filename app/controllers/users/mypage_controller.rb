@@ -1,12 +1,9 @@
 class Users::MypageController < ApplicationController
     before_action :authenticate_user!
-  # 仮トップページ
-    def top
-
-    end
 
     def index
      @user = current_user
+     @orders = Order.page(params[:page]).where(user_id: current_user.id).where(delivery: [0])
     end
 
     def show
