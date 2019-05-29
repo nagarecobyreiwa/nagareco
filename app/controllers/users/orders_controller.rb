@@ -52,6 +52,7 @@ class Users::OrdersController < ApplicationController
       order.save
       destroy_cart
     end
+    
   end
 end
 

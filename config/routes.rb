@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'delete_user/show'
-  root "users/mypage#top"
+  root "users/products#index"
 
 
   devise_for :admins, controllers: {
@@ -26,6 +25,7 @@ Rails.application.routes.draw do
     resources :orders, only:[:index, :new, :create]
     resources :order_histories, only: [:index, :show]
     resources :deliveries, only: [:update]
+    resources :thanks_order, only: [:create]
   end
 
   namespace :admins do
