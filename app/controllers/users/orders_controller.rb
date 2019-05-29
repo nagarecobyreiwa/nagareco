@@ -37,7 +37,6 @@ class Users::OrdersController < ApplicationController
 
   def create
     if params[:order][:payment] == "1"
-      binding.pry
       Payjp.api_key = ''
       charge = Payjp::Charge.create(
         :amount => params[:order][:total_price].to_i,
@@ -52,7 +51,6 @@ class Users::OrdersController < ApplicationController
       order.save
       destroy_cart
     end
-    
   end
 end
 
