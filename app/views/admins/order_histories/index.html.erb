@@ -9,6 +9,7 @@
         <th scope="col">E-mail</th>
         <th scope="col">総額</th>
         <th scope="col">ステータス</th>
+        <th>    </th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +31,7 @@
               発送完了
           <% end %>
         </td>
+        <td><%= link_to '詳細', admins_order_history_path(order.id) %></td>
       </tr>
       <% end %>
     </tbody>
