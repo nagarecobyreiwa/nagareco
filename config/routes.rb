@@ -24,8 +24,10 @@ Rails.application.routes.draw do
     resources :finish, only: [:show]
     resources :cart_items, except:[:new, :show, :edit]
     resources :orders, only:[:index, :new, :create]
+    resources :thanks_order, only: [:create]
     resources :order_histories, only: [:index, :show]
     resources :deliveries, only: [:update]
+
   end
 
   namespace :admins do

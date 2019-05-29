@@ -40,6 +40,9 @@ class Users::OrdersController < ApplicationController
     order.save
     stock_managed
     destroy_cart
+     if params[:order][:payment].to_i == 0
+        render template: "users/thanks_order/create"
+     end
   end
 end
 
