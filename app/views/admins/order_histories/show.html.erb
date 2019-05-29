@@ -3,7 +3,7 @@
   <h1>購入履歴</h1>
 
     <table class="table">
-    	<thead>
+    	<thead calss="thead-dark">
     		<tr>
     			<th>画像</th>
     			<th>商品名</th>
@@ -15,7 +15,7 @@
     	<tbody>
         <% @order.order_products.each do |order_product| %>
       		<tr>
-      			<th><%= order_product.product.image_id %></th>
+      			<th><%= attachment_image_tag order_product.product, :image, :fill, 100, 100, format: 'jpeg'%></th>
       			<td><%= order_product.product.name %></td>
       			<td><%= order_product.price %></td>
       			<td><%= order_product.quantity %></td>
@@ -25,24 +25,36 @@
       </tbody>
     </table>
 
-    <div class="col-md-12">
-      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          <div class="col-auto d-none d-lg-block">
-            <p><%= @order.postcode %></p>
-            <p><%= @order.address  %></p>
-            <p><%= @order.shipname_first %></p>
-            <p><%= @order.shipname_last %>　様</p>
-            <p>合計金額　¥ <%= @order.total_price %>　</p>
-          </div>
-      </div>
+    <table class="table">
+      <thead calss="thead-dark">
+        <tr>
+    			<th>郵便番号</th>
+    			<th>住所</th>
+    			<th>名前</th>
+    			<th>商品合計</th>
+          <th> </th>
+    		</tr>
+    	</thead>
+    	<tbody>
+        <tr>
+          <td><%= @order.postcode %></td>
+          <td><%= @order.address  %></td>
+          <td><%= @order.shipname_first %>    <%= @order.shipname_last %> 様</td>
+          <td>合計金額 ¥ <%= @order.total_price %> </td>
+          <td>
+            <% if @order.delivery == 0 %>
+              <%= link_to admins_delivery_path(@order),method: :patch do %>
+                <button class="btn btn-dafault" type="submit" ><h3>発送する</h3>
+              <% end %>
+            <% elsif @order.delivery == 1 %>
+               <h3 style="color: red;">発送中</h3>
+            <% elsif @order.delivery == 2 %>
+                <h3 style="color: navy;">発送完了</h3>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
     </div>
-    <% if @order.delivery == 0 %>
-      <%= link_to admins_delivery_path(@order),method: :patch do %>
-        <button class="btn btn-default btn-md-3" type="submit">発送する
-      <% end %>
-    <% elsif @order.delivery == 1 %>
-       発送中
-    <% elsif @order.delivery == 2 %>
-        発送完了
-    <% end %>
 </main>
