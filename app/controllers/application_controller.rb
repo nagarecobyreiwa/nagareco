@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     when Admin
       admins_top_index_path
     when User
-      root_path
+      users_mypage_index_path
     end
   end
 

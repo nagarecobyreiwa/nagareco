@@ -1,7 +1,2 @@
-<h1>アドミントップページです。</h1>
-<div class="">
-  <%= link_to "ユーザー一覧", admins_users_path  %>
-</div>
-<div class="">
-  <%= link_to "logout", destroy_admin_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？", class:"logout glyphicon glyphicon-log-out" %>  
-</div>
+<%= render 'admins/layouts/sidebar' %>
+<h1>ようこそ管理者様！</h1>

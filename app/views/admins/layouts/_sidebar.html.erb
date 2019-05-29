@@ -41,6 +41,9 @@
           <li class="nav-item">
             <%= link_to "購入履歴一覧", admins_order_histories_path %>
           </li>
+          <li class="nav-item">
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？", class:"logout glyphicon glyphicon-log-out" %>
+          </li>
         </ul>
       </div>
     </nav>

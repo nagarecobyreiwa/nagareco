@@ -11,7 +11,7 @@
 	  </div>
 
 	  <div class="text-center">
-		 <!-- 購入履歴一覧 -->
+		 <%= link_to "購入履歴一覧", users_order_histories_path(current_user.id), class: "btn btn-primary" %>
 		 <%= link_to "会員情報編集", users_mypage_path(current_user.id), class: "btn btn-warning" %>
 		 <%= link_to "宛先一覧", users_addresses_path(current_user.id), class: "btn btn-danger" %>
 		 <%= link_to "退会する", users_delete_user_path(current_user.id), class: "btn btn-success" %>
