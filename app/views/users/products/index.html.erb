@@ -23,12 +23,21 @@
 
 <div class="container">
 	<section class="text-center mb-4">
-		<h2>商品一覧</h2>
-		<hr>
+		<div>
+			<h2>商品一覧</h2>
+			<br>
+			<form class="form-inline my-2 my-lg-0 float-right">
+	      <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">
+	      <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
+			</form>
+			<hr>
+		</div>
 		<br>
+		<hr>
 		<div class="row wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
       <% @products.each do |product| %>
     		<div class="col-lg-3 col-md-6 mb-4">
+					<br>
 					<div class="card shadow-lg" style="padding:10px 0px; height: 450px;">
 						<div class="view overlay">
 							<%= attachment_image_tag product, :image, :fill, 180, 180, format: 'jpeg'%>
