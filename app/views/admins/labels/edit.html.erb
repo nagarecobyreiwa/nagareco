@@ -1,7 +1,13 @@
-<h1>レーベル編集</h1>
-
-<%= form_for(@label, url: admins_label_path) do |f| %>
-  <h4>レーベル名</h4>
-  <%= f.text_field :name, placeholder: @label.name %>
-  <%= f.submit 'Edit' %>
-<% end %>
+<%= render 'admins/layouts/sidebar' %>
+  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+    <h1>レーベル編集</h1>
+    <%= form_for(@label, url: admins_label_path) do |f| %>
+      <% if @label.errors.any? %>
+        エラーが発生しました
+      <% end %>
+      <h4>レーベル名</h4>
+      <%= f.text_field :name, placeholder: @label.name %>
+      <%= f.submit 'Edit' %>
+    <% end %>
+  </div>
+</div>

@@ -1,5 +1,6 @@
-<%= render 'admins/layouts/index' %>
+<%= render 'admins/layouts/sidebar' %>
 
+<<<<<<< HEAD
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 <%= form_for @product, url: admins_products_path do |f| %>
   <div class="form-user">
@@ -43,29 +44,114 @@
 
 <% end %>
 <%= f.add_nested_fields_link :disks, 'Add new', class: 'btn btn-primary', role: 'button' %>
+=======
+<main role="main" class="col-md-10 pt-3 px-4">
+  <h2>商品登録</h2>
+>>>>>>> 4f31c6d51f63ab93a1175c87d89e603a38277e42
 
-
-      <h4>画像</h4>
-      <%= f.attachment_field :image %>
+  <%= form_for @product, url: admins_products_path do |f| %>
+    <% if @product.errors.any? %>
+      <%= @product.errors.count %>件のエラーが発生しました
       <br>
-      <%= f.label :artist_id, "アーティスト一覧" %>
-      <%= f.collection_select :artist_id, @artists, :id, :name %>
-      <br>
-      <%= f.label :genne_id, "ジャンル一覧" %>
-      <%= f.collection_select :genre_id, @genres, :id, :name %>
-      <br>
-      <%= f.label :label_id, "レーベル一覧" %>
-      <%= f.collection_select :label_id, @labels, :id, :name %>
-      <br>
-      <%= f.label :price, "価格" %>
-      <%= f.text_field :price %>
-      <br>
-      <%= f.label :stock, "在庫数" %>
-      <%= f.text_field :stock %>
-      <br>
-      <%= f.label :on_sale, "販売ステータス" %>
-      <%= f.select :on_sale, [['販売', true], ['未販売', false]] %>
-      <br>
-      <%= f.submit "送信" %>
+      <% @product.errors.full_messages.each do |message| %>
+        <%= message %>
+      <% end %>
     <% end %>
+
+      <div style="height: 50px; margin-right: 15%;">
+        <div class="text-center">
+          <%= f.label :name, "商品名"  %>
+          <%= f.text_field :name , style: "width: 500px; height: 30px;"%>
+        </div>
+     </div>
+
+
+
+      <div class="row" style="padding-bottom: 10px">
+    		<div class="col-md-6">ディスク名</div>
+        <div class="col-md-0"></div>
+    		<div class="col-md-2">曲名</div>
+        <div class="col-md-2 text-center">曲時間</div>
+        <div class="col-md-2"></div>
+      </div>
+
+
+      <%= f.nested_fields_for :disks, wrapper_tag: :div do |disk| %>
+      <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-6">
+        <div class="col-md-6"><%= disk.text_field :name, class:'form-control', id:'disks', placeholder: 'disks'%></div>
+          <div class="col-md-6"><%= disk.remove_nested_fields_link 'Delete', class: 'btn btn-danger btn-sm', role: 'button' %>
+            | <%= f.add_nested_fields_link :disks, 'Disk new', class: 'btn btn-primary btn-sm', role: 'button' %>
+            | <%= disk.add_nested_fields_link :songs, 'Song new', class: 'btn btn-primary btn-sm', role: 'button' %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <%= disk.nested_fields_for :songs, wrapper_tag: :div do |song| %>
+          <div class="row" style="padding-bottom: 15px;">
+            <div class="col-md-5 "><%= song.text_field :name, class:'form-control', id:'songs', placeholder: 'songs'%></div>
+            <div class="col-md-4 "><%= song.time_select :time, class:'form-control', id:'times', placeholder: 'times'%></div>
+            <div class="col-md-3 ">
+              <%= song.remove_nested_fields_link 'Delete', class: 'btn btn-danger btn-sm', role: 'button' %>
+           </div>
+         </div>
+         <% end %>
+       </div>
+     </div>
+    <% end %>
+
+
+
+      <br>
+      <div class="container">
+        <div class="row" >
+          <div>
+            <h4>画像</h4>
+              <%= f.attachment_field :image  %>
+          </div>
+        </div>
+        <br>
+        <div class="row" >
+          <div class="col-md-4">
+            <div>
+              <%= f.label :artist_id, "アーティスト一覧" %>
+              <%= f.collection_select :artist_id, @artists, :id, :name %>
+            </div>
+            <br>
+            <div>
+              <%= f.label :genne_id, "ジャンル一覧" %>
+              <%= f.collection_select :genre_id, @genres, :id, :name %>
+            </div>
+            <br>
+            <div>
+              <%= f.label :label_id, "レーベル一覧" %>
+              <%= f.collection_select :label_id, @labels, :id, :name %>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div>
+              <%= f.label :price, " 価格" %>
+              <%= f.text_field :price %>
+            </div>
+            <br>
+            <div>
+              <%= f.label :stock, "在庫数" %>
+              <%= f.text_field :stock %>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div>
+              <%= f.label :on_sale, "販売ステータス" %>
+              <%= f.select :on_sale, [['販売', true], ['未販売', false]] %>
+            </div>
+          </div>
+        </div>
+        <div class="row col-md-10">
+          <div class=" text-right" style="line-height: 30px;">
+            <%= f.submit "送信" %>
+          </div>
+        </div>
+      </div>
+  <% end %>
 </main>

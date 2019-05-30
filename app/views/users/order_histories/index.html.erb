@@ -1,0 +1,46 @@
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">No.</th>
+        <th scope="col">日付</th>
+        <th scope="col">注文番号</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">総額</th>
+        <th scope="col">ステータス</th>
+        <th>   </th>
+        <th>   </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each_with_index do |order, i| %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><%= order.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+        <!-- insert link_to show_page -->
+        <td><%= order.order_number %></td>
+        <!-- insert link_to user_show -->
+        <td><%= order.user.email%></td>
+        <td><%= order.total_price %></td>
+        <td class ="text-left">
+          <% if order.delivery == 0 %>
+          発送準備中
+            <% elsif order.delivery == 1 %>
+              <%= link_to users_delivery_path(order),method: :patch do %>
+                <button class="btn btn-default " type="submit">受取完了
+              <% end %>
+            <% elsif order.delivery == 2 %>
+              発送完了
+          <% end %>
+        </td>
+        <td><%= link_to '詳細へ', users_order_history_path(order.id) %> </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+   <h4> ※※　商品が届いたら、受取完了を押してね🎧　※※ </h4>
+
+
+
+</main>

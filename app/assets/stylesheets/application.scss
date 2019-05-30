@@ -14,9 +14,14 @@
  *= require_self
  */
 
- @import "bootstrap-sprockets";  /*ここを追加*/
  @import "bootstrap";            /*ここを追加*/
- 
+
+ #payjp_checkout_box input[type=button]{
+ padding: 0.7rem 30rem !important;
+ font-size: 1rem !important;
+ text-align: center !important;
+ }
+
 .wrapper {
 	margin-top: 80px;
 	margin-bottom: 20px;
@@ -27,7 +32,7 @@
   padding: 30px 38px 66px;
   margin: 0 auto;
   background-color: #ffe033;
-  border: 3px dotted rgba(0,0,0,0.1);  
+  border: 3px dotted rgba(0,0,0,0.1);
   }
 
 .form-signin-heading {
@@ -46,5 +51,10 @@
   padding: 30px 38px 66px;
   margin: 0 auto;
   background-color: #efab93;
-  border: 3px dotted rgba(0,0,0,0.1);  
+  border: 3px dotted rgba(0,0,0,0.1);
+ }
+
+ .nav-item {
+  padding-top: 30px;
+  padding-left:20px;
  }

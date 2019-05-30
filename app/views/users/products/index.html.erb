@@ -1,31 +1,88 @@
 <div class="container">
-<div class="row mb-2">
-  <% @products.each do |product| %>
-  <div class="col-md-12">
-    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-      <div class="col-auto d-none d-lg-block">
-        <%= attachment_image_tag product, :image, :fill, 250, 250, format: 'jpeg'%>
-      </div>
-      <div class="col p-4 d-flex flex-column position-static">
-        <div class="row">
-        <div class="col-md-8">
-          <h3 class="mb-0"><%= product.name %></h3>
-          <h3 class="mb-0"><%= product.artist.name %></h3>
-        </div>
-        <div class="col-md-4">
-          <h3 class="mb-0">価格（税込）</h3>
-          <h3 class="mb-0">￥ <%= product.price %></h3>
-        </div>
-        </div>
-        <div class="row">
-          <div class="offset-md-8 col-md-4">
-            <a href="#" class="btn btn-primary">Details</a>
-            <a href="#" class="btn btn-primary">Go Cart</a>
-          </div>
-        </div>
-      </div>
+	<div class= "row">
+		<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+		  <!-- スライドさせる画像の設定 -->
+		  <div class="carousel-inner">
+		    <div class=" carousel-item active">
+					<%= image_tag("img_169445_3.jpg" , :size =>'1140x600') %>
+		    </div><!-- /.carousel-item -->
+		    <div class="carousel-item">
+					<%= image_tag("img_music_.jpg", :size =>'1140x600')%>
+
+		    </div><!-- /.carousel-item -->
+
+				<div class="carousel-item ">
+					<%= image_tag("14480_01.jpg", :size =>'1140x600') %>
+		    </div><!-- /.carousel-item -->
+		  </div><!-- /.carousel-inner -->
+		</div><!-- /.carousel -->
+	</div>
+</div>
+<br>
+<br>
+
+<div class="container">
+	<section class="text-center mb-4">
+		<h2>商品一覧</h2>
+		<hr>
+		<br>
+		<div class="row wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+      <% @products.each do |product| %>
+    		<div class="col-lg-3 col-md-6 mb-4">
+					<div class="card shadow-lg" style="padding:10px 0px; height: 450px;">
+						<div class="view overlay">
+							<%= attachment_image_tag product, :image, :fill, 180, 180, format: 'jpeg'%>
+	            <a>
+	              <div class="mask rgba-white-slight waves-effect waves-light"></div>
+	            </a>
+	          </div>
+
+						<div class="card-body text-center">
+	            <!--Category & Title-->
+	            <a href="" class="grey-text"　>
+	              <h5><%= product.name %></h5>
+	            </a>
+	            <h5>
+	                <a href="" class="dark-grey-text"><%= product.artist.name %>
+	                </a>
+	            </h5>
+
+	            <h4 class="font-weight-bold blue-text">
+	              <strong>￥ <%= product.price %></strong>
+	            </h4>
+
+
+	          </div>
+						<div class="d-flex justify-content-center">
+						 <!-- Default input -->
+							<%= form_with scope: :product, url: users_cart_items_path, local: true, method: :post do |f|%>
+								<% if product.stock >= 1 %>
+									<%= f.hidden_field :id, :value => product.id %>
+									<%= f.number_field :quantity, min:1, max: product.stock, value: 1  %>
+
+									<div data-turbolinks="false">
+										<br>
+										<%= f.submit "Go Cart" , class: "btn btn-success" %>
+
+											<% else product.stock == 0 %>
+												<h5 style="color: orange;">Sold out</h5>
+                      <% end %>
+										<%= link_to '商品詳細', users_product_path(product.id),class: 'btn btn-info ' %>
+									</div>
+
+							<% end %>
+						</div>
+						<br>
+
+					</div>
+        <!--Card-->
+			</div>
+    	<% end %>
     </div>
-  </div>
-  <% end %>
+
+  </section>
+  <!--Section: Products v.3-->
 </div>
-</div>
+
+
+<p><%= paginate @products, class: "paginate" %></p>

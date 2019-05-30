@@ -1,0 +1,60 @@
+<div style="padding:80px;">
+ <h2>宛先情報編集</h2>
+	<div class="container">
+		<div class="card">
+			<div class="card-body">
+			 <%= form_for(@address, url:users_address_path) do |f| %>
+				<div class="form-inline"><br>
+					<h3>氏名</h3>
+					<div class="form-group">
+					<h4>姓</h4>
+					 <%= f.text_field :first_name, autofocus: true, autocomplete: "名前"  %>&nbsp;
+					</div>
+					<div class="form-group">
+					<h4>名</h4>
+					 <%= f.text_field :last_name, autofocus: true, autocomplete: "名前" %>
+					</div>
+				</div>
+				<div class="form-inline">
+				  <h3>フリガナ</h3>
+				  <div class="form-group">
+					<h4>セイ</h4>
+					 <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "名前" %>&nbsp;
+				  </div>
+				  <div class="form-group">
+					<h4>メイ</h4>
+					 <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "名前" %>
+					</div>
+				</div>
+				<h3>郵便番号</h3>
+				 <%= f.text_field :postcode, autofocus: true, autocomplete: "郵便番号" %>
+
+				<h3>送付先</h3>
+				 <%= f.text_field :address, class: "form-control", autofocus: true, autocomplete: "住所" %>
+
+				<h3>電話番号</h3>
+				 <%= f.text_field :phone_number, autofocus: true, autocomplete: "電話番号" %>
+
+
+				<br>
+				<div class="text-center">
+				<%= f.submit '登録情報を編集する', class: "btn btn-primary" %>
+					<%= link_to "編集を取り消す" , users_addresses_path(current_user.id), class: "btn btn-warning" %>
+				</div>
+				</br>
+
+				<% end %>
+
+				<% if @address.errors.any? %>
+				  <div id=“error_explanation” class=“alert alert-danger”>
+				    <ul>
+				      <% @address.errors.full_messages.each do |message| %>
+				        <li><%= message %></li>
+				      <% end %>
+				    </ul>
+				  </div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

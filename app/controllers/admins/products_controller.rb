@@ -1,4 +1,5 @@
 class Admins::ProductsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @products = Product.all
   end
@@ -15,9 +16,15 @@ class Admins::ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new(product_params)
-    product.save
-    redirect_to admins_products_path
+    @product = Product.new(product_params)
+    if @product.save
+       redirect_to admins_products_path
+    else
+       @artists = Artist.all
+       @genres = Genre.all
+       @labels = Label.all
+       render 'new'
+    end
   end
 
   def edit
@@ -32,9 +39,15 @@ class Admins::ProductsController < ApplicationController
   end
 
   def update
-    product = Product.find(params[:id])
-    product.update(product_params)
-    redirect_to admins_products_path
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+       redirect_to admins_products_path
+    else
+      @artists = Artist.all
+      @genres = Genre.all
+      @labels = Label.all
+       render 'edit'
+    end
   end
 
   def destroy
@@ -58,10 +71,12 @@ class Admins::ProductsController < ApplicationController
     disks_attributes: [
       :id,
       :name,
+      :_destroy,
       songs_attributes: [
         :id,
         :name,
         :time,
+        :_destroy
       ]
     ]
   )
