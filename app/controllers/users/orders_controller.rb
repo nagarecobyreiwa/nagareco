@@ -73,7 +73,7 @@ private
       current_user.carts.each do |cart|
         product = cart.product
         quantity = product.stock - cart.quantity
-        if quantity <= 0
+        if quantity < 0
           flash[:message] = "※在庫の上限を超えておりますので、個数の変更をしてください."
           redirect_to  users_cart_items_path and return false
         end
