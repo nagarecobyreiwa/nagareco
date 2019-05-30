@@ -17,6 +17,7 @@
 		        <th scope="col">E-mail</th>
 		        <th scope="col">総額</th>
 		        <th scope="col">ステータス</th>
+						<th> </th>
 		      </tr>
 		    </thead>
 		    <tbody>
@@ -30,10 +31,11 @@
 		        <td><%= order.user.email%></td>
 		        <td><%= order.total_price %></td>
 						<% if order.delivery == 0 %>
-						<td>準備中</td>
+						  <td>準備中</td>
 						<% else order.delivery == 1 %>
-						<td>発送中</td>
+						  <td>発送中</td>
 						<% end %>
+						<td><%= link_to 'Show', users_order_history_path(order) %></td>
 		      </tr>
 		      <% end %>
 		    </tbody>
