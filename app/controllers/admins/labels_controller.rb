@@ -28,12 +28,6 @@ class Admins::LabelsController < ApplicationController
     end
   end
 
-  def destroy
-    label = Label.find(params[:id])
-    label.destroy
-    redirect_to admins_labels_path
-  end
-
   private
 
   def label_params
