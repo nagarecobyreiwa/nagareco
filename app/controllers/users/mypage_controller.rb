@@ -3,14 +3,10 @@ class Users::MypageController < ApplicationController
 
     def index
      @user = current_user
-     @orders = Order.page(params[:page]).where(user_id: current_user.id).where(delivery: [0])
-    end
+     @orders = Order.page(params[:page]).where(user_id: current_user.id).where(delivery: [0,1])
+  end
 
     def show
-     @user = User.find(params[:id])
-    end
-
-    def edit_login
      @user = User.find(params[:id])
     end
 

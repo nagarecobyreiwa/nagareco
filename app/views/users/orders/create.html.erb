@@ -1,6 +1,7 @@
 <div style="padding-top:100px;">
   <h2 class="text-center">ご注文ありがとうございます！</h2>
   <h2 class="text-center">ご注文番号</h2>
+  <h2 class="text-center"><%= @order_number %></h2>
 
   <% if params[:order][:payment] == "0" %>
   <div align="center" style="padding-top:20px; padding-bottom:20px;" >

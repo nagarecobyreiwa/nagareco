@@ -49,6 +49,7 @@ class Users::OrdersController < ApplicationController
     order = Order.new(order_params)
     order.user_id = current_user.id
     order.order_number = SecureRandom.hex(5)
+    @order_number = order.order_number
     if check_stock
       stock_update
       order.save
