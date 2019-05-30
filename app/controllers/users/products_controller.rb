@@ -1,8 +1,8 @@
 class Users::ProductsController < ApplicationController
   def index
-    @search = Product.ransack(params[:q]) #ransackメソッド推奨
+    @search = Product.where(on_sale: true).ransack(params[:q])
+    #@search = Product.ransack(name_cont: params[:q], on_sale_cont: true, m: 'and') #ransackメソッド推奨
     @search_products = @search.result.page(params[:page]).reverse_order
-    @products = Product.where(on_sale: true).page(params[:page]).reverse_order
   end
 
   def show

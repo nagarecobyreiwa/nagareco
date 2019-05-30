@@ -8,9 +8,7 @@
 		    </div><!-- /.carousel-item -->
 		    <div class="carousel-item">
 					<%= image_tag("img_music_.jpg", :size =>'1140x600')%>
-
 		    </div><!-- /.carousel-item -->
-
 				<div class="carousel-item ">
 					<%= image_tag("14480_01.jpg", :size =>'1140x600') %>
 		    </div><!-- /.carousel-item -->
@@ -20,21 +18,17 @@
 </div>
 <br>
 <br>
-<%= search_form_for @search, url: users_products_path do |f| %>
-    <dt><%= f.text_field :name_cont ,placeholder: '検索するテキストを入力...' %></dt>
-    <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
-<% end %>
 <div class="container">
 	<section class="text-center mb-4">
 		<div>
 			<h2>商品一覧</h2>
 			<br>
-			<form class="form-inline my-2 my-lg-0 float-right">
-	      <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">
-	      <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
-			</form>
-			<hr>
+			<%= search_form_for @search, url: users_products_path, class:"form-inline my-2 my-lg-0 float-right" do |f| %>
+			    <dt><%= f.text_field :name_cont ,placeholder: '検索...', class:"form-control mr-sm-2" %></dt>
+			    <dd><%= f.submit ("検索") , class:"btn btn-outline-success my-2 my-sm-0" %></dd>
+			<% end %>
 		</div>
+		<br>
 		<br>
 		<hr>
 		<div class="row wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
@@ -88,4 +82,5 @@
     </div>
   </section>
   <!--Section: Products v.3-->
+	<p><%= paginate @search_products, class: "paginate" %></p>
 </div>
