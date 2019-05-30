@@ -1,10 +1,11 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
-          <%= form_with model: @order, url: users_orders_path, local: true do |f|%>
+      <div class="col-md-12 mb-4">
+        <div class="card shadow">
+          <%= form_with model: @order, url: users_orders_path, local: true, class:"card-body" do |f|%>
             <table class="table table-striped">
               <%= f.hidden_field :buyer_first_name, :value => @user.first_name %>
-              <h1>お届け先の確認</h1>
+              <h3>お届け先の確認</h3>
               <tr>
                 <td></td>
                 <td>姓</td>
@@ -50,18 +51,24 @@
                 <%= f.hidden_field :delivery, :value => 0 %>
               </tr>
             </table>
-            <h1>お支払い方法</h1>
-            <% case @payment %>
-              <% when "0" then%>
-                <p>銀行振込</p>
-              <% when "1" then%>
-                <p>クレジットカード</p>
-              <% when "2" then%>
-                <p>代引き</p>
-            <% end %>
+            <hr>
+            <div>
+              <strong>
+                お支払い方法
+              </strong>
+              <% case @payment %>
+                <% when "0" then%>
+                  銀行振込
+                <% when "1" then%>
+                  クレジットカード
+                <% when "2" then%>
+                  代引き
+              <% end %>
+            </div>
             <%= f.hidden_field :payment, :value => @payment.to_i %>
+            <hr>
             <table class="table table-hover">
-              <h1>購入品</h1>
+              <h3>購入品</h3>
                 <thead>
                     <tr>
                         <th>Product</th>
@@ -76,22 +83,28 @@
                   <% @cart_items.each do |cart_item| %>
                     <%= f.nested_fields_for :order_products, wrapper_tag: :div do |item| %>
                       <tr>
-                          <td class="col-sm-4 col-md-2">
+                          <td>
                             <div class="media">
                                 <%= attachment_image_tag cart_item.product, :image, :fill, 100, 100, format: 'jpeg'%>
                             </div>
                           </td>
-                          <td><%= cart_item.product.name %></td>
-                          <td><%= cart_item.product.artist.name %></td>
-                          <td><%= cart_item.quantity %></td>
-                          <%= item.hidden_field :quantity, :value => cart_item.quantity %>
-                          <td class="col-sm-1 col-md-1 text-center">
+                          <td class="align-middle">
+                            <%= cart_item.product.name %>
+                          </td>
+                          <td class="align-middle">
+                            <%= cart_item.product.artist.name %>
+                          </td>
+                          <td class="align-middle">
+                            <%= cart_item.quantity %>
+                            <%= item.hidden_field :quantity, :value => cart_item.quantity %>
+                          </td>
+                          <td class="text-center align-middle">
                             <strong>
                               ￥<%= cart_item.product.price %>
                               <%= item.hidden_field :price, :value => cart_item.product.price %>
                             </strong>
                           </td>
-                          <td class="col-sm-1 col-md-1 text-center">
+                          <td class="text-center align-middle">
                             <strong>
                               ￥<%= cart_item.product.price.to_i  * cart_item.quantity.to_i %>
                             </strong>
@@ -105,34 +118,55 @@
                       <td>   </td>
                       <td>   </td>
                       <td>   </td>
-                      <td><h4>小計</h4></td>
-                      <td class="text-center"><h4><strong> ¥ <%= @total_price %></strong></h4></td>
+                      <td>
+                        小計
+                      </td>
+                      <td class="text-center">
+                        <strong>
+                          ¥ <%= @total_price %>
+                        </strong>
+                      </td>
                   </tr>
                   <tr>
                       <td>   </td>
                       <td>   </td>
                       <td>   </td>
                       <td>   </td>
-                      <td><h4>送料</h4></td>
-                      <td class="text-center"><h4><strong>￥ 500</strong></h4></td>
+                      <td>
+                        送料
+                      </td>
+                      <td class="text-center">
+                          <strong>
+                            + ￥ 500
+                          </strong>
+                      </td>
                   </tr>
                   <tr>
                       <td>   </td>
                       <td>   </td>
                       <td>   </td>
                       <td>   </td>
-                      <td><h3>Total</h3></td>
-                      <td class="text-right"><h3><strong>￥<%= @total_price + 500 %></strong></h3></td>
+                      <td>
+                        Total
+                      </td>
+                      <td class="text-center">
+                          <strong>
+                            ￥<%= @total_price + 500 %>
+                          </strong>
+                      </td>
                       <%= f.hidden_field :total_price, :value => @total_price + 500 %>
                   </tr>
                 </tbody>
             </table>
           <% if @payment == "1" %>
-            <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_3dc0642835144701ac3731e5"></script>
+            <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button btn-lg btn-block" data-key = <%= PAYJP_PUBLIC_KEY %> ></script>
           <%else%>
-            <%= f.submit "次へ" %>
+            <div data-turbolinks="false">
+              <%= f.submit "注文を確定する", class:"btn btn-primary btn-lg btn-block" %>
+            </div>
           <% end %>
         <% end %>
       </div>
     </div>
+  </div>
 </div>

@@ -1,2 +1,31 @@
-<h1>Users::Orders#create</h1>
-<p>Find me in app/views/users/orders/create.html.erb</p>
+<div style="padding-top:100px;">
+  <h2 class="text-center">ご注文ありがとうございます！</h2>
+  <h2 class="text-center">ご注文番号</h2>
+  <h2 class="text-center"><%= @order_number %></h2>
+
+  <% if params[:order][:payment] == "0" %>
+  <div align="center" style="padding-top:20px; padding-bottom:20px;" >
+    <table align="center">
+      <tr>
+        <th>銀行名</th>&nbsp;<td>三井</td>
+      </tr>
+      <tr>
+        <th>支店番号</th>&nbsp;<td>89</td>
+      </tr>
+      <tr>
+        <th>口座番号</th>&nbsp;<td>123456789</td>
+      </tr>
+      <tr>
+        <th></th>&nbsp;<td>普通口座</td>
+      </tr>
+      <tr>
+        <th>名義人</th>&nbsp;<td>株式会社令和</td>
+      </tr>
+    </table>
+  </div>
+  <% end %>
+
+  <div class="text-center">
+    <%= link_to "マイページに戻る" , users_mypage_index_path(current_user.id), class: "btn btn-primary" %>
+  </div>
+</div>

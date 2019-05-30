@@ -1,28 +1,17 @@
 class Users::MypageController < ApplicationController
     before_action :authenticate_user!
-  # 仮トップページ
-    def top
-
-    end
 
     def index
      @user = current_user
-    end
+     @orders = Order.page(params[:page]).where(user_id: current_user.id).where(delivery: [0,1])
+  end
 
     def show
      @user = User.find(params[:id])
     end
 
-    def edit_login
-     @user = User.find(params[:id])
-    end
-
     def edit
      @user = User.find(params[:id])
-    end
-
-    def edit_finish
-
     end
 
     def update

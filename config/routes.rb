@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'delete_user/show'
-  root "users/mypage#top"
+  root "users/products#index"
 
 
   devise_for :admins, controllers: {

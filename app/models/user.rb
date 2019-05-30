@@ -17,5 +17,5 @@ class User < ApplicationRecord
   validates :address
   validates :phone_number,numericality: true
   end
-  validates :email, uniqueness: true
+  validates :email, uniqueness_without_deleted: true, allow_blank: true, if: :email_changed?
 end

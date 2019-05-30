@@ -9,12 +9,13 @@
         <th scope="col">総額</th>
         <th scope="col">ステータス</th>
         <th>   </th>
+        <th>   </th>
       </tr>
     </thead>
     <tbody>
-      <% @orders.each do |order| %>
+      <% @orders.each_with_index do |order, i| %>
       <tr>
-        <td>No.</td>
+        <td><%= i + 1 %></td>
         <td><%= order.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
         <!-- insert link_to show_page -->
         <td><%= order.order_number %></td>
@@ -25,14 +26,14 @@
           <% if order.delivery == 0 %>
           発送準備中
             <% elsif order.delivery == 1 %>
-              発送中  |
               <%= link_to users_delivery_path(order),method: :patch do %>
-                <button class="btn btn-default btn-md-2" type="submit">受取完了
+                <button class="btn btn-default " type="submit">受取完了
               <% end %>
             <% elsif order.delivery == 2 %>
               発送完了
           <% end %>
         </td>
+        <td><%= link_to '詳細へ', users_order_history_path(order.id) %> </td>
       </tr>
       <% end %>
     </tbody>

@@ -9,42 +9,41 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-   <nav class="navbar navbar-default" style="background-color:#ffcc00;">
-     <div class="container-fluid">
-      <div class="navbar-header">
-         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample1">
-          <span class="sr-only"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-         </button>
-      </div>
-      <div class="collapse navbar-collapse" id="navbarEexample1">
-        <ul class="nav navbar-nav"><!-- ロゴが入る予定 -->
-
-            <li><%= link_to image_tag("logo.png",:size =>'150x60'), root_path %></li>
-            <li><!-- 検索フォームが入る予定 --></li>
-
-           <% if user_signed_in? %>
-            <li></li>
-            <li><%= link_to "マイページ", users_mypage_index_path %></li>
-            <li><!-- カートが入る予定 --></li>
-            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？" %></li>
-
-           <% elsif admin_signed_in? %>
-            <!-- 何もない -->
-
-           <% else %>
-            <li></li>
-            <li><!-- 商品一覧が入る予定 --></li>
-            <li><%= link_to "login", new_user_session_path %></li>
-            <li><%= link_to "Sign up", new_user_registration_path %></li>
-           <% end %>
-
-            </ul>
-           </div>
+  <% if admin_signed_in? %>
+  <% elsif user_signed_in? %>
+   <nav class="navbar navbar-expand-lg"style="background-color:#ffcc00;">
+     <div class="container-fluid" >
+       <%= link_to image_tag("logo.png",:size =>'150x60'), root_path %>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarEexample1" style="padding-bottom: 20px;">
+             <ul class="nav navbar-nav ">
+                    <li class="nav-item mr-auto"><%= link_to image_tag("cart.png"), users_cart_items_path %>
+                    </li>
+                    <li class="nav-item mr-auto"><%= current_user.first_name %><%= current_user.last_name %>様の<%= link_to "マイページ", users_mypage_index_path %>
+                    </li>
+                    <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？" %>
+                    </li>
+                <% else %>
+                <nav class="navbar navbar-expand-lg"style="background-color:#ffcc00;">
+                  <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarEexample1">
+                      <ul class="nav navbar-nav">
+                        <li><%= link_to image_tag("logo.png",:size =>'150x60'), root_path %>
+                        </li>
+                      </ul>
+                      <ul class="collapse navbar-collapse justify-content-end" style="list-style: none;">
+                          <li class="nav-item"><%= link_to "ログイン", new_user_session_path %></li>
+                          <li class="nav-item"><%= link_to "新規会員登録", new_user_registration_path %></li>
+                      </ul>
+                    </div>
+                  </div>
+                </nav>
+                <% end %>
+              </ul>
           </div>
-       </nav>
+      </div>
+    </nav>
+
+
    <%= yield %>
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

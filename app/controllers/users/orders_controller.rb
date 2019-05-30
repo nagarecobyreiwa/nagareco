@@ -20,7 +20,8 @@ class Users::OrdersController < ApplicationController
     @cart_items = current_user.carts
     @total_price = 0
     @cart_items.each do |cart_item|
-      @total_price += cart_item.quantity * cart_item.product.price
+      price =  cart_item.product.price * 1.08
+      @total_price += cart_item.quantity * price.round(0)
     end
     @user = current_user
     @payment = params[:order][:payment]
@@ -37,23 +38,29 @@ class Users::OrdersController < ApplicationController
 
   def create
     if params[:order][:payment] == "1"
-      binding.pry
-      Payjp.api_key = 'sk_test_bb801925d84ca86022e9a4cc'
+      Payjp.api_key = PAYJP_SECRET_KEY
       charge = Payjp::Charge.create(
         :amount => params[:order][:total_price].to_i,
         :card => params['payjp-token'],
         :currency => 'jpy',
       )
+      # create error message about credit
+      charge["failure_code"].nil?
     end
     order = Order.new(order_params)
     order.user_id = current_user.id
+    order.order_number = SecureRandom.hex(5)
+    @order_number = order.order_number
     if check_stock
       stock_update
       order.save
       destroy_cart
     end
-  end
-end
+   rescue Payjp::CardError
+     flash[:message] = "※決済がうまくいきませんでした。"
+     redirect_to  users_cart_items_path
+   end
+ end
 
 private
   def destroy_cart
@@ -66,8 +73,8 @@ private
       current_user.carts.each do |cart|
         product = cart.product
         quantity = product.stock - cart.quantity
-        if quantity <= 0
-          flash[:message] = "※在庫の上限を超えておりますので、個数の変更をしてください"
+        if quantity < 0
+          flash[:message] = "※在庫の上限を超えておりますので、個数の変更をしてください."
           redirect_to  users_cart_items_path and return false
         end
       end
