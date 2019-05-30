@@ -20,7 +20,8 @@ class Users::OrdersController < ApplicationController
     @cart_items = current_user.carts
     @total_price = 0
     @cart_items.each do |cart_item|
-      @total_price += cart_item.quantity * cart_item.product.price
+      price =  cart_item.product.price * 1.08
+      @total_price += cart_item.quantity * price.round(0)
     end
     @user = current_user
     @payment = params[:order][:payment]
@@ -49,6 +50,7 @@ class Users::OrdersController < ApplicationController
     order = Order.new(order_params)
     order.user_id = current_user.id
     order.order_number = SecureRandom.hex(5)
+    @order_number = order.order_number
     if check_stock
       stock_update
       order.save

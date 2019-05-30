@@ -94,7 +94,7 @@
                   <tbody>
                     <tr>
                       <td class="col-md-2 font-weight-bold"> 価格(税込)</td>
-                      <td class="col-md-10 font-weight-bold">￥<%= @product.price %></td>
+                      <td class="col-md-10 font-weight-bold">￥<% price = @product.price * 1.08 %><%= price.round(0) %>(税込)</td>
                     </tr>
                   </tbody>
                 </table>

@@ -4,7 +4,8 @@ class Users::CartItemsController < ApplicationController
     @cart_items = current_user.carts
     @total_price = 0
     @cart_items.each do |cart_item|
-      @total_price += cart_item.quantity * cart_item.product.price
+      price = cart_item.product.price * 1.08
+      @total_price += cart_item.quantity * price.round(0)
     end
   end
 
