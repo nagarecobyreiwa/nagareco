@@ -49,12 +49,13 @@
                 </td>
                 <td class="text-center align-middle">
                   <strong>
-                    ￥<%= cart_item.product.price %>
+                    <% price = cart_item.product.price * 1.08 %>
+                    ￥<%= price.round(0) %>
                   </strong>
                 </td>
                 <td class="text-center align-middle">
                   <strong>
-                    ￥<%= cart_item.product.price.to_i  * cart_item.quantity.to_i %>
+                    ￥<%= price.round(0).to_i  * cart_item.quantity.to_i%>
                   </strong>
                 </td>
             </tr>
@@ -66,7 +67,7 @@
                 <td>   </td>
                 <td>   </td>
                 <td class="text-center"><h3>Total</h3></td>
-                <td class="text-center"><h3><strong>￥<%= @total_price %></strong></h3></td>
+                <td class="text-center"><h3><strong>￥<%= @total_price.round(0) %></strong></h3></td>
             </tr>
             <tr>
                 <td>   </td>
