@@ -1,7 +1,53 @@
 <%= render 'admins/layouts/sidebar' %>
 
+<<<<<<< HEAD
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+<%= form_for @product, url: admins_products_path do |f| %>
+  <div class="form-user">
+    <%= f.label :name, "商品名" %>
+    <%= f.text_field :name %>
+  </div>
+　<%= f.nested_fields_for :disks, wrapper_tag: :div do |disk| %> 　
+  <table class="table table-striped">
+    <thead>
+  		<tr>
+  			<th>No.</th>
+  			<th>ディスク名</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+       <tr>
+         <td></td>
+         <td><%= disk.text_field :name, class:'form-control', id:'disks', placeholder: 'disks'%></td>
+         <td><%= disk.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %></td>
+       </tr>
+    </tbody>
+  </table>
+  <%= disk.nested_fields_for :songs, wrapper_tag: :div do |song| %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>曲名</th>
+        <th>演奏時間</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= song.text_field :name, class:'form-control', id:'songs', placeholder: 'songs'%></td>
+        <td><%= song.time_select :time, class:'form-control', id:'times', placeholder: 'times'%></td>
+        <td><%= song.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %></td>
+      </tr>
+    </tbody>
+  </table>
+  <% end %>
+  <%= disk.add_nested_fields_link :songs, 'Add new', class: 'btn btn-primary', role: 'button' %>
+
+<% end %>
+<%= f.add_nested_fields_link :disks, 'Add new', class: 'btn btn-primary', role: 'button' %>
+=======
 <main role="main" class="col-md-10 pt-3 px-4">
   <h2>商品登録</h2>
+>>>>>>> 4f31c6d51f63ab93a1175c87d89e603a38277e42
 
   <%= form_for @product, url: admins_products_path do |f| %>
     <% if @product.errors.any? %>

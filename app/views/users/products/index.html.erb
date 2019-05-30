@@ -29,7 +29,7 @@
 		<div class="row wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
       <% @products.each do |product| %>
     		<div class="col-lg-3 col-md-6 mb-4">
-					<div class="card shadow-lg" style="padding:10px 0px">
+					<div class="card shadow-lg" style="padding:10px 0px; height: 450px;">
 						<div class="view overlay">
 							<%= attachment_image_tag product, :image, :fill, 180, 180, format: 'jpeg'%>
 	            <a>
@@ -65,7 +65,7 @@
 										<%= f.submit "Go Cart" , class: "btn btn-success" %>
 
 											<% else product.stock == 0 %>
-												<h5 style="color: orange">Sold out</h5>
+												<h5 style="color: orange;">Sold out</h5>
                       <% end %>
 										<%= link_to '商品詳細', users_product_path(product.id),class: 'btn btn-info ' %>
 									</div>

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 2019_05_19_044002) do
+=======
 ActiveRecord::Schema.define(version: 2019_05_25_094659) do
+>>>>>>> 4f31c6d51f63ab93a1175c87d89e603a38277e42
 
   create_table "addresses", force: :cascade do |t|
     t.string "first_name"
@@ -42,6 +46,8 @@ ActiveRecord::Schema.define(version: 2019_05_25_094659) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
+<<<<<<< HEAD
+=======
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_05_25_094659) do
     t.integer "product_id"
     t.integer "user_id"
     t.integer "quantity", default: 1
+>>>>>>> 4f31c6d51f63ab93a1175c87d89e603a38277e42
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

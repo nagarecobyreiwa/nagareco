@@ -1,12 +1,12 @@
   <!--Main layout-->
 
-  <main class="mt-5 pt-4 ">
+  <main class="mt-5 pt-4 " style="padding-bottom: 70px;">
     <div class="container dark-grey-text mt-5 shadow-lg" style="padding: 100px 30px;">
 
       <!--Grid row-->
       <div class="row wow fadeIn">
         <!--Grid column-->
-        <div class="col-md-6 text-center" style="padding-top: 60px;">
+        <div class="col-md-6 text-center" style="padding-top: 30px;">
           <%= attachment_image_tag @product, :image, :fill, 500, 500, format: 'jpeg'%>
         </div>
         <!--Grid column-->
@@ -33,25 +33,25 @@
             </div>
             <br>
 
-            <div class="container" style="padding-left: 70px;">
+            <div class="container" style="padding-left: 40px;">
               <div class="row">
                 <% @product.disks.each do |disk| %>
                     <p class="lead col-md-12 font-weight-bold"><%= disk.name %></p>
                   <% disk.songs.each do |song| %>
-                    <table class=" col-md-8 " style="margin-left: 100px;">
+                    <table class=" col-md-6 " style="margin-left: 70px;">
                       <thead>
                         <tr>
-                          <th class="col-md-3 "></th>
-                          <th class="col-md-5 "></th>
+                          <th class="col-md-2 "></th>
+                          <th class="col-md-10 "></th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                         <th class="col-md-3 font-weight-bold" style="padding-bottom: 7px;">
+                         <td class="col-md-2" style="padding-bottom: 10px;">
                           <%= song.name %>
-                         </th>
+                        </td>
 
-                         <td class="col-md-5 font-weight-bold">
+                         <td class="col-md-10">
                           <%= song.time.strftime("%H:%M") %>
                          </td>
                         </tr>
@@ -64,15 +64,40 @@
             <br>
 
 
-            <div class="container" style="padding-left: 100px;" >
-              <div class="row">
-
-                <div class ="col-md-4">在庫数</div>
-                <div class ="col-md-8"><%= @product.stock %>枚</div>
-                <br>
-                <div class ="col-md-4"> 価格（税込）</div>
-                <div class ="col-md-8">￥ <%= @product.price %></div>
-
+            <div class="container" style="padding-left: 40px;" >
+              <div class="row" >
+                <table class=" col-md-6 " style="margin-left: 70px;">
+                  <thead>
+                    <tr>
+                      <th class="col-md-2 "></th>
+                      <th class="col-md-10 "></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="col-md-2 font-weight-bold">在庫数</td>
+                      <td class="col-md-10 font-weight-bold"><%= @product.stock %>枚</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="container" style="padding-left: 40px;" >
+              <div class="row" >
+                <table class=" col-md-6 " style="margin-left: 70px;">
+                  <thead>
+                    <tr>
+                      <th class="col-md-2 "></th>
+                      <th class="col-md-10 "></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="col-md-2 font-weight-bold"> 価格(税込)</td>
+                      <td class="col-md-10 font-weight-bold">￥<%= @product.price %></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
             <br>
@@ -83,7 +108,7 @@
   								<%= f.hidden_field :id, :value => @product.id %>
   								<%= f.number_field :quantity, min:1, max: @product.stock, value: 1 %>
   								<div data-turbolinks="false">
-  								  <%= f.submit "Go Cart" , class: "btn btn-success" %>
+  								  <%= f.submit "Go Cart" , class: "btn btn-success btn-sm" %>
   								</div>
   							<% end %>
               </div>
