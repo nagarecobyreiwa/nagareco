@@ -8,9 +8,7 @@
 		    </div><!-- /.carousel-item -->
 		    <div class="carousel-item">
 					<%= image_tag("img_music_.jpg", :size =>'1140x600')%>
-
 		    </div><!-- /.carousel-item -->
-
 				<div class="carousel-item ">
 					<%= image_tag("14480_01.jpg", :size =>'1140x600') %>
 		    </div><!-- /.carousel-item -->
@@ -20,22 +18,21 @@
 </div>
 <br>
 <br>
-
 <div class="container">
 	<section class="text-center mb-4">
 		<div>
 			<h2>商品一覧</h2>
 			<br>
-			<form class="form-inline my-2 my-lg-0 float-right">
-	      <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">
-	      <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
-			</form>
-			<hr>
+			<%= search_form_for @search, url: users_products_path, class:"form-inline my-2 my-lg-0 float-right" do |f| %>
+			    <dt><%= f.text_field :name_cont ,placeholder: '検索...', class:"form-control mr-sm-2" %></dt>
+			    <dd><%= f.submit ("検索") , class:"btn btn-outline-success my-2 my-sm-0" %></dd>
+			<% end %>
 		</div>
+		<br>
 		<br>
 		<hr>
 		<div class="row wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
-      <% @products.each do |product| %>
+      <% @search_products.each do |product| %>
     		<div class="col-lg-3 col-md-6 mb-4">
 					<br>
 					<div class="card shadow-lg" style="padding:10px 0px; height: 450px;">
@@ -45,7 +42,6 @@
 	              <div class="mask rgba-white-slight waves-effect waves-light"></div>
 	            </a>
 	          </div>
-
 						<div class="card-body text-center">
 	            <!--Category & Title-->
 	            <a href="" class="grey-text"　>
@@ -55,43 +51,36 @@
 	                <a href="" class="dark-grey-text"><%= product.artist.name %>
 	                </a>
 	            </h5>
-
 	            <h4 class="font-weight-bold blue-text">
 	              <strong>￥ <% price = product.price * 1.08 %><%= price.round(0) %>（税込）</strong>
 	            </h4>
-
-
 	          </div>
 						<div class="d-flex justify-content-center">
 						 <!-- Default input -->
+						 <% if product.stock >= 1 %>
 							<%= form_with scope: :product, url: users_cart_items_path, local: true, method: :post do |f|%>
-								<% if product.stock >= 1 %>
 									<%= f.hidden_field :id, :value => product.id %>
 									<%= f.number_field :quantity, min:1, max: product.stock, value: 1  %>
-
 									<div data-turbolinks="false">
 										<br>
 										<%= f.submit "Go Cart" , class: "btn btn-success" %>
-
-											<% else product.stock == 0 %>
-												<h5 style="color: orange;">Sold out</h5>
-                      <% end %>
 										<%= link_to '商品詳細', users_product_path(product.id),class: 'btn btn-info ' %>
 									</div>
-
 							<% end %>
+						<% else %>
+						<div data-turbolinks="false">
+							<h5 style="color: orange;">Sold out</h5>
+							<%= link_to '商品詳細', users_product_path(product.id),class: 'btn btn-info ' %>
+						</div>
+						<% end %>
 						</div>
 						<br>
-
 					</div>
         <!--Card-->
 			</div>
     	<% end %>
     </div>
-
   </section>
   <!--Section: Products v.3-->
+	<p><%= paginate @search_products, class: "paginate" %></p>
 </div>
-
-
-<p><%= paginate @products, class: "paginate" %></p>
